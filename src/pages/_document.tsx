@@ -33,10 +33,10 @@ class MyDocument extends Document {
             <link rel="icon" type="image/png" sizes="16x16" href="https://signaturesbydoyen.org/doyen-signature.png'" />
             <link rel='icon' sizes='192x192' type='image/png' href='https://signaturesbydoyen.org/doyen-signature.png' />
             <link rel='icon' sizes='512x512' type='image/png' href='https://signaturesbydoyen.org/doyen-signature.png' />
-            <meta name="apple-mobile-web-app-title" content="Unitellas - BRIDALS▪️CUSTOM•MADE▪️LUXURY▪️TRAINING | Coming Soon" />
+            <meta name="apple-mobile-web-app-title" content="Unitellas - THE FIRST HYPER SCALE EDGE CLOUD IN AFRICA" />
             <link rel='apple-touch-icon' type='image/png' href='https://signaturesbydoyen.org/doyen-signature.png' />
             <meta name='msapplication-square310x310logo' content='https://signaturesbydoyen.org/doyen-signature.png' />
-                <link rel='manifest' href='https://signaturesbydoyen.org/' />
+            <link rel='manifest' href='https://signaturesbydoyen.org/' />
             <link rel='canonical' href='https://signaturesbydoyen.org/' />
 
                 {/* open graph */}
@@ -44,7 +44,7 @@ class MyDocument extends Document {
             <meta property="og:site_name" content="Unitellas" />
             <meta
               property="og:title"
-              content="Unitellas - BRIDALS▪️CUSTOM•MADE▪️LUXURY▪️TRAINING | Coming Soon"
+              content="Unitellas - THE FIRST HYPER SCALE EDGE CLOUD IN AFRICA"
               key="title"
             />
             <meta
@@ -63,7 +63,7 @@ class MyDocument extends Document {
             <meta name="twitter:creator" content="@doyenyen_" />
             <meta
               name="twitter:title"
-              content="Unitellas - BRIDALS▪️CUSTOM•MADE▪️LUXURY▪️TRAINING | Coming Soon"
+              content="Unitellas - THE FIRST HYPER SCALE EDGE CLOUD IN AFRICA"
             />
             <meta
               name="twitter:description"
