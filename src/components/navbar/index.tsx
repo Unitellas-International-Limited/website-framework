@@ -1,114 +1,97 @@
 /* eslint-disable react/no-string-refs */
 import {
-    Box,
-    Flex,
-    Text,
-    IconButton,
-    Button,
-    Stack,
-    Collapse,
-    Icon,
-    Link,
-    Popover,
-    PopoverTrigger,
-    PopoverContent,
-    useColorModeValue,
-    useBreakpointValue,
-    useDisclosure,
-  } from '@chakra-ui/react';
-  import {
-    HamburgerIcon,
-    CloseIcon,
-    ChevronDownIcon,
-    ChevronRightIcon,
-  } from '@chakra-ui/icons';
+  Box,
+  Flex,
+  Image,
+  Link,
+  useDisclosure,
+  Text
+} from '@chakra-ui/react';
+
+import {
+  HamburgerIcon,
+  CloseIcon,
+  ChevronDownIcon,
+  ChevronRightIcon,
+} from '@chakra-ui/icons';
+
+import NextLink from 'next/link'
+import { motion } from 'framer-motion';
 
 
 
-  const NavLink = ({ children }:any) => (
-    <Link
-      px={2}
-      py={1}
-      rounded={'md'}
-      _hover={{
-        textDecoration: 'none',
-        bg: useColorModeValue('gray.200', 'gray.700'),
-      }}>
-      {children}
-    </Link>
-  );
+  const NavLink = ({ pathText, pathTo }: {pathText: string, pathTo: string}) => {
+    return(
+      <NextLink href={pathTo} passHref>
+        <Link
+          px={2} py={1}
+          rounded={'md'}
+          color={'white'}
+          fontWeight={'bold'}
+          position="relative"
+          _hover={{
+            textDecoration: 'none',
+            bg: '#1379b4',
+          }}>
+          {pathText}
+          <motion.div
+            initial={{ width: 0 }}
+            animate={{ width: '50%' }}
+            transition={{ duration: 3 }}
+            style={{ height: '2px', background: '#1379b4', position: 'absolute', left: 10, bottom: 0 }}
+          />
+        </Link>
+      </NextLink>
+    )
+  };
+
+
 export default function NavigationMenuBar() {
     const { isOpen, onToggle } = useDisclosure();
     return (
-       <Box>
-         <Flex
-            bg={useColorModeValue('white', 'gray.800')}
-            color={useColorModeValue('gray.600', 'white')}
-            minH={'60px'}
-            py={{ base: 2 }}
-            px={{ base: 4 }}
-            borderBottom={1}
-            borderStyle={'solid'}
-            borderColor={useColorModeValue('gray.200', 'gray.900')}
-            align={'center'}>
-            <Flex
-                flex={{ base: 1, md: 'auto' }}
-                ml={{ base: -2 }}
-                display={{ base: 'flex', md: 'none' }}>
-                <IconButton
-                    onClick={onToggle}
-                    icon={
-                    isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
-                    }
-                    variant={'ghost'}
-                    aria-label={'Toggle Navigation'}
-                />
-            </Flex>
-            <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
-            <Text
-                textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
-                fontFamily={'heading'}
-                color={useColorModeValue('gray.800', 'white')}>
-                Logo
-            </Text>
-
-            <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
-                {/* <DesktopNav /> */}
-            </Flex>
-            </Flex>
-
-            <Stack
-            flex={{ base: 1, md: 0 }}
-            justify={'flex-end'}
-            direction={'row'}
-            spacing={6}>
-            <Button
-                as={'a'}
-                fontSize={'sm'}
-                fontWeight={400}
-                variant={'link'}
-                href={'#'}>
-                Sign In
-            </Button>
-            <Button
-                display={{ base: 'none', md: 'inline-flex' }}
-                fontSize={'sm'}
-                fontWeight={600}
-                color={'white'}
-                bg={'pink.400'}
-                onClick={()=> {}}
-                // ref={'#'}
-                _hover={{
-                bg: 'pink.300',
-                }}>
-                Sign Up
-            </Button>
-            </Stack>
+      <Flex 
+        as="nav"
+        align="center"
+        justify="space-between"
+        wrap="wrap"
+        w="100%"
+        // mb={8}
+        p={5}
+        bg={`url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCI+CjxmaWx0ZXIgaWQ9Im4iPgo8ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjciIG51bU9jdGF2ZXM9IjEwIiBzdGl0Y2hUaWxlcz0ic3RpdGNoIj48L2ZlVHVyYnVsZW5jZT4KPC9maWx0ZXI+CjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjMDAwIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiBmaWx0ZXI9InVybCgjbikiIG9wYWNpdHk9IjAuNCI+PC9yZWN0Pgo8L3N2Zz4=')`} 
+        position="sticky"
+        top={0}
+        zIndex={10000}
+      >
+        <Flex align="center">
+          <Image src='/unitellas-logo.png' alt='Unitellas' width={210} />
         </Flex>
 
-        <Collapse in={isOpen} animateOpacity>
-            {/* <MobileNav /> */}
-        </Collapse>
-       </Box>
-    )
+        <Box
+          display={{ base: isOpen ? "block" : "none", md: "block" }}
+          flexBasis={{ base: "100%", md: "auto" }}
+          hideBelow={'md'}
+        >
+
+          <Flex
+            align="center"
+            justify={["center", "space-between", "flex-end", "flex-end"]}
+            direction={["column", "row", "row", "row"]}
+            pt={[4, 4, 0, 0]}
+          >
+              <NavLink pathText='Platform' pathTo=''  />
+              <NavLink pathText='Solutions' pathTo='/solutions'  />
+              <NavLink pathText='About Us' pathTo='/about'  />
+              <NavLink pathText='Contact' pathTo='/contact'  />
+          </Flex>
+          
+        </Box>
+
+        <Box
+          hideFrom={'md'}
+          // flexBasis={{ base: "100%", md: "auto" }}
+        >
+          {isOpen ? <CloseIcon color={'white'} fontSize={35} onClick={onToggle} /> : <HamburgerIcon color={'white'} fontSize={35} onClick={onToggle} />}
+        </Box>
+      </Flex>
+  )
 }
