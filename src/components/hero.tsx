@@ -19,7 +19,7 @@ export default function HeroSection() {
                         animate={{ x: 0 }}
                         transition={{ duration: 2 }}
                         style={{ 
-                            position: 'absolute',
+                            position: 'relative',
                         }}
                     >
                         <Box>
@@ -37,7 +37,7 @@ export default function HeroSection() {
                         animate={{ x: 0 }}
                         transition={{ duration: 2 }}
                         style={{ 
-                            position: 'absolute',
+                            position: 'relative',
                         }}
                     >
                         <Box flex={'column'} flexDirection={'column'}>
