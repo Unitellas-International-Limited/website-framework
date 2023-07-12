@@ -6,7 +6,7 @@ import { animate, motion } from "framer-motion";
 
 export default function HeroSection() {
     return(
-        <Box as="section" bgImage="url('/cloud-tech-bg-3.jpg')" bgSize="cover" bgPos="center">
+        <Box as="section" bgImage="url('/cloud-tech-bg-3.jpg')" bgSize="cover" bgPos="center" position={'absolute'}>
             <Container maxW="container.xl" padding={'10'}>
                 <Stack
                     align="center"
