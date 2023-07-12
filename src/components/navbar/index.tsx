@@ -83,9 +83,7 @@ export default function NavigationMenuBar() {
               <NavLink pathText='About Us' pathTo='/about'  />
               <NavLink pathText='Contact' pathTo='/contact'  />
           </Flex>
-          
         </Box>
-
         <Box
           hideFrom={'md'}
           // flexBasis={{ base: "100%", md: "auto" }}

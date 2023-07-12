@@ -2,8 +2,6 @@ import { Box, Button, Container, Heading, Stack, Text } from "@chakra-ui/react";
 import { animate, motion } from "framer-motion";
 
 
-
-
 export default function HeroSection() {
     return(
         <Box as="section" bgImage="url('/cloud-tech-bg-3.jpg')" bgSize="cover" bgPos="center" position={'relative'}>
