@@ -7,7 +7,7 @@ import { animate, motion } from "framer-motion";
 export default function HeroSection() {
     return(
         <Box as="section" bgImage="url('/cloud-tech-bg-3.jpg')" bgSize="cover" bgPos="center" position={'relative'}>
-            <Container maxW="container.xl" padding={'10'}>
+            <Container padding={'10'}>
                 <Stack
                     align="center"
                     spacing={8}
@@ -15,7 +15,7 @@ export default function HeroSection() {
                     py={20}
                 >
                     <motion.div
-                        initial={{ x: -100 }}
+                        initial={{ x: -1000 }}
                         animate={{ x: 0 }}
                         transition={{ duration: 2 }}
                         style={{ 
@@ -26,21 +26,21 @@ export default function HeroSection() {
                             <Heading as="h1" size="2xl" color={'white'} maxWidth={'70%'} fontWeight="bold">
                                 Unitellas Edge Cloud
                             </Heading>
-                            <Text fontSize="lg" maxWidth={'80%'} color="white">
+                            <Text fontSize="lg" maxWidth={'100%'} color="white">
                                 Fully-managed cloud services.<br />
                                 Compute, networking and storage.
                             </Text>
                         </Box>
                     </motion.div>
                     <motion.div
-                        initial={{ x: 100 }}
-                        animate={{ x: 0 }}
+                        initial={{ x: 1000 }}
+                        animate={{ x: 10 }}
                         transition={{ duration: 2 }}
                         style={{ 
                             position: 'relative',
                         }}
                     >
-                        <Box flex={'column'} flexDirection={'column'}>
+                        <Box flex={'column'} flexDirection={'column'} dir={'column'}>
                             <Button variant="solid" colorScheme="blue" margin={'2.5'} size="lg">
                                 Get started
                             </Button>
