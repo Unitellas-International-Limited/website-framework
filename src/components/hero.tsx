@@ -15,9 +15,12 @@ export default function HeroSection() {
                     py={20}
                 >
                     <motion.div
-                        initial={{ x: -1000 }}
+                        initial={{ x: -100 }}
                         animate={{ x: 0 }}
                         transition={{ duration: 2 }}
+                        style={{ 
+                            position: 'absolute',
+                        }}
                     >
                         <Box>
                             <Heading as="h1" size="2xl" color={'white'} maxWidth={'70%'} fontWeight="bold">
@@ -30,9 +33,12 @@ export default function HeroSection() {
                         </Box>
                     </motion.div>
                     <motion.div
-                        initial={{ x: 1000 }}
+                        initial={{ x: 100 }}
                         animate={{ x: 0 }}
                         transition={{ duration: 2 }}
+                        style={{ 
+                            position: 'absolute',
+                        }}
                     >
                         <Box flex={'column'} flexDirection={'column'}>
                             <Button variant="solid" colorScheme="blue" margin={'2.5'} size="lg">

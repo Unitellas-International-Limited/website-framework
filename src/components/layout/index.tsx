@@ -34,9 +34,6 @@ const Layout = ({ children }: Props) => {
     return (
         <div className="flex flex-col min-h-screen">
             <NavigationMenuBar />
-            {/* <DrawerComponent isOpen={true} onClose={function (): void {
-                throw new Error("Function not implemented.");
-            } } /> */}
                 <main >
                     {children}
                 </main>
