@@ -7,7 +7,7 @@ import Logo from "./Logo";
 import BaseModal from "./BaseModal";
 
 export default function Nav() {
-  const [sideBarDisplay, setSideBarDisplay] = useState(true);
+  const [sideBarDisplay, setSideBarDisplay] = useState(false);
   const { width } = useWindowDimension();
   const headerLinks = [
     {
