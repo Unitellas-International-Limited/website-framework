@@ -8,5 +8,14 @@
   },
   "[shellscript]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
-  }
+  },
+  "cSpell.words": [
+    "fontawesome",
+    "fortawesome",
+    "tailwindcss",
+    "Unitellas",
+    "Xmark",
+    "Zadara",
+    "Zadara's"
+  ]
 }
