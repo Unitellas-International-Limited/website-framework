@@ -11,10 +11,14 @@
     "check-types": "tsc --pretty --noEmit",
     "check-format": "prettier --ignore-path .gitignore --check .",
     "check-lint": "eslint . --ext ts --ext tsx --ext js",
-    "check-all": "yarn check-format && yarn check-lint && yarn check-types && yarn build",
+    "check-all": "yarn format && yarn check-format && yarn check-lint && yarn check-types && yarn build",
     "prepare": "husky install"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.4.2",
+    "@fortawesome/free-brands-svg-icons": "^6.4.2",
+    "@fortawesome/free-solid-svg-icons": "^6.4.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@types/node": "20.4.0",
     "@types/react": "18.2.14",
     "@types/react-dom": "18.2.6",
