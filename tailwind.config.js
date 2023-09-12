@@ -24,11 +24,11 @@ module.exports = {
     keyframes: {
       scroll: {
         "0%": { transform: "translateX(0)" },
-        "100%": { transform: "translateX(-50%)" },
+        "100%": { transform: "translateX(calc(-100% - 3rem))" },
       },
     },
     animation: {
-      scroll: "scroll 5s linear infinite",
+      scroll: "scroll 30s linear infinite",
     },
   },
   plugins: [],

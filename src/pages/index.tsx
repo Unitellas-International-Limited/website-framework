@@ -49,6 +49,16 @@ export default function Home() {
       text: "Free your IT team from ongoing maintenance. Zadara delivers around-the-clock, proactive monitoring and support, and seamless upgrades, backed by our industry-best uptime SLAs.",
     },
   ];
+  const images = [
+    "/assets/images/home-carousel/adc-logo.jpg",
+    "/assets/images/home-carousel/asigra-logo.png",
+    "/assets/images/home-carousel/cwg-logo.png",
+    "/assets/images/home-carousel/inq-logo.png",
+    "/assets/images/home-carousel/itex-logo.png",
+    "/assets/images/home-carousel/nitda-logo.png",
+    "/assets/images/home-carousel/rackware-logo.png",
+    "/assets/images/home-carousel/treten-logo.png",
+  ];
   return (
     <>
       <main className="h-screen w-full bg-home-hero bg-cover bg-center">
@@ -87,7 +97,7 @@ export default function Home() {
           Trusted by leading companies and service providers around the world.
         </h1>
       </section>
-      <AnimatedCarousel />
+      <AnimatedCarousel images={images} />
       <motion.section
         initial={{ y: 200, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
@@ -133,7 +143,7 @@ export default function Home() {
             Sign up for a free trial or contact us now for more info.
           </p>
           <div className="md: my-8 flex flex-col items-center justify-center gap-8 sm:flex-row">
-            <BaseButton text="Contact Us" type="link" href="/contact" />
+            <BaseButton text="Contact Us" type="link" href="#" />
             <BaseButtonWithColor text="Schedule Demo" />
           </div>
         </div>
