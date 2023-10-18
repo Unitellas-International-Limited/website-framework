@@ -15,7 +15,7 @@ module.exports = {
       },
       backgroundImage: {
         "home-hero":
-          "url('https://www.unitellas.com.ng/images/cloud-tech-bg-3.jpg')",
+          "url('https://unitellas.com.ng/images/cloud-tech-bg-3.jpg')",
       },
       fontFamily: {
         display: ["Mongoose", "Arial", "sans-serif", "system-ui"],
