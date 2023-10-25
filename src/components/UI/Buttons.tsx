@@ -16,7 +16,7 @@ type BaseLinkTypeProps = LinkProps & {
 
 type BaseButtonProps = {
   type?: Type;
-  size?: "md" | "lg";
+  size?: "md" | "lg" | "full";
   text: string;
 } & (BaseButtonTypeProps | BaseLinkTypeProps);
 
@@ -24,8 +24,8 @@ const motionProps = {
   initial: {
     boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0.1)",
   },
-  whileHover: { scale: 1.05, boxShadow: "0 12px 18px -3px rgb(0 0 0 / 0.1)" },
-  whileTap: { scale: 0.95, boxShadow: "0 8px 12px -2px rgb(0 0 0 / 0.1)" },
+  whileHover: { scale: 1.01, boxShadow: "0 12px 18px -3px rgb(0 0 0 / 0.1)" },
+  whileTap: { scale: 0.99, boxShadow: "0 8px 12px -2px rgb(0 0 0 / 0.1)" },
 };
 
 export function BaseButton({
@@ -37,7 +37,11 @@ export function BaseButton({
 }: BaseButtonProps) {
   const classes = classNames(
     "flex items-center justify-center rounded border bg-black/50 text-white cursor-pointer",
-    { "h-14 w-64": size === "md", "h-16 w-80": size === "lg" },
+    {
+      "h-14 w-64": size === "md",
+      "h-16 w-80": size === "lg",
+      "h-16 w-full": size === "full",
+    },
     className,
   );
 
@@ -83,7 +87,11 @@ export function BaseButtonWithColor({
       {...(props as BaseButtonTypeProps)}
       className={classNames(
         "flex items-center justify-center rounded border bg-uni-blue text-white",
-        { "h-14 w-64": size === "md", "h-16 w-80": size === "lg" },
+        {
+          "h-14 w-64": size === "md",
+          "h-16 w-80": size === "lg",
+          "h-16 w-full": size === "full",
+        },
         className,
       )}
     >
