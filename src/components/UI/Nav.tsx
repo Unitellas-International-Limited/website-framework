@@ -1,7 +1,12 @@
 import { useState } from "react";
 import { useWindowDimension } from "@/hooks/useWindowDimension";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBars,
+  faXmark,
+  faPhone,
+  faEnvelope,
+} from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import Logo from "./Logo";
 import BaseModal from "./BaseModal";
@@ -9,49 +14,40 @@ import BaseModal from "./BaseModal";
 export default function Nav() {
   const [sideBarDisplay, setSideBarDisplay] = useState(false);
   const { width } = useWindowDimension();
+
   const headerLinks = [
     {
-      title: "support",
-      url: "/support",
+      title: "+234 802 505 0468",
+      url: "tel:+234 8025050468",
+      icon: <FontAwesomeIcon icon={faPhone} className="h-4" />,
     },
     {
-      title: "solutions",
-      url: "/solutions",
-    },
-    {
-      title: "partner login",
-      url: "/partner-login",
-    },
-    {
-      title: "user login",
-      url: "/user-login",
+      title: "info@unitellas.com.ng",
+      url: "mailto:einfo@unitellas.com.ng",
+      icon: <FontAwesomeIcon icon={faEnvelope} className="h-4" />,
     },
   ];
 
   const navLinks = [
     {
+      title: "home",
+      url: "/home",
+    },
+    {
       title: "about",
       url: "/about",
     },
     {
-      title: "platform",
-      url: "/platform",
-    },
-    {
-      title: "solutions",
-      url: "/solutions",
-    },
-    {
-      title: "partners",
-      url: "/partners",
+      title: "services",
+      url: "/services",
     },
     {
       title: "resources",
       url: "/resources",
     },
     {
-      title: "pricing",
-      url: "/pricing",
+      title: "contact",
+      url: "/contact",
     },
   ];
 
@@ -104,10 +100,13 @@ export default function Nav() {
   return (
     <>
       <header>
-        <ul className="flex items-center justify-end gap-4 bg-gray-800 p-2 text-gray-300">
+        <ul className="flex items-center justify-end gap-8 bg-gray-800 p-2 text-gray-300">
           {headerLinks.map((link) => (
             <li key={link.url}>
-              <Link href={link.url}>{link.title}</Link>
+              <Link href={link.url} className="flex items-center gap-2">
+                {link.icon}
+                <span>{link.title}</span>
+              </Link>
             </li>
           ))}
         </ul>
