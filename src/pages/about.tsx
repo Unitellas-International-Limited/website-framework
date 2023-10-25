@@ -1,31 +1,15 @@
 import Layout from "@/components/UI/Layout";
+import PageHeader from "@/components/UI/PageHeader";
 import Row from "@/components/UI/Row";
-import classNames from "classnames";
 import Image from "next/image";
 
-export default function about() {
+export default function About() {
   return (
     <Layout>
-      <section
-        className={classNames(
-          "relative flex h-80 flex-col items-center justify-center overflow-hidden bg-black",
-          {
-            "before:absolute before:bottom-[-40vw] before:left-[25vw] before:block before:h-[80vw] before:w-[80vw] before:-rotate-45 before:transform before:bg-white before:bg-opacity-5":
-              true,
-          },
-          {
-            "after:left-5/6 after:absolute after:-bottom-1/3 after:block after:h-4/6 after:w-4/6 after:-rotate-45 after:transform after:rounded-full after:bg-white after:bg-opacity-5":
-              true,
-          },
-        )}
-      >
-        <h1 className="mb-4 font-display text-7xl text-uni-blue md:text-9xl">
-          About Unitellas
-        </h1>
-        <p className="text-center text-2xl text-white">
-          Enterprise Edge Cloud Services Provider
-        </p>
-      </section>
+      <PageHeader
+        title="About Unitellas"
+        subtitle="Enterprise Edge Cloud Services Provider"
+      />
 
       <Row className="items-center">
         <div className="h-80 w-full shrink-0 xs:w-96">
