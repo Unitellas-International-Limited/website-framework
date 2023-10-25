@@ -31,7 +31,7 @@ export default function Nav() {
   const navLinks = [
     {
       title: "home",
-      url: "/home",
+      url: "/",
     },
     {
       title: "about",
