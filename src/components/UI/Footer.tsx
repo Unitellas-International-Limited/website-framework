@@ -9,15 +9,15 @@ export default function Footer() {
   const footerLinks = [
     {
       title: "partners",
-      url: "/partners",
+      url: "#",
     },
     {
       title: "resources",
-      url: "/resources",
+      url: "#",
     },
     {
       title: "pricing",
-      url: "/pricing",
+      url: "#",
     },
   ];
   const socials = [
