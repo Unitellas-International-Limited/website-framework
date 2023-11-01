@@ -22,14 +22,14 @@ export default function About() {
           />
         </div>
         <div className="max-w-2xl">
-          <h1 className="mb-2 font-display text-4xl">Who We Are</h1>
+          <h1 className="mb-2 font-Mongoose text-4xl">Who We Are</h1>
           <h3 className="mb-4 text-xl">
             The first hyper scale edge cloud in Africa
           </h3>
           <p className="text-lg">
             Unitellas International Limited is a leading IT company registered
             in Nigeria that deals with cloud services. We are the official
-            distributor for Zadara Cloud in Africa, delivering edge cloud
+            distributor for Unitellas Cloud in Africa, delivering edge cloud
             infrastructure as a service to telecommunications operators and
             cloud service providers.
             <br />
@@ -43,7 +43,7 @@ export default function About() {
 
       <Row>
         <div className="w-full lg:w-1/2">
-          <h1 className="mb-2 font-display text-4xl">Our Mission</h1>
+          <h1 className="mb-2 font-Mongoose text-4xl">Our Mission</h1>
           <p className="text-lg">
             We aim to empower organizations move from a huge CAPEX to fully
             optimized OPEX based operations by transitioning to - as a service
@@ -53,7 +53,7 @@ export default function About() {
           </p>
         </div>
         <div className="w-full lg:w-1/2">
-          <h1 className="mb-2 font-display text-4xl">Our Vision</h1>
+          <h1 className="mb-2 font-Mongoose text-4xl">Our Vision</h1>
           <p>
             We aim to be a technology leader in Africa, touching lives in the
             most important ways by influencing the way we transact business, are
@@ -116,7 +116,7 @@ export default function About() {
           ))}
         </div>
         <div className="w-full lg:w-1/2">
-          <h1 className="mb-2 font-display text-4xl">
+          <h1 className="mb-2 font-Mongoose text-4xl">
             Industry Awards and Accolades
           </h1>
           <p className="text-lg">

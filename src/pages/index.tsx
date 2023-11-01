@@ -31,22 +31,22 @@ export default function Home() {
     {
       icon: <FontAwesomeIcon icon={faGlobe} className={iconClasses} />,
       title: "Global reach. Local appeal.",
-      text: "Deliver the performance and reliability your customers expect no matter the location. Offer low-latency edge services with Zadara's existing fully-managed clouds or global base of 300+ MSP partners.",
+      text: "Deliver the performance and reliability your customers expect no matter the location. Offer low-latency edge services with Unitellas's existing fully-managed clouds or global base of 300+ MSP partners.",
     },
     {
       icon: <FontAwesomeIcon icon={faHandshake} className={iconClasses} />,
       title: "Trust your cloud.",
-      text: "Take control of your data with Zadara's secure-by-design infrastructure, data protection solutions, and our global network of partners. Isolate your data with click-to-provision options for dedicated storage at the controller level.",
+      text: "Take control of your data with Unitellas's secure-by-design infrastructure, data protection solutions, and our global network of partners. Isolate your data with click-to-provision options for dedicated storage at the controller level.",
     },
     {
       icon: <FontAwesomeIcon icon={faNetworkWired} className={iconClasses} />,
       title: "Centralized and easy monitoring.",
-      text: "Access Zadara's simple dashboard based cloud management. Web-based interface to monitor your applications and infrastructure with visualized dashboards, automated monitoring and alerting and detailed reporting.",
+      text: "Access Unitellas's simple dashboard based cloud management. Web-based interface to monitor your applications and infrastructure with visualized dashboards, automated monitoring and alerting and detailed reporting.",
     },
     {
       icon: <FontAwesomeIcon icon={faUsers} className={iconClasses} />,
       title: `24/7/365 DevOps support.`,
-      text: "Free your IT team from ongoing maintenance. Zadara delivers around-the-clock, proactive monitoring and support, and seamless upgrades, backed by our industry-best uptime SLAs.",
+      text: "Free your IT team from ongoing maintenance. Unitellas delivers around-the-clock, proactive monitoring and support, and seamless upgrades, backed by our industry-best uptime SLAs.",
     },
   ];
   const images = [
@@ -70,7 +70,7 @@ export default function Home() {
             transition={{ type: "tween", duration: 1 }}
             className="text-white"
           >
-            <h1 className="mb-4 font-display text-7xl md:text-9xl">
+            <h1 className="mb-4 font-Mongoose text-7xl md:text-9xl">
               Unitellas Edge Cloud
             </h1>
             <p className="text-2xl">
@@ -86,7 +86,12 @@ export default function Home() {
               transition={{ type: "tween", duration: 1 }}
               className="flex flex-col gap-4"
             >
-              <BaseButton text="Start a Live Demo Today" size="lg" />
+              <BaseButton
+                type="link"
+                href="https://ccvm-unitellas-01.zadarastorage.com:8443/"
+                text="Start a Live Demo Today"
+                size="lg"
+              />
               <BaseButton text="Get a quote" size="lg" />
             </motion.div>
           )}
@@ -105,7 +110,7 @@ export default function Home() {
         transition={{ duration: 0.8 }}
         className="mx-auto max-w-7xl p-14 text-center"
       >
-        <h1 className="mb-6 font-display text-3xl text-black sm:text-5xl">
+        <h1 className="mb-6 font-Mongoose text-3xl text-black sm:text-5xl">
           Fully managed cloud services &minus; compute, networking, storage and
           more &minus; designed for service providers and the modern enterprise.
         </h1>
@@ -119,7 +124,7 @@ export default function Home() {
           {features.map((feature) => (
             <div key={encodeURI(feature.title)}>
               {feature.icon}
-              <h1 className="mb-4 font-display text-2xl sm:mb-0 sm:h-[72px] sm:text-3xl">
+              <h1 className="mb-4 font-Mongoose text-2xl sm:mb-0 sm:h-[72px] sm:text-3xl">
                 {feature.title}
               </h1>
               <p>{feature.text}</p>
@@ -135,7 +140,7 @@ export default function Home() {
         className="bg-zinc-700 px-8 py-20 text-white"
       >
         <div>
-          <h1 className="my-4 text-center font-display text-5xl sm:text-7xl">
+          <h1 className="my-4 text-center font-Mongoose text-5xl sm:text-7xl">
             Get Started
           </h1>
           <p className="my-8 text-center">
