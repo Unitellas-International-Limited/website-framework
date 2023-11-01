@@ -12,7 +12,7 @@ export default function Contact() {
     <Layout>
       <PageHeader
         title="Contact Us"
-        subtitle="We would love to hear from you. For support, visit support.unitellas.com."
+        subtitle="We would love to hear from you. For support, visit info.unitellas.com.ng"
       />
       <form
         onSubmit={submitHandler}

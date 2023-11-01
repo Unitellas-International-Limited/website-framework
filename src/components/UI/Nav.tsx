@@ -33,17 +33,22 @@ export default function Nav() {
       title: "home",
       url: "/",
     },
+
+    {
+      title: "solutions",
+      url: "/solutions",
+    },
+    // {
+    //   title: "resources",
+    //   url: "/resources",
+    // },
     {
       title: "about",
       url: "/about",
     },
     {
-      title: "services",
-      url: "/services",
-    },
-    {
-      title: "resources",
-      url: "/resources",
+      title: "training",
+      url: "/training",
     },
     {
       title: "contact",
