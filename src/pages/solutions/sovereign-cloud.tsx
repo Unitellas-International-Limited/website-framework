@@ -9,7 +9,7 @@ import Layout from "@/components/UI/Layout";
 import PageHeader from "@/components/UI/PageHeader";
 
 export default function SovereignCloud() {
-  const iconClasses = "h-28 text-[#1379B4] mb-4 mx-auto block";
+  const iconClasses = "h-20 text-[#1379B4] mb-4 mx-auto block";
   const benefits = [
     {
       icon: <FontAwesomeIcon icon={faShieldAlt} className={iconClasses} />,
@@ -66,14 +66,9 @@ export default function SovereignCloud() {
             <div key={encodeURI(benefit.title)}>
               {benefit.icon}
               <h2 className="mb-4 text-center font-Mongoose text-2xl sm:mb-0 sm:text-3xl">
-                Security and Compliance
+                {benefit.title}
               </h2>
-              <p className="text-center text-base">
-                Our local partners provide strong security features, such as
-                encryption, multi-factor authentication, and continuous
-                monitoring, and ensure compliance with relevant localized data
-                protection regulations.
-              </p>
+              <p className="text-center text-base">{benefit.text}</p>
             </div>
           ))}
         </div>
