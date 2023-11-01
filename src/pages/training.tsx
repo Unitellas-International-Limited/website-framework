@@ -19,7 +19,7 @@ export default function Training() {
     {
       icon: <FontAwesomeIcon icon={faAward} className={iconClasses} />,
       title: "Award Winning Training",
-      text: "We are proud to announce that we were awarded the “Education and Training Award” by the National Information Development Agency (NITDA) at Digital Nigeria 2023. This recognition motivates us to continue providing high-quality training to our students.",
+      text: "We are proud to announce that we were awarded the “IT Education and Training Award” by the National Information Development Agency (NITDA) at Digital Nigeria 2023. This recognition motivates us to continue providing high-quality training to our students.",
     },
     {
       icon: <FontAwesomeIcon icon={faHandshake} className={iconClasses} />,
