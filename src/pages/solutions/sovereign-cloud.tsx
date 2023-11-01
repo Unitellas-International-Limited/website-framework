@@ -31,7 +31,7 @@ export default function SovereignCloud() {
     <Layout>
       <PageHeader
         title="True Data Sovereignty"
-        subtitle="Get True Data Sovereignty with Zadara Edge Cloud"
+        subtitle="Get True Data Sovereignty with Unitellas Edge Cloud"
       />
 
       <div className="flex flex-col items-center justify-center gap-4 px-4 py-12 sm:gap-10 sm:p-12 md:flex-row lg:gap-20">
@@ -46,10 +46,10 @@ export default function SovereignCloud() {
         </div>
         <div>
           <p className="max-w-md text-center text-base md:text-left">
-            Zadara’s global Edge Cloud service provider network is designed to
+            Unitellas global Edge Cloud service provider network is designed to
             give you the greatest possible control over your data and customers
             data, no matter where your business and customers are located.
-            Zadara’s unique approach reduces dependence on overseas cloud
+            Unitellas unique approach reduces dependence on overseas cloud
             service providers who operate under nonresident legislation,
             mitigating potential security risks associated with hosting
             sensitive data outside of the host country.

@@ -8,7 +8,7 @@ export default function EdgeCloud() {
       <PageHeader
         title="Unitellas Edge Cloud"
         subtitle="Compute power, data storage, backup, disaster recovery, and
-          low-latency edge services - Zadara Edge Cloud delivers future ready
+          low-latency edge services - Unitellas Edge Cloud delivers future ready
           infrastructure-as-a-service solutions for global Service Providers and
           Enterprises"
       />
@@ -17,7 +17,7 @@ export default function EdgeCloud() {
           Built to be the Foundation of Your Business
         </h1>
         <p className="text-center text-base">
-          The Zadara Edge Cloud enables you to pivot from managing your
+          The Unitellas Edge Cloud enables you to pivot from managing your
           infrastructure to focus on growing your business. You get secure,
           elastic, robust self service compute, networking and storage -
           everything you have come to expect for enterprise grade IT available
@@ -42,7 +42,7 @@ export default function EdgeCloud() {
           </h1>
           <p className="max-w-md text-center text-base md:text-left">
             Global Service Providers and F100 Enterprises rely on the
-            flexibility and reliability of Zadara Edge Cloud to power the
+            flexibility and reliability of Unitellas Edge Cloud to power the
             growing needs of modern business
           </p>
         </div>
@@ -64,7 +64,7 @@ export default function EdgeCloud() {
           </h1>
           <p className="max-w-md text-center text-base md:text-left">
             Global Service Providers and F100 Enterprises rely on the
-            flexibility and reliability of Zadara Edge Cloud to power the
+            flexibility and reliability of Unitellas Edge Cloud to power the
             growing needs of modern business
           </p>
         </div>
@@ -108,8 +108,8 @@ export default function EdgeCloud() {
             Multi Tenant Environment. Single Tenant Experience.
           </h1>
           <p className="max-w-md text-center text-base md:text-left">
-            With Zadara Edge Cloud, multiple tenants are able to run compute and
-            storage resources simultaneously on the same physical machines,
+            With Unitellas Edge Cloud, multiple tenants are able to run compute
+            and storage resources simultaneously on the same physical machines,
             without interfering with one another. You can maintain predictable
             performance, full data privacy and security, and full elasticity,
             regardless of how many users are active at once.
@@ -132,12 +132,12 @@ export default function EdgeCloud() {
             Your Success is How We Measure Our Success.
           </h1>
           <p className="max-w-md text-center text-base md:text-left">
-            Backed by an industry-best NPS rating of 71, Zadara Edge Cloud users
-            are supported by Zadara’s team of battle-tested cloud experts and
-            backed by our 100% SLA guarantee. With Zadara, you can rest assured
-            that you are partnering with a cloud services provider that will
-            stop at nothing to deliver best-in-class cloud services for your
-            business.
+            Backed by an industry-best NPS rating of 71, Unitellas Edge Cloud
+            users are supported by Unitellas’s team of battle-tested cloud
+            experts and backed by our 100% SLA guarantee. With Unitellas, you
+            can rest assured that you are partnering with a cloud services
+            provider that will stop at nothing to deliver best-in-class cloud
+            services for your business.
           </p>
         </div>
       </div>
