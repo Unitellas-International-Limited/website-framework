@@ -6,7 +6,7 @@ export default function EnterpriseCompute() {
   const features = [
     {
       title: "Easy Provisioning with Predefined Compute Instances",
-      text: "Set up your zCompute infrastructure in minutes, using a web based GUI and REST API. Zadara provides a number of Virtual Machine (VM) images ready to use. Or you can customize your own images, as needed.",
+      text: "Set up your zCompute infrastructure in minutes, using a web based GUI and REST API. Unitellas provides a number of Virtual Machine (VM) images ready to use. Or you can customize your own images, as needed.",
     },
     {
       title: "Large Selection of Instances Types to Match your Workload",
@@ -27,7 +27,7 @@ export default function EnterpriseCompute() {
     },
     {
       title: "Easy VM backups with Snapshots",
-      text: "In concert with Zadara zStorage, you can create snapshots of the VMs that are in the zCompute cluster, and use these snapshots to restore any VM if needed.",
+      text: "In concert with Unitellas zStorage, you can create snapshots of the VMs that are in the zCompute cluster, and use these snapshots to restore any VM if needed.",
     },
     {
       title: "Simple VM Management",

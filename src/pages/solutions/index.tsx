@@ -12,9 +12,9 @@ export default function Solutions() {
         subtitle="We provide the best Cloud Services"
       />
 
-      <div className="mx-auto max-w-7xl p-12">
+      <div className="mx-auto max-w-7xl p-6 xl:p-12">
         <h1 className="mb-6 font-Mongoose text-6xl">Deployments</h1>
-        <div className="grid grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-3 xl:gap-8">
           <div className="flex flex-col items-center rounded-xl p-4 text-center shadow-xl">
             <div className="w-full">
               <Image
@@ -105,9 +105,9 @@ export default function Solutions() {
         </div>
       </div>
 
-      <div className="mx-auto max-w-7xl p-12">
+      <div className="mx-auto max-w-7xl p-6 xl:p-12">
         <h1 className="mb-6 font-Mongoose text-6xl">Industries</h1>
-        <div className="grid grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-3 xl:gap-8">
           <div className="flex flex-col items-center rounded-xl p-4 text-center shadow-xl">
             <div className="w-full">
               <Image

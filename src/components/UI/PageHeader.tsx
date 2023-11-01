@@ -21,11 +21,11 @@ export default function PageHeader({ title, subtitle }: Props) {
         },
       )}
     >
-      <h1 className="mb-4 font-Mongoose text-6xl text-uni-blue md:text-9xl">
+      <h1 className="mb-4 text-center font-Mongoose text-4xl text-uni-blue sm:text-6xl md:text-8xl">
         {title}
       </h1>
       {subtitle !== undefined && (
-        <p className="xs:text-1xl max-w-5xl text-center text-lg text-white">
+        <p className="xs:text-1xl max-w-5xl text-center text-base text-white">
           {subtitle}
         </p>
       )}

@@ -9,7 +9,7 @@ import Layout from "@/components/UI/Layout";
 import PageHeader from "@/components/UI/PageHeader";
 
 export default function SovereignCloud() {
-  const iconClasses = "h-28 text-[#1379B4] mb-4 mx-auto block";
+  const iconClasses = "h-20 text-[#1379B4] mb-4 mx-auto block";
   const benefits = [
     {
       icon: <FontAwesomeIcon icon={faShieldAlt} className={iconClasses} />,
@@ -31,7 +31,7 @@ export default function SovereignCloud() {
     <Layout>
       <PageHeader
         title="True Data Sovereignty"
-        subtitle="Get True Data Sovereignty with Zadara Edge Cloud"
+        subtitle="Get True Data Sovereignty with Unitellas Edge Cloud"
       />
 
       <div className="flex flex-col items-center justify-center gap-4 px-4 py-12 sm:gap-10 sm:p-12 md:flex-row lg:gap-20">
@@ -46,10 +46,10 @@ export default function SovereignCloud() {
         </div>
         <div>
           <p className="max-w-md text-center text-base md:text-left">
-            Zadara’s global Edge Cloud service provider network is designed to
+            Unitellas global Edge Cloud service provider network is designed to
             give you the greatest possible control over your data and customers
             data, no matter where your business and customers are located.
-            Zadara’s unique approach reduces dependence on overseas cloud
+            Unitellas unique approach reduces dependence on overseas cloud
             service providers who operate under nonresident legislation,
             mitigating potential security risks associated with hosting
             sensitive data outside of the host country.
@@ -66,14 +66,9 @@ export default function SovereignCloud() {
             <div key={encodeURI(benefit.title)}>
               {benefit.icon}
               <h2 className="mb-4 text-center font-Mongoose text-2xl sm:mb-0 sm:text-3xl">
-                Security and Compliance
+                {benefit.title}
               </h2>
-              <p className="text-center text-base">
-                Our local partners provide strong security features, such as
-                encryption, multi-factor authentication, and continuous
-                monitoring, and ensure compliance with relevant localized data
-                protection regulations.
-              </p>
+              <p className="text-center text-base">{benefit.text}</p>
             </div>
           ))}
         </div>
