@@ -18,7 +18,7 @@ module.exports = {
           "url('https://unitellas.com.ng/images/cloud-tech-bg-3.jpg')",
       },
       fontFamily: {
-        display: ["Mongoose", "Arial", "sans-serif", "system-ui"],
+        Mongoose: ["Mongoose", "Arial", "sans-serif", "system-ui"],
       },
     },
     keyframes: {
