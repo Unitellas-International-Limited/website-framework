@@ -3,7 +3,7 @@ import React from "react";
 
 interface Props {
   title: string;
-  subtitle: string;
+  subtitle?: string;
 }
 
 export default function PageHeader({ title, subtitle }: Props) {
@@ -21,10 +21,14 @@ export default function PageHeader({ title, subtitle }: Props) {
         },
       )}
     >
-      <h1 className="mb-4 font-display text-6xl text-uni-blue md:text-9xl">
+      <h1 className="mb-4 font-Mongoose text-6xl text-uni-blue md:text-9xl">
         {title}
       </h1>
-      <p className="text-center text-lg text-white xs:text-2xl">{subtitle}</p>
+      {subtitle !== undefined && (
+        <p className="xs:text-1xl max-w-5xl text-center text-lg text-white">
+          {subtitle}
+        </p>
+      )}
     </section>
   );
 }
