@@ -125,7 +125,7 @@ export default function Solutions() {
                 200,
               )}
               <Link
-                href="/#"
+                href="/solutions/industries/finance"
                 className="ml-2 whitespace-nowrap border-b-2 text-uni-blue duration-300 hover:border-uni-blue"
               >
                 See More
@@ -151,7 +151,7 @@ export default function Solutions() {
                 200,
               )}
               <Link
-                href="/#"
+                href="/solutions/industries/government"
                 className="ml-2 whitespace-nowrap border-b-2 text-uni-blue duration-300 hover:border-uni-blue"
               >
                 See More
@@ -177,7 +177,7 @@ export default function Solutions() {
                 200,
               )}
               <Link
-                href="/#"
+                href="/solutions/industries/telecommunications"
                 className="ml-2 whitespace-nowrap border-b-2 text-uni-blue duration-300 hover:border-uni-blue"
               >
                 See More
