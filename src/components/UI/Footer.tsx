@@ -15,15 +15,15 @@ export default function Footer() {
   const footerLinks = [
     {
       title: "partners",
-      url: "#",
+      url: "/#",
     },
     {
       title: "resources",
-      url: "#",
+      url: "/#",
     },
     {
       title: "pricing",
-      url: "#",
+      url: "/#",
     },
   ];
   const socials = [
@@ -54,7 +54,7 @@ export default function Footer() {
       <div className="relative flex flex-col items-center justify-between gap-4 md:flex-row">
         <ul className="flex items-center gap-4 text-zinc-500">
           {footerLinks.map((link) => (
-            <li key={link.url} className="hover:underline">
+            <li key={link.title} className="hover:underline">
               <Link href={link.url}>{link.title}</Link>
             </li>
           ))}
