@@ -63,7 +63,7 @@ export default function Home() {
     <>
       <main className="h-screen w-full bg-home-hero bg-cover bg-center">
         <Nav />
-        <div className="mx-auto flex flex-col md:flex-row h-5/6 max-w-7xl items-start md:items-center justify-center md:justify-between gap-8 overflow-hidden p-8 md:gap-16">
+        <div className="mx-auto flex h-5/6 max-w-7xl flex-col items-start justify-center gap-8 overflow-hidden p-8 md:flex-row md:items-center md:justify-between md:gap-16">
           <motion.div
             initial={{ x: "-100%" }}
             animate={{ x: 0 }}
@@ -83,7 +83,7 @@ export default function Home() {
             initial={{ x: "100%", scale: 0 }}
             animate={{ x: 0, scale: 1 }}
             transition={{ type: "tween", duration: 1 }}
-            className="flex flex-col gap-6 w-full md:w-auto"
+            className="flex w-full flex-col gap-6 md:w-auto"
           >
             <BaseButton
               type="link"
@@ -91,10 +91,7 @@ export default function Home() {
               text="Start a Live Demo Today"
               size={width < 480 ? "full" : "lg"}
             />
-            <BaseButton
-              text="Get a quote"
-              size={width < 480 ? "full" : "lg"}
-            />
+            <BaseButton text="Get a quote" size={width < 480 ? "full" : "lg"} />
           </motion.div>
         </div>
       </main>
