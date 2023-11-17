@@ -84,9 +84,8 @@ export default function Finance() {
             Protect Your Data
           </h1>
           <p className="max-w-md text-center text-base md:text-left">
-            Protect Your Data Zadara delivers a data quality and governance
-            framework that supports your governance, risk and compliance
-            initiatives.
+            Unitellas delivers a data quality and governance framework that
+            supports your governance, risk and compliance initiatives.
           </p>
         </div>
       </div>

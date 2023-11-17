@@ -173,7 +173,7 @@ export default function Solutions() {
             </h2>
             <p className="">
               {truncateString(
-                `Unitellas is developing the future of telecommunications at many of the world’s largest communications service providers (CSPs) – including the two of Japan’s largest. By partnering with Unitellas, CSPs are able to deliver fully-managed Infrastructure-as-a-Service (IaaS) solutions from a single edge cloud provider which means they can realize new revenue streams faster from cutting-edge 5G and edge services.`,
+                `Unitellas is developing the future of telecommunications at many of the world’s largest communications service providers (CSPs) – including the two of Africa’s largest. By partnering with Unitellas, CSPs are able to deliver fully-managed Infrastructure-as-a-Service (IaaS) solutions from a single edge cloud provider which means they can realize new revenue streams faster from cutting-edge 5G and edge services.`,
                 200,
               )}
               <Link
