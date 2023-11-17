@@ -1,43 +1,54 @@
+import React, { useState } from "react";
 import { BaseButtonWithColor } from "@/components/UI/Buttons";
+import toast from "react-hot-toast";
 import Layout from "@/components/UI/Layout";
 import PageHeader from "@/components/UI/PageHeader";
-import React, { useState } from "react";
 
 export interface ContactForm {
-  contacterName: string;
-  contacterEmail: string;
-  contacterSubject: string;
-  contacterMessage: string;
+  senderName: string;
+  senderMail: string;
+  senderSubject: string;
+  senderMessage: string;
 }
 
 export default function Contact() {
-  const [contacterData, setcontacterData] = useState<ContactForm>({
-    contacterName: "",
-    contacterEmail: "",
-    contacterSubject: "",
-    contacterMessage: "",
+  const [formData, setFormData] = useState<ContactForm>({
+    senderName: "",
+    senderMail: "",
+    senderSubject: "",
+    senderMessage: "",
   });
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (event: any) => {
     const targetName = event.target.name;
     const targetValue = event.target.value;
-    setcontacterData((values) => ({ ...values, [targetName]: targetValue }));
+    setFormData((values) => ({ ...values, [targetName]: targetValue }));
   };
-  // const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   try {
-  //     const response = fetch('api/contact', {
-  //       method: 'POST',
-  //       body: JSON.stringify(contacterData),
-  //     });
-
-  //     if ((await response).ok) {
-  //       console.log('Email sent!!')
-  //     }
-  //   } catch (error) {
-  //     console.error(error)
-  //   }
-  // };
+  function submitHandler(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setLoading(true);
+    fetch("api/contact", {
+      method: "POST",
+      body: JSON.stringify(formData),
+    })
+      .then(async (response) => await response.json())
+      .then((data) => {
+        toast.success("Sent successfully");
+        setLoading(false);
+        setFormData({
+          senderName: "",
+          senderMail: "",
+          senderSubject: "",
+          senderMessage: "",
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+        setLoading(false);
+        toast.error("An error occurred");
+      });
+  }
 
   return (
     <Layout>
@@ -46,14 +57,14 @@ export default function Contact() {
         subtitle="We would love to hear from you. For support, visit info.unitellas.com.ng"
       />
       <form
-        // onSubmit={submitHandler}
+        onSubmit={submitHandler}
         className="mx-auto my-20 max-w-5xl space-y-8 p-8"
       >
         <input
           className="block w-full rounded-sm border border-gray-400 p-3"
-          name="contacterName"
-          id="contacterName"
-          value={contacterData.contacterName}
+          name="senderName"
+          id="senderName"
+          value={formData.senderName}
           onChange={(e) => {
             handleChange(e);
           }}
@@ -63,9 +74,9 @@ export default function Contact() {
         />
         <input
           className="block w-full rounded-sm border border-gray-400 p-3"
-          name="contacterEmail"
-          id="contacterEmail"
-          value={contacterData.contacterEmail}
+          name="senderMail"
+          id="senderMail"
+          value={formData.senderMail}
           onChange={(e) => {
             handleChange(e);
           }}
@@ -75,9 +86,9 @@ export default function Contact() {
         />
         <input
           className="block w-full rounded-sm border border-gray-400 p-3"
-          name="contacterSubject"
-          id="contacterSubject"
-          value={contacterData.contacterSubject}
+          name="senderSubject"
+          id="senderSubject"
+          value={formData.senderSubject}
           onChange={(e) => {
             handleChange(e);
           }}
@@ -87,16 +98,16 @@ export default function Contact() {
         />
         <textarea
           className="block h-52 w-full rounded-sm border border-gray-400 p-3"
-          name="contacterMessage"
-          value={contacterData.contacterMessage}
+          name="senderMessage"
+          value={formData.senderMessage}
           onChange={(e) => {
             handleChange(e);
           }}
-          id="contacterMessage"
+          id="senderMessage"
           placeholder="Message"
           required
         ></textarea>
-        <BaseButtonWithColor text="Submit" size="full" />
+        <BaseButtonWithColor loading={loading} text="Submit" size="full" />
       </form>
     </Layout>
   );

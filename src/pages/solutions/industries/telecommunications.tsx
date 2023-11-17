@@ -15,12 +15,12 @@ export default function Telecommunications() {
         </h1>
         <p className="text-center text-base">
           Unitellas is developing the future of telecommunications at many of
-          the world’s largest communications service providers (CSPs) –
-          including the two of Japan’s largest. By partnering with Unitellas,
-          CSPs are able to deliver fully-managed Infrastructure-as-a-Service
-          (IaaS) solutions from a single edge cloud provider which means they
-          can realize new revenue streams faster from cutting-edge 5G and edge
-          services.
+          the Africa’s largest communications service providers (CSPs) –
+          including the two of Africa&apos;s largest. By partnering with
+          Unitellas, CSPs are able to deliver fully-managed
+          Infrastructure-as-a-Service (IaaS) solutions from a single edge cloud
+          provider which means they can realize new revenue streams faster from
+          cutting-edge 5G and edge services.
         </p>
       </section>
 
@@ -58,7 +58,7 @@ export default function Telecommunications() {
         </div>
         <div>
           <h1 className="mx-auto mb-5 max-w-xs text-center font-Mongoose text-3xl md:mx-0 md:text-left">
-            Optimize your Network for the Edge
+            Optimize your Network for the Edge (Mno&apos;s & Mvno&apos;s)
           </h1>
           <p className="max-w-md text-center text-base md:text-left">
             Virtually eliminate latency issues for applications, connected

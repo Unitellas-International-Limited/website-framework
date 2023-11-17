@@ -1,5 +1,6 @@
 import { motion, type HTMLMotionProps } from "framer-motion";
 import Link, { type LinkProps } from "next/link";
+import { ClipLoader } from "react-spinners";
 import classNames from "classnames";
 
 type Type = "button" | "submit" | "reset" | "link";
@@ -7,11 +8,13 @@ type Type = "button" | "submit" | "reset" | "link";
 type BaseButtonTypeProps = HTMLMotionProps<"button"> & {
   color?: string;
   className?: string;
+  loading?: boolean;
 };
 
 type BaseLinkTypeProps = LinkProps & {
   color?: string;
   className?: string;
+  loading?: boolean;
 };
 
 type BaseButtonProps = {
@@ -71,6 +74,7 @@ export function BaseButtonWithColor({
   type,
   text,
   className,
+  loading,
   ...props
 }: BaseButtonProps) {
   if (type === "link") {
@@ -95,7 +99,8 @@ export function BaseButtonWithColor({
         className,
       )}
     >
-      {text}
+      {loading !== true && text}
+      {loading === true && <ClipLoader size={13} color="#ffffff" />}
     </motion.button>
   );
 }
