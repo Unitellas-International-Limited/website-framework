@@ -1,15 +1,17 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import nodemailer from "nodemailer";
 
-// interface IContactForm {
-//   name: string;
-// }
+interface IPayload {
+  senderEmail: string;
+  emailSubject: string;
+  message: string;
+}
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  const { senderEmail, emailSubject, message } = req.body;
+  const { senderEmail, emailSubject, message } = req.body as IPayload;
 
   const transporter = nodemailer.createTransport({
     service: "gmail",
