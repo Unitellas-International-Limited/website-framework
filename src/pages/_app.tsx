@@ -7,7 +7,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <Component {...pageProps} />
       <Toaster
-        position="bottom-right"
+        position="top-right"
         toastOptions={{
           duration: 4000,
           className: "toast",
