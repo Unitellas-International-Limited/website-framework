@@ -17,8 +17,8 @@ export default function Nav() {
 
   const headerLinks = [
     {
-      title: "+234 802 505 0468",
-      url: "tel:+234 8025050468",
+      title: "+234 803 230 3207",
+      url: "tel:+234 8032303207",
       icon: <FontAwesomeIcon icon={faPhone} className="h-4" />,
     },
     {

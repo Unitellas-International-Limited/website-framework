@@ -43,7 +43,7 @@ export function BaseButton({
     {
       "h-14 w-64": size === "md",
       "h-16 w-80": size === "lg",
-      "h-16 w-full": size === "full",
+      "h-12 w-full sm:h-16": size === "full",
     },
     className,
   );
@@ -94,7 +94,7 @@ export function BaseButtonWithColor({
         {
           "h-14 w-64": size === "md",
           "h-16 w-80": size === "lg",
-          "h-16 w-full": size === "full",
+          "h-12 w-full sm:h-16": size === "full",
         },
         className,
       )}
