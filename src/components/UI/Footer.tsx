@@ -45,7 +45,7 @@ export default function Footer() {
     },
     {
       icon: <FontAwesomeIcon icon={faWhatsapp} className={iconClasses} />,
-      url: "https://api.whatsapp.com/send/?phone=2348025050468&text&app_absent=0",
+      url: "https://api.whatsapp.com/send/?phone=2348032303207&text&app_absent=0",
     },
   ];
 
