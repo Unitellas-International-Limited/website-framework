@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ChangeEvent, type FormEvent } from "react";
 import { truncateString } from "@/helpers/truncateString";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { BaseButton, BaseButtonWithColor } from "@/components/UI/Buttons";
@@ -18,10 +18,22 @@ interface ISolution {
   description: string;
 }
 
+interface IFormData {
+  name: string;
+  email: string;
+  phone: string;
+}
+
 export default function Marketplace() {
+  const [loading, setLoading] = useState(false);
   const [modalDisplay, setModalDisplay] = useState(false);
   const [view, setView] = useState<"checkout" | "form">("checkout");
   const [selectedSolutions, setSelectedSolutions] = useState<ISolution[]>([]);
+  const [formData, setFormData] = useState<IFormData>({
+    name: "",
+    email: "",
+    phone: "",
+  });
   const solutions = [
     {
       name: "Predictive Analysis",
@@ -40,6 +52,11 @@ export default function Marketplace() {
       description: `Predictive analysis for retail sales using AI by ingesting historic data and leveraging advanced algorithms to forecast future sales patterns and trends. Analysis was done on historical sales data, customer behavior, market conditions and other factors.`,
     },
   ];
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const targetName = event.target.name;
+    const targetValue = event.target.value;
+    setFormData((values) => ({ ...values, [targetName]: targetValue }));
+  };
   function onSelect(solution: ISolution) {
     const solutionExists = selectedSolutions.find(
       (_solution) => _solution.name === solution.name,
@@ -55,6 +72,38 @@ export default function Marketplace() {
       (_solution) => _solution.name !== solution.name,
     );
     setSelectedSolutions(filteredSolutions);
+  }
+  function submitHandler(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setLoading(true);
+    fetch("api/contact", {
+      method: "POST",
+      body: JSON.stringify({
+        senderEmail: formData.email,
+        emailSubject: `Interested Solutions: ${selectedSolutions
+          .map((solution) => solution.name)
+          .join(", ")}`,
+        message: `Name: ${formData.name}, Phone: ${formData.phone}, Email: ${formData.email}`,
+      }),
+    })
+      .then(async (response) => await response.json())
+      .then((data) => {
+        toast.success("Sent successfully");
+        setLoading(false);
+        setView("checkout");
+        setModalDisplay(false);
+        setSelectedSolutions([]);
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+        setLoading(false);
+        toast.error("An error occurred");
+      });
   }
   console.log(selectedSolutions);
 
@@ -175,15 +224,58 @@ export default function Marketplace() {
                 className=""
                 size="full"
                 onClick={() => {
-                  setView("form");
+                  selectedSolutions.length > 0 && setView("form");
                 }}
               />
             </div>
           </div>
         )}
         {view === "form" && (
-          <form className="flex h-full flex-col">
-            <div className="flex h-[calc(100vh-13rem)] flex-col overflow-auto p-4"></div>
+          <form onSubmit={submitHandler} className="flex h-full flex-col">
+            <div className="flex h-[calc(100vh-13rem)] flex-col space-y-4 overflow-auto p-4">
+              <fieldset>
+                <input
+                  className="block w-full rounded-sm border border-gray-400 p-3"
+                  name="name"
+                  id="name"
+                  value={formData.name}
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
+                  type="text"
+                  placeholder="Name"
+                  required
+                />
+              </fieldset>
+              <fieldset>
+                <input
+                  className="block w-full rounded-sm border border-gray-400 p-3"
+                  name="email"
+                  id="email"
+                  value={formData.email}
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
+                  type="email"
+                  placeholder="Email"
+                  required
+                />
+              </fieldset>
+              <fieldset>
+                <input
+                  className="block w-full rounded-sm border border-gray-400 p-3"
+                  name="phone"
+                  id="phone"
+                  value={formData.phone}
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
+                  type="tel"
+                  placeholder="Phone Number"
+                  required
+                />
+              </fieldset>
+            </div>
             <fieldset className="mt-auto flex gap-4 p-4">
               <BaseButton
                 onClick={() => {
@@ -193,7 +285,12 @@ export default function Marketplace() {
                 className=""
                 size="full"
               />
-              <BaseButtonWithColor text="Submit" className="" size="full" />
+              <BaseButtonWithColor
+                loading={loading}
+                text="Submit"
+                className=""
+                size="full"
+              />
             </fieldset>
           </form>
         )}
