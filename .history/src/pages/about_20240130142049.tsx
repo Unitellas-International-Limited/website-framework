@@ -29,7 +29,7 @@ export default function About() {
           <p className="text-lg">
             Unitellas International Limited is a leading IT company registered
             in Nigeria that deals with cloud services. We are the official
-            distributor for Zadara Edge Cloud in Africa, delivering edge cloud
+            distributor for Zadara Cloud in Africa, delivering edge cloud
             infrastructure as a service to telecommunications operators and
             cloud service providers.
             <br />
