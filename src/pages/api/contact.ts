@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import nodemailer from "nodemailer";
 
 interface IPayload {
+  senderName: string;
   senderEmail: string;
   emailSubject: string;
   message: string;
@@ -23,11 +24,12 @@ export default async function handler(
 
   try {
     await transporter.sendMail({
-      from: senderEmail,
-      to: "info@unitellas.com.ng",
+      from: `"New Website Enquiry" <unitellasintl@gmail.com>`,
+      replyTo: senderEmail,
+      to: "omuwaste@gmail.com",
       subject: emailSubject,
       text: `${message}`,
-      html: `<p>${message}</p>`,
+      html: `<p>Sender Email: ${senderEmail} <br><br> ${message}</p>`,
     });
 
     res.status(200).json({ status: "OK" });
