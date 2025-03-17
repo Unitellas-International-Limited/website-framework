@@ -7,17 +7,17 @@ import PageHeader from "@/components/UI/PageHeader";
 
 export interface ContactForm {
   senderName: string;
-  senderMail: string;
-  senderSubject: string;
-  senderMessage: string;
+  senderEmail: string;
+  emailSubject: string;
+  message: string;
 }
 
 export default function Contact() {
   const [formData, setFormData] = useState<ContactForm>({
     senderName: "",
-    senderMail: "",
-    senderSubject: "",
-    senderMessage: "",
+    senderEmail: "",
+    emailSubject: "",
+    message: "",
   });
   const [loading, setLoading] = useState(false);
 
@@ -31,6 +31,9 @@ export default function Contact() {
     setLoading(true);
     fetch("api/contact", {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(formData),
     })
       .then(async (response) => await response.json())
@@ -39,9 +42,9 @@ export default function Contact() {
         setLoading(false);
         setFormData({
           senderName: "",
-          senderMail: "",
-          senderSubject: "",
-          senderMessage: "",
+          senderEmail: "",
+          emailSubject: "",
+          message: "",
         });
       })
       .catch((error) => {
@@ -78,9 +81,9 @@ export default function Contact() {
         />
         <input
           className="block w-full rounded-sm border border-gray-400 p-3"
-          name="senderMail"
-          id="senderMail"
-          value={formData.senderMail}
+          name="senderEmail"
+          id="senderEmail"
+          value={formData.senderEmail}
           onChange={(e) => {
             handleChange(e);
           }}
@@ -90,9 +93,9 @@ export default function Contact() {
         />
         <input
           className="block w-full rounded-sm border border-gray-400 p-3"
-          name="senderSubject"
-          id="senderSubject"
-          value={formData.senderSubject}
+          name="emailSubject"
+          id="emailSubject"
+          value={formData.emailSubject}
           onChange={(e) => {
             handleChange(e);
           }}
@@ -102,12 +105,12 @@ export default function Contact() {
         />
         <textarea
           className="block h-52 w-full rounded-sm border border-gray-400 p-3"
-          name="senderMessage"
-          value={formData.senderMessage}
+          name="message"
+          value={formData.message}
           onChange={(e) => {
             handleChange(e);
           }}
-          id="senderMessage"
+          id="message"
           placeholder="Message"
           required
         ></textarea>
