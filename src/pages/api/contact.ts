@@ -24,9 +24,9 @@ export default async function handler(
 
   try {
     await transporter.sendMail({
-      from: `"New Website Enquiry" <unitellasintl@gmail.com>`,
+      from: `"New Contact Form Enquiry" <unitellasintl@gmail.com>`,
       replyTo: senderEmail,
-      to: "omuwaste@gmail.com",
+      to: "contact@unitellas.com.ng",
       subject: emailSubject,
       text: `${message}`,
       html: `<p>Sender Email: ${senderEmail} <br><br> ${message}</p>`,
