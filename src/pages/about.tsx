@@ -1,4 +1,5 @@
 import Layout from "@/components/UI/Layout";
+import Head from "next/head";
 import PageHeader from "@/components/UI/PageHeader";
 import Row from "@/components/UI/Row";
 import Image from "next/image";
@@ -6,6 +7,9 @@ import Image from "next/image";
 export default function About() {
   return (
     <Layout>
+      <Head>
+        <title> About Us | Unitellas International Limited</title>
+      </Head>
       <PageHeader
         title="About Unitellas"
         subtitle="Enterprise Edge Cloud Services Provider"

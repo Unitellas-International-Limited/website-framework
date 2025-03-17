@@ -1,4 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Head from "next/head";
 import {
   faMoneyBill,
   faAward,
@@ -47,6 +48,10 @@ export default function Training() {
   ];
   return (
     <Layout>
+      <Head>
+        <title>Training and Education | Unitellas International Limited</title>
+      </Head>
+
       <PageHeader title="Unitellas Training and Education" />
 
       <section className="flex flex-col items-center justify-center gap-4 px-4 py-12 sm:gap-10 sm:p-12 md:flex-row lg:gap-20">

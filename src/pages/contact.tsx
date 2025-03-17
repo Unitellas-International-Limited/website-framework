@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Head from "next/head";
 import { BaseButtonWithColor } from "@/components/UI/Buttons";
 import toast from "react-hot-toast";
 import Layout from "@/components/UI/Layout";
@@ -52,6 +53,9 @@ export default function Contact() {
 
   return (
     <Layout>
+      <Head>
+        <title>Contact Us | Unitellas International Limited</title>
+      </Head>
       <PageHeader
         title="Contact Us"
         subtitle="We would love to hear from you. For support, visit info.unitellas.com.ng"
