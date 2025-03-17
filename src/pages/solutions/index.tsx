@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import Head from "next/head";
 import Layout from "@/components/UI/Layout";
 import PageHeader from "@/components/UI/PageHeader";
 import { truncateString } from "@/helpers/truncateString";
@@ -7,6 +8,10 @@ import { truncateString } from "@/helpers/truncateString";
 export default function Solutions() {
   return (
     <Layout>
+      <Head>
+        <title>Our Solutions | Unitellas International Limited</title>
+      </Head>
+
       <PageHeader
         title="Solutions"
         subtitle="We provide the best Cloud Services"

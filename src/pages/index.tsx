@@ -1,4 +1,5 @@
 import { useWindowDimension } from "@/hooks/useWindowDimension";
+import Head from "next/head";
 import { motion } from "framer-motion";
 import { BaseButton, BaseButtonWithColor } from "@/components/UI/Buttons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -65,6 +66,9 @@ export default function Home() {
   ];
   return (
     <>
+      <Head>
+        <title>Unitellas International Limited | Edge Cloud Services</title>
+      </Head>
       <main className="h-screen w-full bg-home-hero bg-cover bg-center">
         <Nav />
         <div className="mx-auto flex h-5/6 max-w-7xl flex-col items-start justify-center gap-8 overflow-hidden p-8 md:flex-row md:items-center md:justify-between md:gap-16">
