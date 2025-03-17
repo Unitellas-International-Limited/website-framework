@@ -27,7 +27,7 @@ export default async function handler(
       from: `"New Contact Form Enquiry" <unitellasintl@gmail.com>`,
       replyTo: senderEmail,
       to: "contact@unitellas.com.ng",
-      subject: emailSubject,
+      subject: `New Message from ${emailSubject}`,
       text: `${message}`,
       html: `<p>Sender Email: ${senderEmail} <br><br> ${message}</p>`,
     });
