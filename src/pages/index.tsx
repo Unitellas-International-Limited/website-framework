@@ -54,9 +54,13 @@ export default function Home() {
     "/assets/images/home-carousel/asigra-logo.png",
     "/assets/images/home-carousel/cwg-logo.png",
     "/assets/images/home-carousel/inq-logo.png",
+    "/assets/images/home-carousel/gbb-logo.png",
     "/assets/images/home-carousel/itex-logo.png",
     "/assets/images/home-carousel/nitda-logo.png",
+    "/assets/images/home-carousel/pn-logo.png",
     "/assets/images/home-carousel/rackware-logo.png",
+    "/assets/images/home-carousel/sheiks-logo.png",
+    "/assets/images/home-carousel/sidmach-logo.png",
     "/assets/images/home-carousel/treten-logo.png",
   ];
   return (
