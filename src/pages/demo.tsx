@@ -49,28 +49,30 @@ export default function Contact() {
     if (value === "Custom") {
       setOpenCustom(true);
       setFormData((prev) => ({ ...prev, ramSize: "Custom" }));
-
     } else {
       setOpenCustom(false);
       setFormData((prev) => ({ ...prev, ramSize: value }));
-
     }
-  }
+  };
 
-  const handleCustomRamChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCustomRamChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     const customValue = event.target.value;
     setCustomRAM(customValue);
     setFormData((prev) => ({ ...prev, customRamSize: customValue }));
   };
 
   useEffect(() => {
-    if (formData.storageType === "EBS HDD" || formData.storageType === "Object Storage") {
-      setFormData((prev) => ({ ...prev, ssdGbTb: "TB" }))
+    if (
+      formData.storageType === "EBS HDD" ||
+      formData.storageType === "Object Storage"
+    ) {
+      setFormData((prev) => ({ ...prev, ssdGbTb: "TB" }));
     } else {
-      setFormData((prev) => ({ ...prev, ssdGbTb: "GB" }))
+      setFormData((prev) => ({ ...prev, ssdGbTb: "GB" }));
     }
   }, [formData.storageType]);
-
 
   const handleChange = (event: any) => {
     const targetName = event.target.name;
@@ -127,7 +129,6 @@ export default function Contact() {
         onSubmit={submitHandler}
         className="mx-auto my-20 max-w-5xl space-y-8 p-8"
       >
-
         {/* name */}
         <input
           className="block w-full rounded-sm border border-gray-400 p-3"
@@ -205,9 +206,18 @@ export default function Contact() {
 
         <div>
           <p className="mb-2 font-Mongoose text-3xl">Required vCPU Size:</p>
-          <input type="number" min="1" className="block w-full rounded-sm border border-gray-400 p-3" name="cpuNumber" id="cpuNumber" value={formData.cpuNumber} required onChange={(e) => {
-            handleChange(e);
-          }} />
+          <input
+            type="number"
+            min="1"
+            className="block w-full rounded-sm border border-gray-400 p-3"
+            name="cpuNumber"
+            id="cpuNumber"
+            value={formData.cpuNumber}
+            required
+            onChange={(e) => {
+              handleChange(e);
+            }}
+          />
         </div>
 
         <div>
@@ -216,7 +226,6 @@ export default function Contact() {
             className="block w-full rounded-sm border border-gray-400 p-3"
             name="ramSize"
             id="ramSize"
-
             value={formData.ramSize}
             required
             onChange={handleRamChange}
@@ -240,20 +249,23 @@ export default function Contact() {
             <option value="672GiB">672GiB</option>
             <option value="896GiB">896GiB</option>
             <option value="Custom">Custom Size</option>
-
           </select>
         </div>
 
-        {openCustom && <div><input
-          className="block w-full rounded-sm border border-gray-400 p-3"
-          name="customRAM"
-          id="customRAM"
-          placeholder="Enter your required RAM size e.g 300 GiB"
-          value={customRAM}
-          onChange={handleCustomRamChange}
-          type="text"
-          required
-        /></div>}
+        {openCustom && (
+          <div>
+            <input
+              className="block w-full rounded-sm border border-gray-400 p-3"
+              name="customRAM"
+              id="customRAM"
+              placeholder="Enter your required RAM size e.g 300 GiB"
+              value={customRAM}
+              onChange={handleCustomRamChange}
+              type="text"
+              required
+            />
+          </div>
+        )}
 
         <div>
           <p className="mb-2 font-Mongoose text-3xl">Required Public IPs:</p>
@@ -270,7 +282,6 @@ export default function Contact() {
             required
           />
         </div>
-
 
         <div>
           <p className="mb-2 font-Mongoose text-3xl">Required Storage Type: </p>
@@ -293,27 +304,29 @@ export default function Contact() {
 
         <div>
           <p className="mb-2 font-Mongoose text-3xl">Required Drive Type: </p>
-          {formData.storageType === "Object" && (<div>
-            <select
-              className="block w-full rounded-sm border border-gray-400 p-3"
-              name="driveType"
-              id="driveype"
-              disabled
-              defaultValue="HDD"
-              value={formData.driveType}
-              required
-              onChange={(e) => {
-                handleChange(e);
-              }}
-            >
-              <option value="HDD">HDD</option>
-
-
-            </select>
-          </div>)}
+          {formData.storageType === "Object" && (
+            <div>
+              <select
+                className="block w-full rounded-sm border border-gray-400 p-3"
+                name="driveType"
+                id="driveype"
+                disabled
+                defaultValue="HDD"
+                value={formData.driveType}
+                required
+                onChange={(e) => {
+                  handleChange(e);
+                }}
+              >
+                <option value="HDD">HDD</option>
+              </select>
+            </div>
+          )}
 
           <select
-            className={`${formData.storageType === "Object" ? "hidden" : ""} block w-full rounded-sm border border-gray-400 p-3`}
+            className={`${
+              formData.storageType === "Object" ? "hidden" : ""
+            } block w-full rounded-sm border border-gray-400 p-3`}
             name="driveType"
             id="driveype"
             defaultValue="HDD"
@@ -331,17 +344,26 @@ export default function Contact() {
         </div>
 
         <div>
-          <p className="font-Mongoose mb-2 text-3xl">Required Storage Size:</p>
+          <p className="mb-2 font-Mongoose text-3xl">Required Storage Size:</p>
           <div className="flex items-center gap-2">
-
-            {(formData.driveType === "NVMe" || formData.driveType === "GPU") && (
+            {(formData.driveType === "NVMe" ||
+              formData.driveType === "GPU") && (
               <>
-                < input type="number" min={1} className="block w-full rounded-sm border border-gray-400 p-3" name="storageAmount" id="storageAmount" value={formData.storageAmount} required onChange={(e) => {
-                  handleChange(e);
-                }} />
+                <input
+                  type="number"
+                  min={1}
+                  className="block w-full rounded-sm border border-gray-400 p-3"
+                  name="storageAmount"
+                  id="storageAmount"
+                  value={formData.storageAmount}
+                  required
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
+                />
 
                 <select
-                  className="block text-3xl font-Mongoose"
+                  className="block font-Mongoose text-3xl"
                   name="GbTb"
                   id="GbTb"
                   defaultValue="GB"
@@ -355,28 +377,43 @@ export default function Contact() {
                   <option value="TB">TB</option>
                 </select>
               </>
-            )
-            }
+            )}
 
-
-            {formData.driveType === "HDD" &&
-              (
-                <>
-                  < input type="number" min="1" className="block w-full rounded-sm border border-gray-400 p-3" name="storageAmount" id="storageAmount" value={formData.storageAmount} required onChange={(e) => {
+            {formData.driveType === "HDD" && (
+              <>
+                <input
+                  type="number"
+                  min="1"
+                  className="block w-full rounded-sm border border-gray-400 p-3"
+                  name="storageAmount"
+                  id="storageAmount"
+                  value={formData.storageAmount}
+                  required
+                  onChange={(e) => {
                     handleChange(e);
-                  }} />
-                  <p className="font-Mongoose text-3xl">TB</p>
-                </>
-              )}
+                  }}
+                />
+                <p className="font-Mongoose text-3xl">TB</p>
+              </>
+            )}
 
-            {formData.driveType === "SSD" &&
-              (<>
-                < input type="number" min={`${formData.ssdGbTb === "GB" ? 100 : 0}`} className="block w-full rounded-sm border border-gray-400 p-3" name="storageAmount" id="storageAmount" value={formData.storageAmount} required onChange={(e) => {
-                  handleChange(e);
-                }} />
+            {formData.driveType === "SSD" && (
+              <>
+                <input
+                  type="number"
+                  min={`${formData.ssdGbTb === "GB" ? 100 : 0}`}
+                  className="block w-full rounded-sm border border-gray-400 p-3"
+                  name="storageAmount"
+                  id="storageAmount"
+                  value={formData.storageAmount}
+                  required
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
+                />
 
                 <select
-                  className="block text-3xl font-Mongoose"
+                  className="block font-Mongoose text-3xl"
                   name="GbTb"
                   id="GbTb"
                   defaultValue="GB"
@@ -390,32 +427,39 @@ export default function Contact() {
                   <option value="TB">TB</option>
                 </select>
               </>
-              )}
+            )}
 
-            {formData.storageType === "Object Storage" &&
-              (
-                <>
-                  < input type="number" min="1" className="block w-full rounded-sm border border-gray-400 p-3" name="storageAmount" id="storageAmount" value={`${formData.storageAmount}`} required onChange={(e) => {
+            {formData.storageType === "Object Storage" && (
+              <>
+                <input
+                  type="number"
+                  min="1"
+                  className="block w-full rounded-sm border border-gray-400 p-3"
+                  name="storageAmount"
+                  id="storageAmount"
+                  value={`${formData.storageAmount}`}
+                  required
+                  onChange={(e) => {
                     handleChange(e);
-                  }} />
-                  <p className="font-Mongoose text-3xl">TB</p>
-                </>
-              )}
+                  }}
+                />
+                <p className="font-Mongoose text-3xl">TB</p>
+              </>
+            )}
           </div>
         </div>
 
         <div>
           <p className="mb-2 font-Mongoose text-3xl">Other Notes: </p>
           <textarea
-            className="block w-full rounded-sm border border-gray-400 p-3 resize-none"
+            className="block w-full resize-none rounded-sm border border-gray-400 p-3"
             name="senderNotes"
             id="senderNotes"
             value={formData.senderNotes}
             onChange={(e) => {
               handleChange(e);
             }}
-          >
-          </textarea>
+          ></textarea>
         </div>
 
         <BaseButtonWithColor loading={loading} text="Schedule" size="full" />

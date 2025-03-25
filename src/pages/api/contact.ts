@@ -17,16 +17,17 @@ export default async function handler(
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "unitellasintl@gmail.com",
-      pass: "haet iqel qffh dudm",
+      user: "unitellas.itss@gmail.com",
+      pass: "qflg srsm pkfs jzqf",
     },
   });
 
   try {
     await transporter.sendMail({
-      from: `"New Contact Form Enquiry" <unitellasintl@gmail.com>`,
+      from: `New Contact Form Enquiry`,
       replyTo: senderEmail,
       to: "contact@unitellas.com.ng",
+      cc: "omuwaste@gmail.com",
       subject: `New Message from ${emailSubject}`,
       text: `${message}`,
       html: `<p>Sender Email: ${senderEmail} <br><br> ${message}</p>`,

@@ -12,20 +12,20 @@ import Logo from "./Logo";
 export default function Footer() {
   const presentYear = new Date().getFullYear();
   const iconClasses = "h-5 text-white";
-  const footerLinks = [
-    {
-      title: "partners",
-      url: "/#",
-    },
-    {
-      title: "resources",
-      url: "/#",
-    },
-    {
-      title: "pricing",
-      url: "/#",
-    },
-  ];
+  // const footerLinks = [
+  //   {
+  //     title: "partners",
+  //     url: "/#",
+  //   },
+  //   {
+  //     title: "resources",
+  //     url: "/#",
+  //   },
+  //   {
+  //     title: "pricing",
+  //     url: "/#",
+  //   },
+  // ];
   const socials = [
     {
       icon: <FontAwesomeIcon icon={faTwitter} className={iconClasses} />,
@@ -52,13 +52,13 @@ export default function Footer() {
   return (
     <footer className="bg-black p-10">
       <div className="relative flex flex-col items-center justify-between gap-4 md:flex-row">
-        <ul className="flex items-center gap-4 text-zinc-500">
+        {/* <ul className="flex items-center gap-4 text-zinc-500">
           {footerLinks.map((link) => (
             <li key={link.title} className="hover:underline">
               <Link href={link.url}>{link.title}</Link>
             </li>
           ))}
-        </ul>
+        </ul> */}
         <div className="md:absolute md:left-1/2 md:-translate-x-1/2">
           <Logo />
         </div>
