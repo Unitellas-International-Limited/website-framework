@@ -3,6 +3,7 @@ import Head from "next/head";
 import { motion } from "framer-motion";
 import { BaseButton, BaseButtonWithColor } from "@/components/UI/Buttons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
 import {
   faShieldHalved,
   faGlobe,
@@ -93,13 +94,19 @@ export default function Home() {
             transition={{ type: "tween", duration: 1 }}
             className="flex w-full flex-col gap-6 md:w-auto"
           >
-            <BaseButton
-              type="link"
-              href="https://ccvm-unitellas-01.zadarastorage.com:8443/"
-              text="Start a Live Demo Today"
-              size={width < 480 ? "full" : "lg"}
-            />
-            <BaseButton text="Get a quote" size={width < 480 ? "full" : "lg"} />
+            <Link href="/demo">
+              <BaseButton
+                text="Start a Live Demo Today"
+                size={width < 480 ? "full" : "lg"}
+              />
+            </Link>
+
+            <Link href="/quote">
+              <BaseButton
+                text="Get a quote"
+                size={width < 480 ? "full" : "lg"}
+              />
+            </Link>
           </motion.div>
         </div>
       </main>
@@ -155,7 +162,9 @@ export default function Home() {
           </p>
           <div className="md: my-8 flex flex-col items-center justify-center gap-8 sm:flex-row">
             <BaseButton text="Contact Us" type="link" href="#" />
-            <BaseButtonWithColor text="Schedule Demo" />
+            <Link href="/demo">
+              <BaseButtonWithColor text="Schedule Demo" />
+            </Link>
           </div>
         </div>
       </motion.section>
