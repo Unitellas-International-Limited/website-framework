@@ -11,11 +11,14 @@ export interface DemoForm {
   senderPhone: string; // sender phone number
   senderNotes: string; // sender notes
   orgName: string; // sender org
+  senderCountry: string;
   os: string; // required os
   publicIP: number; // required public IPs
   cpuNumber: number; // required cpu number
   ramSize: string; // required ram size in gib/tb
   customRamSize: string; // required ram size in gib/tb
+  bandwidth: string;
+  customBandwidth: string;
   driveType: string; // required ram size in gib/tb
   storageType: string; // storage type e.g ssd, hdd
   storageAmount: number; // storage amount needed
@@ -25,16 +28,22 @@ export interface DemoForm {
 export default function Contact() {
   const [loading, setLoading] = useState(false);
   const [openCustom, setOpenCustom] = useState(false);
+  const [openCustomBandwidth, setOpenCustomBandwidth] = useState(false);
   const [customRAM, setCustomRAM] = useState("");
+  const [customBandwidth, setCustomBandwidth] = useState("");
+  const [countries, setCountries] = useState<string[]>([]);
   const [formData, setFormData] = useState<DemoForm>({
     senderName: "",
     senderEmail: "",
     senderPhone: "",
     orgName: "",
     senderNotes: "",
+    senderCountry: "",
     os: "Windows",
     publicIP: 0,
     cpuNumber: 1,
+    bandwidth: "10Mbps",
+    customBandwidth: "",
     ramSize: "4GiB",
     customRamSize: "",
     driveType: "HDD",
@@ -54,6 +63,19 @@ export default function Contact() {
       setFormData((prev) => ({ ...prev, ramSize: value }));
     }
   };
+  const handleBandwidthChange = (
+    event: React.ChangeEvent<HTMLSelectElement>,
+  ) => {
+    const value = event.target.value;
+
+    if (value === "Custom") {
+      setOpenCustomBandwidth(true);
+      setFormData((prev) => ({ ...prev, bandwidth: "Custom" }));
+    } else {
+      setOpenCustomBandwidth(false);
+      setFormData((prev) => ({ ...prev, bandwidth: value }));
+    }
+  };
 
   const handleCustomRamChange = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -61,6 +83,14 @@ export default function Contact() {
     const customValue = event.target.value;
     setCustomRAM(customValue);
     setFormData((prev) => ({ ...prev, customRamSize: customValue }));
+  };
+
+  const handleCustomBandwidthChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    const customValue = event.target.value;
+    setCustomBandwidth(customValue);
+    setFormData((prev) => ({ ...prev, customBandwidth: customValue }));
   };
 
   useEffect(() => {
@@ -73,6 +103,19 @@ export default function Contact() {
       setFormData((prev) => ({ ...prev, ssdGbTb: "GB" }));
     }
   }, [formData.storageType]);
+
+  useEffect(() => {
+    fetch("https://restcountries.com/v3.1/all")
+      .then(async (res) => await res.json())
+      .then((data) => {
+        const countryNames = data.map((country: any) => country.name.common);
+        const sortedCountryNames = countryNames.sort();
+        setCountries(sortedCountryNames);
+      })
+      .catch((error) => {
+        console.error("Error fetching countries:", error);
+      });
+  }, []);
 
   const handleChange = (event: any) => {
     const targetName = event.target.name;
@@ -100,14 +143,17 @@ export default function Contact() {
           senderPhone: "",
           orgName: "",
           senderNotes: "",
+          senderCountry: "",
           os: "Windows",
           publicIP: 0,
           cpuNumber: 1,
-          ramSize: "4 GiB",
+          bandwidth: "10Mbps",
+          customBandwidth: "",
+          ramSize: "4GiB",
           customRamSize: "",
           driveType: "HDD",
           storageType: "Block",
-          storageAmount: 0,
+          storageAmount: 1,
           ssdGbTb: "GB",
         });
       })
@@ -184,6 +230,28 @@ export default function Contact() {
           type="text"
           placeholder="Organization"
         />
+
+        {/* country */}
+        <div>
+          <p className="mb-2 font-Mongoose text-3xl">Country:</p>
+          <select
+            className="block w-full rounded-sm border border-gray-400 p-3"
+            name="senderCountry"
+            id="senderCountry"
+            value={formData.senderCountry}
+            onChange={(e) => {
+              handleChange(e);
+            }}
+            required
+          >
+            <option value="">Select a Country</option>
+            {countries.map((country, index) => (
+              <option key={index} value={country}>
+                {country}
+              </option>
+            ))}
+          </select>
+        </div>
 
         {/* OS */}
         <div>
@@ -282,6 +350,40 @@ export default function Contact() {
             required
           />
         </div>
+
+        <div>
+          <p className="mb-2 font-Mongoose text-3xl">Required Bandwidth: </p>
+          <select
+            className="block w-full rounded-sm border border-gray-400 p-3"
+            name="bandwidth"
+            id="bandwidth"
+            value={formData.bandwidth}
+            required
+            onChange={handleBandwidthChange}
+          >
+            <option value="10Mbps">10Mbps</option>
+            <option value="15Mbps">15Mbps</option>
+            <option value="100Mbps">100Mbps</option>
+            <option value="STM 1">STM 1</option>
+            <option value="1Gbps">1Gbps</option>
+            <option value="Custom">Custom</option>
+          </select>
+        </div>
+
+        {openCustomBandwidth && (
+          <div>
+            <input
+              className="block w-full rounded-sm border border-gray-400 p-3"
+              name="customBandwidth"
+              id="customBandwidth"
+              placeholder="Enter your required bandwidth size e.g 300Gbps"
+              value={customBandwidth}
+              onChange={handleCustomBandwidthChange}
+              type="text"
+              required
+            />
+          </div>
+        )}
 
         <div>
           <p className="mb-2 font-Mongoose text-3xl">Required Storage Type: </p>
