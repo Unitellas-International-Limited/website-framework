@@ -65,7 +65,45 @@ export default async function handler(
       cc: "info@unitellas.com.ng",
       subject: `Demo Request from ${senderName}`,
       text: `Sender Email: ${senderEmail} Sender Phone Number: ${senderPhone} Organization: ${orgName} Country: ${senderCountry} Demo Specifications Operating System: ${os} CPU Size: ${cpuNumber} Ram Size: ${ramSize} Custom Ram Size: ${customRamSize} Bandwidth: ${bandwidth} Custom Bandwidth: ${customBandwidth}  Drive Type: ${driveType} Storage Type: ${storageType} Storage Size: ${storageAmount} ${ssdGbTb}  Number of IPs needed: ${publicIP} Notes: ${senderNotes}`,
-      html: `<p> Sender Email: ${senderEmail} <br/> Sender Phone Number: ${senderPhone}<br/> Country: ${senderCountry} <br/> Organization: ${orgName} <br/> <br/> <b>Demo Specifications</b> <br/> Operating System: ${os} <br/> CPU Size: ${cpuNumber} <br/> Ram Size: ${ramSize} <br/> Custom Ram Size: ${customRamSize} <br/> Bandwidth: ${bandwidth} <br/> Custom Bandwidth: ${customBandwidth} <br/> Drive Type: ${driveType} <br/> Storage Type: ${storageType} <br/> Storage Size: ${storageAmount} ${ssdGbTb} <br/> Number of IPs needed: ${publicIP}<br/> Notes: ${senderNotes} </p>`,
+      html: `      
+      <p>
+      Sender Email: ${senderEmail} <br/> 
+      Sender Phone Number: ${senderPhone}<br/> 
+      Sender Country: ${senderCountry} <br/>
+      Sender Organization: ${orgName} <br/><br/>  
+      </p>
+
+       <b>Demo Specifications</b>
+       <table border="1" style="border-collapse: collapse; width: 100%;">
+  <tr>
+    <td style="text-align: center; padding: 8px;">Operating System</td>
+    <td style="text-align: center; padding: 8px;">CPU Size</td>
+    <td style="text-align: center; padding: 8px;">Ram Size</td>
+    <td style="text-align: center; padding: 8px;">Custom Ram Size</td>
+    <td style="text-align: center; padding: 8px;">Bandwidth</td>
+    <td style="text-align: center; padding: 8px;">Custom Bandwidth</td>
+    <td style="text-align: center; padding: 8px;">Drive Type</td>
+    <td style="text-align: center; padding: 8px;">Storage Type</td>
+    <td style="text-align: center; padding: 8px;">Storage Size</td>
+    <td style="text-align: center; padding: 8px;">Number of IPs needed</td>
+    <td style="text-align: center; padding: 8px;">Extra Details</td>
+  </tr>
+
+  <tr>
+    <td style="text-align: center; padding: 8px;">${os}</td>
+    <td style="text-align: center; padding: 8px;">${cpuNumber}</td>
+    <td style="text-align: center; padding: 8px;">${ramSize}</td>
+    <td style="text-align: center; padding: 8px;">${customRamSize}</td>
+    <td style="text-align: center; padding: 8px;">${bandwidth}</td>
+    <td style="text-align: center; padding: 8px;">${customBandwidth}</td>
+    <td style="text-align: center; padding: 8px;">${driveType}</td>
+    <td style="text-align: center; padding: 8px;">${storageType}</td>
+    <td style="text-align: center; padding: 8px;">${storageAmount} ${ssdGbTb}</td>
+    <td style="text-align: center; padding: 8px;">${publicIP}</td>
+    <td style="text-align: center; padding: 8px;">${senderNotes}</td>
+  </tr>
+</table>
+      `,
     });
 
     res.status(200).json({ status: "OK" });

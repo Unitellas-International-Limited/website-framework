@@ -11,7 +11,7 @@ export interface DemoForm {
   senderPhone: string; // sender phone number
   senderNotes: string; // sender notes
   orgName: string; // sender org
-  senderCountry: string;
+  senderCountry: string; // sender country
   os: string; // required os
   publicIP: number; // required public IPs
   cpuNumber: number; // required cpu number
@@ -466,8 +466,8 @@ export default function Contact() {
 
                 <select
                   className="block font-Mongoose text-3xl"
-                  name="GbTb"
-                  id="GbTb"
+                  name="ssdGbTb"
+                  id="ssdGbTb"
                   defaultValue="GB"
                   value={formData.ssdGbTb}
                   required
