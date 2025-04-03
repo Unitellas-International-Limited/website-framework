@@ -10,7 +10,7 @@ export default function Demo() {
         <title>Schedule a Demo | Unitellas International Limited</title>
       </Head>
       <PageHeader title="Schedule a Demo" />
-      <ComputeDR />
+      <ComputeDR serviceName="Demo" />
     </Layout>
   );
 }

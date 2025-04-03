@@ -2,39 +2,28 @@ import React, { useState, useEffect } from "react";
 import { BaseButtonWithColor } from "@/components/UI/Buttons";
 import toast from "react-hot-toast";
 
-export interface ComputeDRForm {
+export interface QuoteForm {
   service: string;
   senderName: string; // sender name
   senderEmail: string; // sender email
   senderPhone: string; // sender phone number
-  senderNotes: string; // sender notes
   orgName: string; // sender org
-  senderCountry: string; // sender country
-  os: string; // required os
-  publicIP: number; // required public IPs
-  cpuNumber: number; // required cpu number
-  ramSize: string; // required ram size in gib/tb
-  customRamSize: string; // required ram size in gib/tb
-  bandwidth: string;
-  customBandwidth: string;
-  driveType: string; // required ram size in gib/tb
-  storageType: string; // storage type e.g ssd, hdd
+  senderNotes: string; // sender notes
+  senderCountry: string;
+  driveType: string; // required drive Type in ssd, hdd...
+  storageType: string; // storage type e.g object,file,block
   storageAmount: number; // storage amount needed
-  ssdGbTb: string; // gb or tb for ssd storage choice
+  ssdGbTb: "GB" | "TB" | "none"; // gb or tb for ssd storayge choice
 }
 
-interface ComputeDRProps {
+interface BackupProps {
   serviceName: string;
 }
 
-const ComputeDR: React.FC<ComputeDRProps> = ({ serviceName }) => {
+const Backup: React.FC<BackupProps> = ({ serviceName }) => {
   const [loading, setLoading] = useState(false);
-  const [openCustom, setOpenCustom] = useState(false);
-  const [openCustomBandwidth, setOpenCustomBandwidth] = useState(false);
-  const [customRAM, setCustomRAM] = useState("");
-  const [customBandwidth, setCustomBandwidth] = useState("");
   const [countries, setCountries] = useState<string[]>([]);
-  const [formData, setFormData] = useState<ComputeDRForm>({
+  const [formData, setFormData] = useState<QuoteForm>({
     service: serviceName,
     senderName: "",
     senderEmail: "",
@@ -42,20 +31,13 @@ const ComputeDR: React.FC<ComputeDRProps> = ({ serviceName }) => {
     orgName: "",
     senderNotes: "",
     senderCountry: "",
-    os: "Windows",
-    publicIP: 0,
-    cpuNumber: 1,
-    bandwidth: "10Mbps",
-    ramSize: "4GiB",
     driveType: "HDD",
     storageType: "Block",
     storageAmount: 1,
     ssdGbTb: "GB",
-    customRamSize: "",
-    customBandwidth: "",
   });
 
-  // to get countries list
+  // for countries list
   useEffect(() => {
     fetch("https://restcountries.com/v3.1/all")
       .then(async (res) => await res.json())
@@ -69,53 +51,20 @@ const ComputeDR: React.FC<ComputeDRProps> = ({ serviceName }) => {
       });
   }, []);
 
-  // handle input change for ram, bandwidth
-  const handleRamChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = event.target.value;
-
-    if (value === "Custom") {
-      setOpenCustom(true);
-      setFormData((prev) => ({ ...prev, ramSize: "Custom" }));
-    } else {
-      setOpenCustom(false);
-      setFormData((prev) => ({ ...prev, ramSize: value }));
-    }
-  };
-
-  const handleCustomRamChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
+  // general input change handler
+  const handleChange = (
+    event: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >,
   ) => {
-    const customValue = event.target.value;
-    setCustomRAM(customValue);
-    setFormData((prev) => ({ ...prev, customRamSize: customValue }));
+    const targetName = event.target.name;
+    const targetValue = event.target.value;
+    setFormData((values) => ({ ...values, [targetName]: targetValue }));
   };
 
-  const handleBandwidthChange = (
-    event: React.ChangeEvent<HTMLSelectElement>,
-  ) => {
-    const value = event.target.value;
-
-    if (value === "Custom") {
-      setOpenCustomBandwidth(true);
-      setFormData((prev) => ({ ...prev, bandwidth: "Custom" }));
-    } else {
-      setOpenCustomBandwidth(false);
-      setFormData((prev) => ({ ...prev, bandwidth: value }));
-    }
-  };
-
-  const handleCustomBandwidthChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    const customValue = event.target.value;
-    setCustomBandwidth(customValue);
-    setFormData((prev) => ({ ...prev, customBandwidth: customValue }));
-  };
-
-  // to set default storage unit
   useEffect(() => {
     if (
-      formData.storageType === "HDD" ||
+      formData.driveType === "HDD" ||
       formData.storageType === "Object Storage"
     ) {
       setFormData((prev) => ({ ...prev, ssdGbTb: "TB" }));
@@ -124,17 +73,10 @@ const ComputeDR: React.FC<ComputeDRProps> = ({ serviceName }) => {
     }
   }, [formData.storageType]);
 
-  // handle general input change
-  const handleChange = (event: any) => {
-    const targetName = event.target.name;
-    const targetValue = event.target.value;
-    setFormData((values) => ({ ...values, [targetName]: targetValue }));
-  };
-
   function submitHandler(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
-    fetch("api/demo", {
+    fetch("api/quote", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -153,23 +95,16 @@ const ComputeDR: React.FC<ComputeDRProps> = ({ serviceName }) => {
           orgName: "",
           senderNotes: "",
           senderCountry: "",
-          os: "Windows",
-          publicIP: 0,
-          cpuNumber: 1,
-          bandwidth: "10Mbps",
-          ramSize: "4GiB",
           driveType: "HDD",
           storageType: "Block",
           storageAmount: 1,
           ssdGbTb: "GB",
-          customRamSize: "",
-          customBandwidth: "",
         });
       })
       .catch((error) => {
         console.error(error);
         setLoading(false);
-        toast.error("An error occurred. Try again.");
+        toast.error("An error occurred");
       });
   }
 
@@ -254,144 +189,6 @@ const ComputeDR: React.FC<ComputeDRProps> = ({ serviceName }) => {
             </option>
           ))}
         </select>
-      </div>
-
-      {/* OS */}
-      <div>
-        <p className="mb-2 font-Mongoose text-3xl">Operating System:</p>
-        <select
-          className="block w-full rounded-sm border border-gray-400 p-3"
-          name="os"
-          id="os"
-          defaultValue="Windows"
-          value={formData.os}
-          required
-          onChange={(e) => {
-            handleChange(e);
-          }}
-        >
-          <option value="Windows">Windows</option>
-          <option value="Linux">Linux</option>
-        </select>
-      </div>
-
-      {/* vCPU */}
-      <div>
-        <p className="mb-2 font-Mongoose text-3xl">Required vCPU Size:</p>
-        <input
-          type="number"
-          min={1}
-          className="block w-full rounded-sm border border-gray-400 p-3"
-          name="cpuNumber"
-          id="cpuNumber"
-          value={formData.cpuNumber}
-          required
-          onChange={(e) => {
-            handleChange(e);
-          }}
-        />
-      </div>
-
-      {/* ram */}
-      <div>
-        <p className="mb-2 font-Mongoose text-3xl">Required RAM Size:</p>
-        <select
-          className="block w-full rounded-sm border border-gray-400 p-3"
-          name="ramSize"
-          id="ramSize"
-          value={formData.ramSize}
-          required
-          onChange={handleRamChange}
-        >
-          <option value="4GiB">4GiB</option>
-          <option value="8GiB">8GiB</option>
-          <option value="16GiB">16GiB</option>
-          <option value="32GiB">32GiB</option>
-          <option value="64GiB">64GiB</option>
-          <option value="96GiB">96GiB</option>
-          <option value="112iB">112GiB</option>
-          <option value="128GiB">128GiB</option>
-          <option value="160GiB">160GiB</option>
-          <option value="192GiB">192GiB</option>
-          <option value="224GiB">224GiB</option>
-          <option value="256GiB">256GiB</option>
-          <option value="288GiB">288GiB</option>
-          <option value="320GiB">320GiB</option>
-          <option value="384GiB">384GiB</option>
-          <option value="448GiB">448GiB</option>
-          <option value="672GiB">672GiB</option>
-          <option value="896GiB">896GiB</option>
-          <option value="Custom">Custom</option>
-        </select>
-      </div>
-
-      {/* custom ram */}
-      {openCustom && (
-        <div>
-          <input
-            className="block w-full rounded-sm border border-gray-400 p-3"
-            name="customRAM"
-            id="customRAM"
-            placeholder="Enter your required RAM size e.g 300 GiB"
-            value={customRAM}
-            onChange={handleCustomRamChange}
-            type="text"
-            required
-          />
-        </div>
-      )}
-
-      {/* bandwidth */}
-      <div>
-        <p className="mb-2 font-Mongoose text-3xl">Required Bandwidth: </p>
-        <select
-          className="block w-full rounded-sm border border-gray-400 p-3"
-          name="bandwidth"
-          id="bandwidth"
-          value={formData.bandwidth}
-          required
-          onChange={handleBandwidthChange}
-        >
-          <option value="10Mbps">10Mbps</option>
-          <option value="15Mbps">15Mbps</option>
-          <option value="100Mbps">100Mbps</option>
-          <option value="STM 1">STM 1</option>
-          <option value="1Gbps">1Gbps</option>
-          <option value="Custom">Custom</option>
-        </select>
-      </div>
-
-      {/* custom bandwidth */}
-      {openCustomBandwidth && (
-        <div>
-          <input
-            className="block w-full rounded-sm border border-gray-400 p-3"
-            name="customBandwidth"
-            id="customBandwidth"
-            placeholder="Enter your required bandwidth size e.g 300Gbps"
-            value={customBandwidth}
-            onChange={handleCustomBandwidthChange}
-            type="text"
-            required
-          />
-        </div>
-      )}
-
-      {/* public IP */}
-      <div>
-        <p className="mb-2 font-Mongoose text-3xl">Required Public IPs:</p>
-        <input
-          className="block w-full rounded-sm border border-gray-400 p-3"
-          name="publicIP"
-          id="publicIP"
-          min={0}
-          value={formData.publicIP}
-          onChange={(e) => {
-            handleChange(e);
-          }}
-          type="number"
-          required
-        />
       </div>
 
       {/* stroage type */}
@@ -492,6 +289,7 @@ const ComputeDR: React.FC<ComputeDRProps> = ({ serviceName }) => {
                 className="block font-Mongoose text-3xl"
                 name="ssdGbTb"
                 id="ssdGbTb"
+                defaultValue="GB"
                 value={formData.ssdGbTb}
                 required
                 onChange={(e) => {
@@ -520,9 +318,9 @@ const ComputeDR: React.FC<ComputeDRProps> = ({ serviceName }) => {
         ></textarea>
       </div>
 
-      <BaseButtonWithColor loading={loading} text="Schedule" size="full" />
+      <BaseButtonWithColor loading={loading} text="Send" size="full" />
     </form>
   );
 };
 
-export default ComputeDR;
+export default Backup;
