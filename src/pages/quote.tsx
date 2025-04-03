@@ -5,7 +5,7 @@ import Layout from "@/components/UI/Layout";
 import PageHeader from "@/components/UI/PageHeader";
 import ComputeDR from "@/components/forms/computeDR";
 import Backup from "@/components/forms/backup";
-// import AI from "@/components/forms/ai";
+import AI from "@/components/forms/ai";
 
 export interface QuoteForm {
   service: string; // service they want
@@ -45,9 +45,9 @@ export default function Quote() {
             text={choice.name}
             className={`${
               choice.name === service
-                ? "bg-dark border border-uni-blue text-blue-500"
-                : " text-gray-900"
-            }  p-2 sm:p-0 `}
+                ? "border border-uni-blue bg-uni-blue "
+                : "text-gray-900 "
+            } p-2 sm:p-0 `}
           />
         ))}
       </div>
@@ -56,9 +56,9 @@ export default function Quote() {
       {service === "Disaster Recovery" && (
         <ComputeDR serviceName="Disaster Recovery" />
       )}
-      {service === "Disaster Recovery" && <Backup serviceName="Backup" />}
+      {service === "Backup" && <Backup serviceName="Backup" />}
 
-      {/* {service === "AI Workloads" && <AI />} */}
+      {service === "AI Workloads" && <AI serviceName="AI Workloads" />}
     </Layout>
   );
 }

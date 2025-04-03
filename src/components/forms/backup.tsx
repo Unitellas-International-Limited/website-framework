@@ -318,7 +318,7 @@ const Backup: React.FC<BackupProps> = ({ serviceName }) => {
         ></textarea>
       </div>
 
-      <BaseButtonWithColor loading={loading} text="Send" size="full" />
+      <BaseButtonWithColor loading={loading} text="Submit" size="full" />
     </form>
   );
 };

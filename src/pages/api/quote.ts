@@ -20,6 +20,9 @@ interface IPayload {
   ssdGbTb: string;
   storageType: string;
   storageAmount: number;
+  gpuSize: number;
+  nvmeSize: string;
+  customNvmeSize: string;
 }
 
 export default async function handler(
@@ -45,17 +48,20 @@ export default async function handler(
     storageType,
     storageAmount,
     senderNotes,
+    gpuSize,
+    nvmeSize,
+    customNvmeSize,
   } = req.body as IPayload;
 
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      // user: "unitellasintl@gmail.com",
-      // pass: "awtn juks adro qwmr",
+      user: "unitellasintl@gmail.com",
+      pass: "awtn juks adro qwmr",
 
       // ALTERNATIVE
-      user: "unitellas.itss@gmail.com",
-      pass: "qflg srsm pkfs jzqf",
+      // user: "unitellas.itss@gmail.com",
+      // pass: "qflg srsm pkfs jzqf",
     },
   });
 
@@ -63,10 +69,10 @@ export default async function handler(
     await transporter.sendMail({
       from: `"New Quote Request" <unitellasintl@gmail.com>`,
       replyTo: senderEmail,
-      to: "omuwaste@gmail.com",
-      // cc: "treasure@unitellas.com",
+      to: "treasure@unitellas.com.ng",
+      cc: "sharon@unitellas.com",
       subject: `Quote Request from ${senderName}`,
-      text: `Sender Email: ${senderEmail} Sender Phone Number: ${senderPhone} Organization: ${orgName} Sender Country: ${senderCountry}  Quote Specifications Service: ${service} Operating System: ${os} CPU Size: ${cpuNumber} Ram Size: ${ramSize} Custom Ram Size: ${customRamSize}  Bandwidth: ${bandwidth} <br/> Custom Bandwidth: ${customBandwidth}  Storage Type: ${storageType} Storage Size: ${storageAmount} ${ssdGbTb}  Number of IPs needed: ${publicIP} Extra Details: ${senderNotes}`,
+      text: `Sender Email: ${senderEmail} Sender Phone Number: ${senderPhone} Organization: ${orgName} Sender Country: ${senderCountry}  Quote Specifications Service: ${service} Operating System: ${os} CPU Size: ${cpuNumber} Ram Size: ${ramSize} Custom Ram Size: ${customRamSize} Bandwidth: ${bandwidth} <br/> Custom Bandwidth: ${customBandwidth}  Storage Type: ${storageType} Storage Size: ${storageAmount} ${ssdGbTb} NVME Size: ${nvmeSize} Custom NVME Size: ${customNvmeSize} GPU Size: ${gpuSize}  Number of IPs needed: ${publicIP} Extra Details: ${senderNotes}`,
       html: `
       
       <p>Sender Email: ${senderEmail} <br/> 
@@ -87,6 +93,9 @@ export default async function handler(
         <td style="text-align: center; padding: 8px;">Drive Type</td>
         <td style="text-align: center; padding: 8px;">Storage Type</td>
         <td style="text-align: center; padding: 8px;">Storage Size</td>
+        <td style="text-align: center; padding: 8px;">NVMe Size</td>
+        <td style="text-align: center; padding: 8px;">Custom NVMe Size</td>
+        <td style="text-align: center; padding: 8px;">GPU Size</td>
         <td style="text-align: center; padding: 8px;">Number of IPs needed</td>
         <td style="text-align: center; padding: 8px;">Extra Details</td>
       </tr>
@@ -102,6 +111,9 @@ export default async function handler(
         <td style="text-align: center; padding: 8px;"> ${driveType}</td>
         <td style="text-align: center; padding: 8px;">${storageType}</td>
         <td style="text-align: center; padding: 8px;">${storageAmount}  ${ssdGbTb}</td>
+        <td style="text-align: center; padding: 8px;">${nvmeSize}</td>
+        <td style="text-align: center; padding: 8px;">${customNvmeSize}</td>
+        <td style="text-align: center; padding: 8px;">${gpuSize}</td>
         <td style="text-align: center; padding: 8px;">${publicIP}</td> 
         <td style="text-align: center; padding: 8px;">${senderNotes}</td> 
     </tr>

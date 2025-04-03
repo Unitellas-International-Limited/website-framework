@@ -520,7 +520,7 @@ const ComputeDR: React.FC<ComputeDRProps> = ({ serviceName }) => {
         ></textarea>
       </div>
 
-      <BaseButtonWithColor loading={loading} text="Schedule" size="full" />
+      <BaseButtonWithColor loading={loading} text="Submit" size="full" />
     </form>
   );
 };
