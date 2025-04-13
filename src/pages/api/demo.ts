@@ -19,6 +19,7 @@ interface IPayload {
   ssdGbTb: string;
   storageType: string;
   storageAmount: number;
+  database: string;
 }
 
 export default async function handler(
@@ -42,6 +43,7 @@ export default async function handler(
     ssdGbTb,
     storageType,
     storageAmount,
+    database,
     senderNotes,
   } = req.body as IPayload;
 
@@ -62,9 +64,9 @@ export default async function handler(
       from: `"New Demo Request" <unitellasintl@gmail.com>`,
       replyTo: senderEmail,
       to: "sharon@unitellas.com",
-      cc: "info@unitellas.com.ng",
+      // cc: "info@unitellas.com.ng",
       subject: `Demo Request from ${senderName}`,
-      text: `Sender Email: ${senderEmail} Sender Phone Number: ${senderPhone} Organization: ${orgName} Country: ${senderCountry} Demo Specifications Operating System: ${os} CPU Size: ${cpuNumber} Ram Size: ${ramSize} Custom Ram Size: ${customRamSize} Bandwidth: ${bandwidth} Custom Bandwidth: ${customBandwidth}  Drive Type: ${driveType} Storage Type: ${storageType} Storage Size: ${storageAmount} ${ssdGbTb}  Number of IPs needed: ${publicIP} Notes: ${senderNotes}`,
+      text: `Sender Email: ${senderEmail} Sender Phone Number: ${senderPhone} Organization: ${orgName} Country: ${senderCountry} Demo Specifications Operating System: ${os} CPU Size: ${cpuNumber} Ram Size: ${ramSize} Custom Ram Size: ${customRamSize} Bandwidth: ${bandwidth} Custom Bandwidth: ${customBandwidth}  Drive Type: ${driveType} Storage Type: ${storageType} Storage Size: ${storageAmount} ${ssdGbTb} Database: ${database}  Number of IPs needed: ${publicIP} Notes: ${senderNotes}`,
       html: `      
       <p>
       Sender Email: ${senderEmail} <br/> 
@@ -85,6 +87,7 @@ export default async function handler(
     <td style="text-align: center; padding: 8px;">Drive Type</td>
     <td style="text-align: center; padding: 8px;">Storage Type</td>
     <td style="text-align: center; padding: 8px;">Storage Size</td>
+    <td style="text-align: center; padding: 8px;">Database</td>
     <td style="text-align: center; padding: 8px;">Number of IPs needed</td>
     <td style="text-align: center; padding: 8px;">Extra Details</td>
   </tr>
@@ -99,6 +102,7 @@ export default async function handler(
     <td style="text-align: center; padding: 8px;">${driveType}</td>
     <td style="text-align: center; padding: 8px;">${storageType}</td>
     <td style="text-align: center; padding: 8px;">${storageAmount} ${ssdGbTb}</td>
+    <td style="text-align: center; padding: 8px;">${database}</td>
     <td style="text-align: center; padding: 8px;">${publicIP}</td>
     <td style="text-align: center; padding: 8px;">${senderNotes}</td>
   </tr>

@@ -17,6 +17,7 @@ export interface AIForm {
   ramSize: string; // required ram size in gib/tb
   customRamSize: string; // custom ram size in gib/tb
   cpuNumber: number; // required cpu number
+  database: string;
 }
 
 interface AIProps {
@@ -45,6 +46,7 @@ const AI: React.FC<AIProps> = ({ serviceName }) => {
     cpuNumber: 14,
     ramSize: "112GiB",
     customRamSize: "",
+    database: "SQL",
   });
 
   // for countries list
@@ -145,6 +147,7 @@ const AI: React.FC<AIProps> = ({ serviceName }) => {
           cpuNumber: 14,
           ramSize: "4GiB",
           customRamSize: "",
+          database: "SQL",
         });
       })
       .catch((error) => {
@@ -284,6 +287,27 @@ const AI: React.FC<AIProps> = ({ serviceName }) => {
           <option value="224GiB">224GiB</option>
           <option value="448GiB">448GiB</option>
           <option value="Custom">Custom Size</option>
+        </select>
+      </div>
+
+      {/* database */}
+      <div>
+        <p className="mb-2 font-Mongoose text-3xl">Required Database: </p>
+        <select
+          className="block w-full rounded-sm border border-gray-400 p-3"
+          name="database"
+          id="database"
+          value={formData.database}
+          required
+          onChange={(e) => {
+            handleChange(e);
+          }}
+        >
+          <option value="MySQL">MySQL</option>
+          <option value="PostreSQL">PostgreSQL</option>
+          <option value="Oracle">Oracle</option>
+          <option value="MongoDB">MongoDB</option>
+          <option value="Microsoft SQL Server">Microsoft SQL Server</option>
         </select>
       </div>
 

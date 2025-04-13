@@ -22,6 +22,7 @@ interface IPayload {
   storageAmount: number;
   gpuSize: number;
   nvmeSize: string;
+  database: string;
   customNvmeSize: string;
 }
 
@@ -50,6 +51,7 @@ export default async function handler(
     senderNotes,
     gpuSize,
     nvmeSize,
+    database,
     customNvmeSize,
   } = req.body as IPayload;
 
@@ -96,6 +98,7 @@ export default async function handler(
         <td style="text-align: center; padding: 8px;">NVMe Size</td>
         <td style="text-align: center; padding: 8px;">Custom NVMe Size</td>
         <td style="text-align: center; padding: 8px;">GPU Size</td>
+        <td style="text-align: center; padding: 8px;">Database</td>
         <td style="text-align: center; padding: 8px;">Number of IPs needed</td>
         <td style="text-align: center; padding: 8px;">Extra Details</td>
       </tr>
@@ -114,6 +117,7 @@ export default async function handler(
         <td style="text-align: center; padding: 8px;">${nvmeSize}</td>
         <td style="text-align: center; padding: 8px;">${customNvmeSize}</td>
         <td style="text-align: center; padding: 8px;">${gpuSize}</td>
+        <td style="text-align: center; padding: 8px;">${database}</td>
         <td style="text-align: center; padding: 8px;">${publicIP}</td> 
         <td style="text-align: center; padding: 8px;">${senderNotes}</td> 
     </tr>
