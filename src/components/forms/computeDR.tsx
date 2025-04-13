@@ -21,6 +21,7 @@ export interface ComputeDRForm {
   storageType: string; // storage type e.g ssd, hdd
   storageAmount: number; // storage amount needed
   ssdGbTb: string; // gb or tb for ssd storage choice
+  database: string;
 }
 
 interface ComputeDRProps {
@@ -53,6 +54,7 @@ const ComputeDR: React.FC<ComputeDRProps> = ({ serviceName }) => {
     ssdGbTb: "GB",
     customRamSize: "",
     customBandwidth: "",
+    database: "SQL",
   });
 
   // to get countries list
@@ -164,6 +166,7 @@ const ComputeDR: React.FC<ComputeDRProps> = ({ serviceName }) => {
           ssdGbTb: "GB",
           customRamSize: "",
           customBandwidth: "",
+          database: "SQL",
         });
       })
       .catch((error) => {
@@ -504,6 +507,27 @@ const ComputeDR: React.FC<ComputeDRProps> = ({ serviceName }) => {
             </>
           )}
         </div>
+      </div>
+
+      {/* database */}
+      <div>
+        <p className="mb-2 font-Mongoose text-3xl">Required Database: </p>
+        <select
+          className="block w-full rounded-sm border border-gray-400 p-3"
+          name="database"
+          id="database"
+          value={formData.database}
+          required
+          onChange={(e) => {
+            handleChange(e);
+          }}
+        >
+          <option value="MySQL">MySQL</option>
+          <option value="PostreSQL">PostgreSQL</option>
+          <option value="Oracle">Oracle</option>
+          <option value="MongoDB">MongoDB</option>
+          <option value="Microsoft SQL Server">Microsoft SQL Server</option>
+        </select>
       </div>
 
       {/* notes */}
