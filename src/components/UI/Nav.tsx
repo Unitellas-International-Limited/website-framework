@@ -33,15 +33,14 @@ export default function Nav() {
       title: "home",
       url: "/",
     },
-
+    {
+      title: "Blog",
+      url:"https://blog.unitellas.com.ng"
+    },
     {
       title: "solutions",
       url: "/solutions",
     },
-    // {
-    //   title: "resources",
-    //   url: "/resources",
-    // },
     {
       title: "about",
       url: "/about",
