@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BaseButtonWithColor } from "@/components/UI/Buttons";
 import toast from "react-hot-toast";
+import { sendGTMEvent } from "@next/third-parties/google";
 
 export interface ComputeDRForm {
   service: string;
@@ -438,9 +439,8 @@ const ComputeDR: React.FC<ComputeDRProps> = ({ serviceName }) => {
         )}
 
         <select
-          className={`${
-            formData.storageType === "Object" ? "hidden" : ""
-          } block w-full rounded-sm border border-gray-400 p-3`}
+          className={`${formData.storageType === "Object" ? "hidden" : ""
+            } block w-full rounded-sm border border-gray-400 p-3`}
           name="driveType"
           id="driveType"
           value={formData.driveType}
@@ -544,7 +544,7 @@ const ComputeDR: React.FC<ComputeDRProps> = ({ serviceName }) => {
         ></textarea>
       </div>
 
-      <BaseButtonWithColor loading={loading} text="Submit" size="full" />
+      <BaseButtonWithColor loading={loading} onClick={() => { sendGTMEvent({ event: 'buttonClicked', value: 'Compute/DR Form Submitted' }); }} text="Submit" size="full" />
     </form>
   );
 };

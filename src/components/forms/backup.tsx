@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BaseButtonWithColor } from "@/components/UI/Buttons";
 import toast from "react-hot-toast";
+import { sendGTMEvent } from "@next/third-parties/google";
 
 export interface QuoteForm {
   service: string;
@@ -232,9 +233,8 @@ const Backup: React.FC<BackupProps> = ({ serviceName }) => {
         )}
 
         <select
-          className={`${
-            formData.storageType === "Object" ? "hidden" : ""
-          } block w-full rounded-sm border border-gray-400 p-3`}
+          className={`${formData.storageType === "Object" ? "hidden" : ""
+            } block w-full rounded-sm border border-gray-400 p-3`}
           name="driveType"
           id="driveType"
           value={formData.driveType}
@@ -318,7 +318,7 @@ const Backup: React.FC<BackupProps> = ({ serviceName }) => {
         ></textarea>
       </div>
 
-      <BaseButtonWithColor loading={loading} text="Submit" size="full" />
+      <BaseButtonWithColor loading={loading} onClick={() => { sendGTMEvent({ event: 'buttonClicked', value: 'Backup Form Submitted' }); }} text="Submit" size="full" />
     </form>
   );
 };

@@ -15,6 +15,7 @@ import {
 import Nav from "@/components/UI/Nav";
 import AnimatedCarousel from "@/components/UI/AnimatedCarousel";
 import Footer from "@/components/UI/Footer";
+import { sendGTMEvent } from "@next/third-parties/google";
 
 export default function Home() {
   const { width } = useWindowDimension();
@@ -161,9 +162,9 @@ export default function Home() {
             Sign up for a free trial or contact us now for more info.
           </p>
           <div className="md: my-8 flex flex-col items-center justify-center gap-8 sm:flex-row">
-            <BaseButton text="Contact Us" type="link" href="#" />
+            <BaseButton text="Contact Us" type="link" onClick={() => { sendGTMEvent({ event: 'buttonClicked', value: 'Go to Contact Page' }); }} href="/contact" />
             <Link href="/demo">
-              <BaseButtonWithColor text="Schedule Demo" />
+              <BaseButtonWithColor text="Schedule Demo" onClick={() => { sendGTMEvent({ event: 'buttonClicked', value: 'Go to Demo Page' }); }} />
             </Link>
           </div>
         </div>

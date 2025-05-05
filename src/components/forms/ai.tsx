@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BaseButtonWithColor } from "@/components/UI/Buttons";
 import toast from "react-hot-toast";
-
+import { sendGTMEvent } from "@next/third-parties/google";
 export interface AIForm {
   service: string;
   senderName: string; // sender name
@@ -391,7 +391,7 @@ const AI: React.FC<AIProps> = ({ serviceName }) => {
         ></textarea>
       </div>
 
-      <BaseButtonWithColor loading={loading} text="Submit" size="full" />
+      <BaseButtonWithColor loading={loading} onClick={() => { sendGTMEvent({ event: 'buttonClicked', value: 'AI Form Submitted' }); }} text="Submit" size="full" />
     </form>
   );
 };
