@@ -45,26 +45,21 @@ export function BaseButton({
       "h-16 w-80": size === "lg",
       "h-12 w-full sm:h-16": size === "full",
     },
-    className,
+    className
   );
 
   if (type === "link") {
-    // Remove legacyBehavior and use <motion.a> directly
     return (
       <Link {...(props as BaseLinkTypeProps)}>
-        <motion.a {...motionProps} className={classes}>
+        <motion.span {...motionProps} className={classes}>
           {text}
-        </motion.a>
+        </motion.span>
       </Link>
     );
   }
 
   return (
-    <motion.button
-      {...motionProps}
-      {...(props)}
-      className={classes}
-    >
+    <motion.button {...motionProps} {...props} className={classes}>
       {text}
     </motion.button>
   );
@@ -89,7 +84,7 @@ export function BaseButtonWithColor({
   return (
     <motion.button
       {...motionProps}
-      {...(props)}
+      {...props}
       className={classNames(
         "flex items-center justify-center rounded border bg-uni-blue text-white",
         {
@@ -97,7 +92,7 @@ export function BaseButtonWithColor({
           "h-16 w-80": size === "lg",
           "h-12 w-full sm:h-16": size === "full",
         },
-        className,
+        className
       )}
     >
       {loading !== true && text}
