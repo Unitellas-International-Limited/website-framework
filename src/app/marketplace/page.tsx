@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import { truncateString } from "@/helpers/truncateString";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,12 +14,6 @@ import Layout from "@/components/UI/Layout";
 import Modal from "@/components/UI/Modal";
 import PageHeader from "@/components/UI/PageHeader";
 import Image from "next/image";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Market Place| Unitellas International Limited",
-  description: "...",
-};
 
 interface ISolution {
   name: string;
@@ -65,7 +61,7 @@ export default function Marketplace() {
   };
   function onSelect(solution: ISolution) {
     const solutionExists = selectedSolutions.find(
-      (_solution) => _solution.name === solution.name,
+      (_solution) => _solution.name === solution.name
     );
     console.log(solutionExists);
     if (solutionExists === undefined) {
@@ -75,7 +71,7 @@ export default function Marketplace() {
   }
   function onDelete(solution: ISolution) {
     const filteredSolutions = selectedSolutions.filter(
-      (_solution) => _solution.name !== solution.name,
+      (_solution) => _solution.name !== solution.name
     );
     setSelectedSolutions(filteredSolutions);
   }
