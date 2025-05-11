@@ -1,6 +1,11 @@
 import Image from "next/image";
 
-export default function AnimatedCarousel({ images }: { images: string[] }) {
+type ImageData = {
+  name: string;
+  src: string;
+};
+
+export default function AnimatedCarousel({ images }: { images: ImageData[] }) {
   return (
     <div className="bg-white py-2 shadow-md">
       <div className="flex select-none gap-12 overflow-hidden grayscale">
@@ -12,19 +17,17 @@ export default function AnimatedCarousel({ images }: { images: string[] }) {
               aria-hidden={index === 1}
               className="flex min-w-full shrink-0 animate-scroll items-center justify-around gap-12"
             >
-              {images.map((image) => {
-                return (
-                  <div className="mx-5 h-16 w-40" key={image}>
-                    <Image
-                      className="h-full w-full object-contain"
-                      src={image}
-                      alt="companies"
-                      width={1000}
-                      height={500}
-                    />
-                  </div>
-                );
-              })}
+              {images.map(({ name, src }) => (
+                <div className="mx-5 h-16 w-40" key={name}>
+                  <Image
+                    className="h-full w-full object-contain"
+                    src={src}
+                    alt={name}
+                    width={1000}
+                    height={500}
+                  />
+                </div>
+              ))}
             </div>
           ))}
       </div>

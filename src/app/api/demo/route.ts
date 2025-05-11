@@ -57,7 +57,7 @@ export async function POST(request: Request) {
     await transporter.sendMail({
       from: `"New Demo Request" <unitellasintl@gmail.com>`,
       replyTo: senderEmail,
-      to: "sharon@unitellas.com.ng",
+      to: "sharon@unitellas.com",
       cc: "info@unitellas.com.ng",
       subject: `Demo Request from ${senderName}`,
       text: `Sender Email: ${senderEmail} Sender Phone Number: ${senderPhone} Organization: ${orgName} Country: ${senderCountry} Demo Specifications Operating System: ${os} CPU Size: ${cpuNumber} Ram Size: ${ramSize} Custom Ram Size: ${customRamSize} Bandwidth: ${bandwidth} Custom Bandwidth: ${customBandwidth}  Drive Type: ${driveType} Storage Type: ${storageType} Storage Size: ${storageAmount} ${ssdGbTb} Database: ${database}  Number of IPs needed: ${publicIP} Notes: ${senderNotes}`,

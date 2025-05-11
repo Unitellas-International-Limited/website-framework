@@ -24,7 +24,8 @@ export async function POST(request: Request) {
     await transporter.sendMail({
       from: `New Contact Form Enquiry`,
       replyTo: senderEmail,
-      to: "omuwaste@gmail.com",
+      to: "contact@unitellas.com.ng",
+      cc: "omuwaste@gmail.com",
       subject: `New Message from ${senderName}: ${emailSubject}`,
       text: message,
       html: `<p>Sender Email: ${senderEmail} <br><br> ${message}</p>`,

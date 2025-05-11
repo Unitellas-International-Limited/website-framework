@@ -47,19 +47,44 @@ const features = [
     text: "Free your IT team from ongoing maintenance. Unitellas delivers around-the-clock, proactive monitoring and support, and seamless upgrades, backed by our industry-best uptime SLAs.",
   },
 ];
+
 const images = [
-  "/assets/images/home-carousel/adc-logo.jpg",
-  "/assets/images/home-carousel/asigra-logo.png",
-  "/assets/images/home-carousel/cwg-logo.png",
-  "/assets/images/home-carousel/inq-logo.png",
-  "/assets/images/home-carousel/gbb-logo.png",
-  "/assets/images/home-carousel/itex-logo.png",
-  "/assets/images/home-carousel/nitda-logo.png",
-  "/assets/images/home-carousel/pn-logo.png",
-  "/assets/images/home-carousel/rackware-logo.png",
-  "/assets/images/home-carousel/sheiks-logo.png",
-  "/assets/images/home-carousel/sidmach-logo.png",
-  "/assets/images/home-carousel/treten-logo.png",
+  {
+    name: "Africa Data Centres",
+    src: "/assets/images/home-carousel/adc-logo.jpg",
+  },
+  { name: "Asigra", src: "/assets/images/home-carousel/asigra-logo.png" },
+  { name: "CWG", src: "/assets/images/home-carousel/cwg-logo.png" },
+  { name: "Inq.", src: "/assets/images/home-carousel/inq-logo.png" },
+  {
+    name: "Galaxy Backbone Limited",
+    src: "/assets/images/home-carousel/gbb-logo.png",
+  },
+  {
+    name: "Itex Integrated Services",
+    src: "/assets/images/home-carousel/itex-logo.png",
+  },
+  {
+    name: "National Information Technology Development Agency",
+    src: "/assets/images/home-carousel/nitda-logo.png",
+  },
+  {
+    name: "PN Consulting Limited",
+    src: "/assets/images/home-carousel/pn-logo.png",
+  },
+  { name: "RackWare", src: "/assets/images/home-carousel/rackware-logo.png" },
+  {
+    name: "Sheiks & Bishops",
+    src: "/assets/images/home-carousel/sheiks-logo.png",
+  },
+  {
+    name: "Sidmach Technologies",
+    src: "/assets/images/home-carousel/sidmach-logo.png",
+  },
+  {
+    name: "Treten Networks",
+    src: "/assets/images/home-carousel/treten-logo.png",
+  },
 ];
 
 const LowerHome = () => {

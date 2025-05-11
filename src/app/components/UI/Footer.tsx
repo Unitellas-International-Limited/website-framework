@@ -32,28 +32,33 @@ export default function Footer() {
         <FontAwesomeIcon size="lg" icon={faTwitter} className={iconClasses} />
       ),
       url: "https://twitter.com/unitellasil/",
+      aria: "Visit the Unitellas Twitter page",
     },
     {
       icon: (
         <FontAwesomeIcon size="lg" icon={faFacebook} className={iconClasses} />
       ),
       url: "https://facebook.com/unitellas/",
+      aria: "Visit the Unitellas Facebook page",
     },
     {
       icon: <FontAwesomeIcon icon={faLinkedin} className={iconClasses} />,
       url: "https://www.linkedin.com/company/unitellas-international/mycompany/",
+      aria: "Visit the Unitellas Linkedin page",
     },
     {
       icon: (
         <FontAwesomeIcon size="lg" icon={faYoutube} className={iconClasses} />
       ),
       url: "https://www.youtube.com/channel/UCf7u80bSoW4Xq_tY-NUn1Nw?",
+      aria: "Visit the Unitellas Youtube Channel",
     },
     {
       icon: (
         <FontAwesomeIcon size="lg" icon={faWhatsapp} className={iconClasses} />
       ),
       url: "https://api.whatsapp.com/send/?phone=2348032303207&text&app_absent=0",
+      aria: "Send us a message on Whatsapp",
     },
   ];
 
@@ -76,7 +81,9 @@ export default function Footer() {
               key={link.url}
               className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full transition-all hover:bg-zinc-700"
             >
-              <Link href={link.url}>{link.icon}</Link>
+              <Link aria-label={link.aria} href={link.url}>
+                {link.icon}
+              </Link>
             </li>
           ))}
         </ul>
