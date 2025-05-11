@@ -45,10 +45,12 @@ export function BaseButton({
       "h-16 w-80": size === "lg",
       "h-12 w-full sm:h-16": size === "full",
     },
-    className,
+    className
   );
 
+  // If the type is "link", render the Link component
   if (type === "link") {
+    // Cast the props to BaseLinkTypeProps to match LinkProps
     return (
       <Link {...(props as BaseLinkTypeProps)}>
         <motion.span {...motionProps} className={classes}>
@@ -58,8 +60,13 @@ export function BaseButton({
     );
   }
 
+  // If not a "link", render a button
   return (
-    <motion.button {...motionProps} {...props} className={classes}>
+    <motion.button
+      {...motionProps}
+      {...(props as BaseButtonTypeProps)}
+      className={classes}
+    >
       {text}
     </motion.button>
   );
@@ -73,6 +80,7 @@ export function BaseButtonWithColor({
   loading,
   ...props
 }: BaseButtonProps) {
+  // If the type is "link", render the Link component
   if (type === "link") {
     return (
       <Link {...(props as BaseLinkTypeProps)} className={classNames(className)}>
@@ -81,10 +89,11 @@ export function BaseButtonWithColor({
     );
   }
 
+  // If not a "link", render a button
   return (
     <motion.button
       {...motionProps}
-      {...props}
+      {...(props as BaseButtonTypeProps)} // Cast props here as BaseButtonTypeProps for button
       className={classNames(
         "flex cursor-pointer items-center justify-center rounded border bg-[var(--color-uni-blue)] text-white",
         {
@@ -92,7 +101,7 @@ export function BaseButtonWithColor({
           "h-16 w-80": size === "lg",
           "h-12 w-full sm:h-16": size === "full",
         },
-        className,
+        className
       )}
     >
       {loading !== true && text}
