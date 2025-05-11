@@ -116,7 +116,7 @@ export default function EnterpriseCompute() {
           <Image
             className="h-full w-full object-cover"
             src="/assets/images/solutions/enterprise-compute/image-3.png"
-            alt="companies"
+            alt="Unitellas Edge Cloud Locations"
             width={2000}
             height={500}
           />
