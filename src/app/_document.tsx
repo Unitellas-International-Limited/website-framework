@@ -13,10 +13,7 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
           rel="stylesheet"
         />
-        <link
-          href="https://db.onlinewebfonts.com/c/15e10e275ea9924d0350e569a211d6a8?family=Mongoose+Regular"
-          rel="stylesheet"
-        />
+
         <meta
           name="description"
           content="Fully-managed enterprise edge cloud services - compute, networking, storage and more - designed for managed service providers and the modern enterprise."
