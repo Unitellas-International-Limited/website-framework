@@ -65,7 +65,7 @@ export default function Marketplace() {
   };
   function onSelect(solution: ISolution) {
     const solutionExists = selectedSolutions.find(
-      (_solution) => _solution.name === solution.name
+      (_solution) => _solution.name === solution.name,
     );
     console.log(solutionExists);
     if (solutionExists === undefined) {
@@ -75,7 +75,7 @@ export default function Marketplace() {
   }
   function onDelete(solution: ISolution) {
     const filteredSolutions = selectedSolutions.filter(
-      (_solution) => _solution.name !== solution.name
+      (_solution) => _solution.name !== solution.name,
     );
     setSelectedSolutions(filteredSolutions);
   }

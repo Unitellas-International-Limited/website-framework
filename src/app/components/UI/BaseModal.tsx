@@ -42,7 +42,7 @@ export default function BaseModal({
             "fixed left-0 top-0 z-30 flex h-screen w-screen items-center bg-black/30",
             { "justify-center": xPosition === "center" },
             { "justify-start": xPosition === "left" },
-            { "justify-end": xPosition === "right" }
+            { "justify-end": xPosition === "right" },
           )}
         >
           <motion.div

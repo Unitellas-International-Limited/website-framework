@@ -40,7 +40,7 @@ export default function Solutions() {
               low-latency edge services - Unitellas Edge Cloud delivers future
               ready infrastructure-as-a-service solutions for global Service
               Providers and Enterprises`,
-                200
+                200,
               )}
               <Link
                 href="/solutions/edge-cloud"
@@ -72,7 +72,7 @@ export default function Solutions() {
               cloud service providers who operate under nonresident legislation,
               mitigating potential security risks associated with hosting
               sensitive data outside of the host country.`,
-                200
+                200,
               )}
               <Link
                 href="/solutions/sovereign-cloud"
@@ -98,7 +98,7 @@ export default function Solutions() {
             <p className="">
               {truncateString(
                 `Elastic cloud compute that scales to meet your business demands. Secure, dependable, and available where you need it. Move to the cloud, leave the cloud or simply need compute resources closer to the data source, zCompute delivers access to cloud compute capacity and scale on demand - you pay only for the resources used. `,
-                200
+                200,
               )}
               <Link
                 href="/solutions/enterprise-compute"
@@ -128,7 +128,7 @@ export default function Solutions() {
             <p className="">
               {truncateString(
                 `Unitellas powers enterprise-class data storage and management across any financial services environment, whether you use legacy software, cloud applications, online channels, or even new fintech systems. Unitellas’s cloud-native structure, with fully-isolated resources, operates with speed, security, and agility for financial services enterprises of all types, including established institutions, startups, commercial banks, brokerage services, mortgage lenders and more.`,
-                200
+                200,
               )}
               <Link
                 href="/solutions/industries/finance"
@@ -154,7 +154,7 @@ export default function Solutions() {
             <p className="">
               {truncateString(
                 `Citizens count on you to provide critical, sometimes lifesaving, services. Reliable access to data is critical to fulfilling on your mission. The Unitellas Enterprise Data Cloud — available on premises or through your chosen cloud provider — enables you to modernize your agency’s approach to data storage and management, ensuring greater access and availability, lower costs, and an end to data silos and migrations.`,
-                200
+                200,
               )}
               <Link
                 href="/solutions/industries/government"
@@ -180,7 +180,7 @@ export default function Solutions() {
             <p className="">
               {truncateString(
                 `Unitellas is developing the future of telecommunications at many of the world’s largest communications service providers (CSPs) – including the two of Africa’s largest. By partnering with Unitellas, CSPs are able to deliver fully-managed Infrastructure-as-a-Service (IaaS) solutions from a single edge cloud provider which means they can realize new revenue streams faster from cutting-edge 5G and edge services.`,
-                200
+                200,
               )}
               <Link
                 href="/solutions/industries/telecommunications"

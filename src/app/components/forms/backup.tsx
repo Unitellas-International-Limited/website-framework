@@ -50,7 +50,7 @@ const Backup: React.FC<BackupProps> = ({ serviceName }) => {
       .then(async (res) => await res.json())
       .then((data) => {
         const countryNames = data.map(
-          (country: Country) => country.name.common
+          (country: Country) => country.name.common,
         );
         const sortedCountryNames = countryNames.sort();
         setCountries(sortedCountryNames);
@@ -64,7 +64,7 @@ const Backup: React.FC<BackupProps> = ({ serviceName }) => {
   const handleChange = (
     event: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >
+    >,
   ) => {
     const targetName = event.target.name;
     const targetValue = event.target.value;

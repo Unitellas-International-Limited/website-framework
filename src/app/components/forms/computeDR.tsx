@@ -72,7 +72,7 @@ const ComputeDR: React.FC<ComputeDRProps> = ({ serviceName }) => {
       .then(async (res) => await res.json())
       .then((data) => {
         const countryNames = data.map(
-          (country: Country) => country.name.common
+          (country: Country) => country.name.common,
         );
         const sortedCountryNames = countryNames.sort();
         setCountries(sortedCountryNames);
@@ -96,7 +96,7 @@ const ComputeDR: React.FC<ComputeDRProps> = ({ serviceName }) => {
   };
 
   const handleCustomRamChange = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     const customValue = event.target.value;
     setCustomRAM(customValue);
@@ -104,7 +104,7 @@ const ComputeDR: React.FC<ComputeDRProps> = ({ serviceName }) => {
   };
 
   const handleBandwidthChange = (
-    event: React.ChangeEvent<HTMLSelectElement>
+    event: React.ChangeEvent<HTMLSelectElement>,
   ) => {
     const value = event.target.value;
 
@@ -118,7 +118,7 @@ const ComputeDR: React.FC<ComputeDRProps> = ({ serviceName }) => {
   };
 
   const handleCustomBandwidthChange = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     const customValue = event.target.value;
     setCustomBandwidth(customValue);
@@ -141,7 +141,7 @@ const ComputeDR: React.FC<ComputeDRProps> = ({ serviceName }) => {
   const handleChange = (
     event: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >
+    >,
   ) => {
     const targetName = event.target.name;
     const targetValue = event.target.value;

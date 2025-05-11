@@ -23,7 +23,7 @@ export default function ContactForm() {
   const handleChange = (
     event: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >
+    >,
   ) => {
     const targetName = event.target.name;
     const targetValue = event.target.value;

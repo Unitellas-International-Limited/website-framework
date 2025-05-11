@@ -17,7 +17,7 @@ export default function PageHeader({ title, subtitle }: Props) {
         {
           "after:absolute after:-bottom-1/3 after:block after:h-4/6 after:w-4/6 after:-rotate-45 after:transform after:rounded-full after:bg-white/5":
             true,
-        }
+        },
       )}
     >
       <h1 className="mb-4 text-center font-Mongoose text-4xl text-uni-blue sm:text-6xl md:text-8xl">

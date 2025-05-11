@@ -45,7 +45,7 @@ export function BaseButton({
       "h-16 w-80": size === "lg",
       "h-12 w-full sm:h-16": size === "full",
     },
-    className
+    className,
   );
 
   if (type === "link") {
@@ -92,7 +92,7 @@ export function BaseButtonWithColor({
           "h-16 w-80": size === "lg",
           "h-12 w-full sm:h-16": size === "full",
         },
-        className
+        className,
       )}
     >
       {loading !== true && text}
