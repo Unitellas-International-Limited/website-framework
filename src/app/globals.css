@@ -1,19 +1,27 @@
-@import url(https://db.onlinewebfonts.com/c/15e10e275ea9924d0350e569a211d6a8?family=Mongoose+Regular);
 @import "tailwindcss";
 
-*,
-*::after,
-*::before {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  * {
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+  }
+
+  html {
+    font-family: "Open Sans", sans-serif;
+  }
 }
 
-body {
-  font-family: "Open Sans", sans-serif;
-}
-
-:root {
+@theme {
+  --breakpoint-xs: 480px;
   --color-uni-blue: #3caaee;
   --font-mongoose: "Mongoose Regular", Arial, sans-serif, system-ui;
   --bg-home-hero: url("https://unitellas.com.ng/images/cloud-tech-bg-3.jpg");
@@ -22,6 +30,7 @@ body {
 .font-Mongoose {
   font-family: var(--font-mongoose);
 }
+
 .bg-home-hero {
   background-image: var(--bg-home-hero);
 }

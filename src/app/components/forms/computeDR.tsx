@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect } from "react";
 import { BaseButtonWithColor } from "@/components/UI/Buttons";
 import toast from "react-hot-toast";
@@ -27,6 +29,12 @@ export interface ComputeDRForm {
 
 interface ComputeDRProps {
   serviceName: string;
+}
+
+interface Country {
+  name: {
+    common: string;
+  };
 }
 
 const ComputeDR: React.FC<ComputeDRProps> = ({ serviceName }) => {
@@ -63,7 +71,9 @@ const ComputeDR: React.FC<ComputeDRProps> = ({ serviceName }) => {
     fetch("https://restcountries.com/v3.1/all")
       .then(async (res) => await res.json())
       .then((data) => {
-        const countryNames = data.map((country: any) => country.name.common);
+        const countryNames = data.map(
+          (country: Country) => country.name.common
+        );
         const sortedCountryNames = countryNames.sort();
         setCountries(sortedCountryNames);
       })
@@ -86,7 +96,7 @@ const ComputeDR: React.FC<ComputeDRProps> = ({ serviceName }) => {
   };
 
   const handleCustomRamChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
+    event: React.ChangeEvent<HTMLInputElement>
   ) => {
     const customValue = event.target.value;
     setCustomRAM(customValue);
@@ -94,7 +104,7 @@ const ComputeDR: React.FC<ComputeDRProps> = ({ serviceName }) => {
   };
 
   const handleBandwidthChange = (
-    event: React.ChangeEvent<HTMLSelectElement>,
+    event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     const value = event.target.value;
 
@@ -108,7 +118,7 @@ const ComputeDR: React.FC<ComputeDRProps> = ({ serviceName }) => {
   };
 
   const handleCustomBandwidthChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
+    event: React.ChangeEvent<HTMLInputElement>
   ) => {
     const customValue = event.target.value;
     setCustomBandwidth(customValue);
@@ -128,7 +138,11 @@ const ComputeDR: React.FC<ComputeDRProps> = ({ serviceName }) => {
   }, [formData.storageType]);
 
   // handle general input change
-  const handleChange = (event: any) => {
+  const handleChange = (
+    event: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => {
     const targetName = event.target.name;
     const targetValue = event.target.value;
     setFormData((values) => ({ ...values, [targetName]: targetValue }));
@@ -145,7 +159,7 @@ const ComputeDR: React.FC<ComputeDRProps> = ({ serviceName }) => {
       body: JSON.stringify(formData),
     })
       .then(async (response) => await response.json())
-      .then((data) => {
+      .then(() => {
         toast.success("Sent successfully. We'll get back to you soon.");
         setLoading(false);
         setFormData({

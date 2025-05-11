@@ -1,4 +1,4 @@
-import type { NextApiRequest, NextApiResponse } from "next";
+import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
 interface IPayload {
@@ -22,10 +22,8 @@ interface IPayload {
   database: string;
 }
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export async function POST(request: Request) {
+  const body = (await request.json()) as IPayload;
   const {
     senderName,
     senderEmail,
@@ -45,7 +43,7 @@ export default async function handler(
     storageAmount,
     database,
     senderNotes,
-  } = req.body as IPayload;
+  } = body;
 
   const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -106,9 +104,9 @@ export default async function handler(
       `,
     });
 
-    res.status(200).json({ status: "OK" });
+    return NextResponse.json({ status: "OK" }, { status: 200 });
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: "Error sending email" });
+    console.error(error);
+    return NextResponse.json({ error: "Error sending email" }, { status: 500 });
   }
 }

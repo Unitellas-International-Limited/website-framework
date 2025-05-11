@@ -86,7 +86,7 @@ export function BaseButtonWithColor({
       {...motionProps}
       {...props}
       className={classNames(
-        "flex items-center justify-center rounded border bg-uni-blue text-white",
+        "flex cursor-pointer items-center justify-center rounded border bg-[var(--color-uni-blue)] text-white",
         {
           "h-14 w-64": size === "md",
           "h-16 w-80": size === "lg",

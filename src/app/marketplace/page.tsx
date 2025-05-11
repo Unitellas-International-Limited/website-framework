@@ -12,6 +12,12 @@ import Layout from "@/components/UI/Layout";
 import Modal from "@/components/UI/Modal";
 import PageHeader from "@/components/UI/PageHeader";
 import Image from "next/image";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Market Place| Unitellas International Limited",
+  description: "...",
+};
 
 interface ISolution {
   name: string;
@@ -87,7 +93,7 @@ export default function Marketplace() {
       }),
     })
       .then(async (response) => await response.json())
-      .then((data) => {
+      .then(() => {
         toast.success("Sent successfully");
         setLoading(false);
         setView("checkout");
@@ -224,7 +230,9 @@ export default function Marketplace() {
                 className=""
                 size="full"
                 onClick={() => {
-                  selectedSolutions.length > 0 && setView("form");
+                  if (selectedSolutions.length > 0) {
+                    setView("form");
+                  }
                 }}
               />
             </div>

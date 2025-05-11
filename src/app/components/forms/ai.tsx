@@ -24,6 +24,12 @@ interface AIProps {
   serviceName: string;
 }
 
+interface Country {
+  name: {
+    common: string;
+  };
+}
+
 const AI: React.FC<AIProps> = ({ serviceName }) => {
   const [loading, setLoading] = useState(false);
   const [openCustomRAM, setOpenCustomRAM] = useState(false);
@@ -54,7 +60,9 @@ const AI: React.FC<AIProps> = ({ serviceName }) => {
     fetch("https://restcountries.com/v3.1/all")
       .then(async (res) => await res.json())
       .then((data) => {
-        const countryNames = data.map((country: any) => country.name.common);
+        const countryNames = data.map(
+          (country: Country) => country.name.common
+        );
         const sortedCountryNames = countryNames.sort();
         setCountries(sortedCountryNames);
       })
@@ -67,7 +75,7 @@ const AI: React.FC<AIProps> = ({ serviceName }) => {
   const handleChange = (
     event: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >,
+    >
   ) => {
     const targetName = event.target.name;
     const targetValue = event.target.value;
@@ -88,7 +96,7 @@ const AI: React.FC<AIProps> = ({ serviceName }) => {
   };
 
   const handleCustomRamChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
+    event: React.ChangeEvent<HTMLInputElement>
   ) => {
     event.preventDefault();
     const customValue = event.target.value;
@@ -110,7 +118,7 @@ const AI: React.FC<AIProps> = ({ serviceName }) => {
   };
 
   const handleCustomNVMeChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
+    event: React.ChangeEvent<HTMLInputElement>
   ) => {
     event.preventDefault();
     const customValue = event.target.value;
@@ -129,7 +137,7 @@ const AI: React.FC<AIProps> = ({ serviceName }) => {
       body: JSON.stringify(formData),
     })
       .then(async (response) => await response.json())
-      .then((data) => {
+      .then(() => {
         toast.success("Sent successfully! We'll get back to you soon.");
         setLoading(false);
         setFormData({

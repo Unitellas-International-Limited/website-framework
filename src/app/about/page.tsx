@@ -1,15 +1,17 @@
 import Layout from "@/components/UI/Layout";
-import Head from "next/head";
 import PageHeader from "@/components/UI/PageHeader";
 import Row from "@/components/UI/Row";
 import Image from "next/image";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About Us | Unitellas International Limited",
+  description: "...",
+};
 
 export default function About() {
   return (
     <Layout>
-      <Head>
-        <title> About Us | Unitellas International Limited</title>
-      </Head>
       <PageHeader
         title="About Unitellas"
         subtitle="Enterprise Edge Cloud Services Provider"
@@ -67,7 +69,9 @@ export default function About() {
       </Row>
       <Row className="items-center">
         <div className="w-full lg:w-1/2">
-          <h1 className="text-center text-5xl text-uni-blue">Why Choose Us?</h1>
+          <h1 className="text-center text-5xl text-uni-blue font-semibold">
+            Why Choose Us?
+          </h1>
         </div>
         <div className="grid w-full grid-cols-1 gap-8 sm:grid-cols-2 lg:w-1/2">
           <div>

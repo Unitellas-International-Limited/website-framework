@@ -1,17 +1,18 @@
 import Link from "next/link";
 import Image from "next/image";
-import Head from "next/head";
 import Layout from "@/components/UI/Layout";
 import PageHeader from "@/components/UI/PageHeader";
 import { truncateString } from "@/helpers/truncateString";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Our Solutions | Unitellas International Limited",
+  description: "...",
+};
 
 export default function Solutions() {
   return (
     <Layout>
-      <Head>
-        <title>Our Solutions | Unitellas International Limited</title>
-      </Head>
-
       <PageHeader
         title="Solutions"
         subtitle="We provide the best Cloud Services"
@@ -43,7 +44,7 @@ export default function Solutions() {
               )}
               <Link
                 href="/solutions/edge-cloud"
-                className="ml-2 whitespace-nowrap border-b-2 text-uni-blue duration-300 hover:border-uni-blue"
+                className="ml-2 whitespace-nowrap border-b-2 text-[var(--color-uni-blue)] duration-300 hover:border-uni-blue"
               >
                 See More
               </Link>

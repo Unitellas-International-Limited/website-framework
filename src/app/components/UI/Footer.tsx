@@ -11,7 +11,7 @@ import Logo from "./Logo";
 
 export default function Footer() {
   const presentYear = new Date().getFullYear();
-  const iconClasses = "h-5 text-white";
+  const iconClasses = "text-white";
   // const footerLinks = [
   //   {
   //     title: "partners",
@@ -28,11 +28,15 @@ export default function Footer() {
   // ];
   const socials = [
     {
-      icon: <FontAwesomeIcon icon={faTwitter} className={iconClasses} />,
+      icon: (
+        <FontAwesomeIcon size="lg" icon={faTwitter} className={iconClasses} />
+      ),
       url: "https://twitter.com/unitellasil/",
     },
     {
-      icon: <FontAwesomeIcon icon={faFacebook} className={iconClasses} />,
+      icon: (
+        <FontAwesomeIcon size="lg" icon={faFacebook} className={iconClasses} />
+      ),
       url: "https://facebook.com/unitellas/",
     },
     {
@@ -40,11 +44,15 @@ export default function Footer() {
       url: "https://www.linkedin.com/company/unitellas-international/mycompany/",
     },
     {
-      icon: <FontAwesomeIcon icon={faYoutube} className={iconClasses} />,
+      icon: (
+        <FontAwesomeIcon size="lg" icon={faYoutube} className={iconClasses} />
+      ),
       url: "https://www.youtube.com/channel/UCf7u80bSoW4Xq_tY-NUn1Nw?",
     },
     {
-      icon: <FontAwesomeIcon icon={faWhatsapp} className={iconClasses} />,
+      icon: (
+        <FontAwesomeIcon size="lg" icon={faWhatsapp} className={iconClasses} />
+      ),
       url: "https://api.whatsapp.com/send/?phone=2348032303207&text&app_absent=0",
     },
   ];

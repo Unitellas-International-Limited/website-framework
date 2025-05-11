@@ -1,29 +1,33 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Head from "next/head";
 import {
   faMoneyBill,
   faAward,
   faHandshake,
 } from "@fortawesome/free-solid-svg-icons";
+import { Metadata } from "next";
 import Image from "next/image";
 import Layout from "@/components/UI/Layout";
 import PageHeader from "@/components/UI/PageHeader";
 
+export const metadata: Metadata = {
+  title: "Training and Education | Unitellas International Limited",
+  description: "...",
+};
+
 export default function Training() {
-  const iconClasses = "h-20 text-[#1379B4] mb-4 mx-auto block";
   const benefits = [
     {
-      icon: <FontAwesomeIcon icon={faMoneyBill} className={iconClasses} />,
+      icon: faMoneyBill,
       title: "Affordable Costs",
-      text: "We believe that everyone should have access to quality education. That’s why we offer our courses at affordable costs. Our aim is to develop digital and computing skills and bridge the gap in the Tech Ecosystem.",
+      text: "We believe that everyone should have access to quality education. That's why we offer our courses at affordable costs. Our aim is to develop digital and computing skills and bridge the gap in the Tech Ecosystem.",
     },
     {
-      icon: <FontAwesomeIcon icon={faAward} className={iconClasses} />,
+      icon: faAward,
       title: "Award Winning Training",
       text: "We are proud to announce that we were awarded the “IT Education and Training Award” by the National Information Development Agency (NITDA) at Digital Nigeria 2023. This recognition motivates us to continue providing high-quality training to our students.",
     },
     {
-      icon: <FontAwesomeIcon icon={faHandshake} className={iconClasses} />,
+      icon: faHandshake,
       title: "Join Us",
       text: "Ready to take the next step in your career? Join us at Unitellas Edge Cloud Services, where we empower you with the skills you need to succeed in the digital world.",
     },
@@ -48,10 +52,6 @@ export default function Training() {
   ];
   return (
     <Layout>
-      <Head>
-        <title>Training and Education | Unitellas International Limited</title>
-      </Head>
-
       <PageHeader title="Unitellas Training and Education" />
 
       <section className="flex flex-col items-center justify-center gap-4 px-4 py-12 sm:gap-10 sm:p-12 md:flex-row lg:gap-20">
@@ -78,7 +78,12 @@ export default function Training() {
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           {benefits.map((benefit) => (
             <div key={encodeURI(benefit.title)}>
-              {benefit.icon}
+              <FontAwesomeIcon
+                icon={benefit.icon}
+                size="5x"
+                className="text-[#1379B4] mb-4 w-full block"
+              />
+
               <h2 className="mb-4 text-center font-Mongoose text-2xl sm:mb-0 sm:text-3xl">
                 {benefit.title}
               </h2>

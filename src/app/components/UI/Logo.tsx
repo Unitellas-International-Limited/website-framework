@@ -6,9 +6,9 @@ export default function Logo() {
     <Link href="/" className="relative block h-20 w-48">
       <Image
         src="/assets/images/logo.png"
+        className="contain"
         alt="logo"
-        layout="fill"
-        objectFit="contain"
+        fill
       />
     </Link>
   );

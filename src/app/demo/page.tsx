@@ -1,14 +1,16 @@
 import ComputeDR from "@/components/forms/computeDR";
 import Layout from "@/components/UI/Layout";
-import Head from "next/head";
 import PageHeader from "@/components/UI/PageHeader";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Schedule a Demo | Unitellas International Limited",
+  description: "...",
+};
 
 export default function Demo() {
   return (
     <Layout>
-      <Head>
-        <title>Schedule a Demo | Unitellas International Limited</title>
-      </Head>
       <PageHeader title="Schedule a Demo" />
       <ComputeDR serviceName="Demo" />
     </Layout>

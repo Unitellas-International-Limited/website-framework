@@ -38,7 +38,7 @@ export default function Quote() {
         {formChoices.map((choice) => (
           <BaseButton
             key={choice.id}
-            onClick={(e: any) => {
+            onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
               e.preventDefault();
               setService(choice.name);
             }}

@@ -1,6 +1,12 @@
 import Image from "next/image";
 import Layout from "@/components/UI/Layout";
 import PageHeader from "@/components/UI/PageHeader";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Enterprise Compute | Unitellas International Limited",
+  description: "...",
+};
 
 export default function EnterpriseCompute() {
   const features = [

@@ -7,6 +7,12 @@ import {
 import Image from "next/image";
 import Layout from "@/components/UI/Layout";
 import PageHeader from "@/components/UI/PageHeader";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Sovereign Cloud | Unitellas International Limited",
+  description: "...",
+};
 
 export default function SovereignCloud() {
   const iconClasses = "h-20 text-[#1379B4] mb-4 mx-auto block";

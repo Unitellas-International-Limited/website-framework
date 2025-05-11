@@ -1,6 +1,12 @@
 import Image from "next/image";
 import Layout from "@/components/UI/Layout";
 import PageHeader from "@/components/UI/PageHeader";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Unitellas Edge Cloud | Unitellas International Limited",
+  description: "...",
+};
 
 export default function EdgeCloud() {
   return (
@@ -53,7 +59,7 @@ export default function EdgeCloud() {
           <Image
             className="h-full w-full object-cover"
             src="/assets/images/solutions/edge-cloud/image-2.jpeg"
-            alt="companies"
+            alt="Unitellas Edge Cloud Locations around the globe"
             width={2000}
             height={500}
           />

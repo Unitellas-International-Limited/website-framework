@@ -17,6 +17,12 @@ export interface QuoteForm {
   ssdGbTb: "GB" | "TB" | "none"; // gb or tb for ssd storayge choice
 }
 
+interface Country {
+  name: {
+    common: string;
+  };
+}
+
 interface BackupProps {
   serviceName: string;
 }
@@ -43,7 +49,9 @@ const Backup: React.FC<BackupProps> = ({ serviceName }) => {
     fetch("https://restcountries.com/v3.1/all")
       .then(async (res) => await res.json())
       .then((data) => {
-        const countryNames = data.map((country: any) => country.name.common);
+        const countryNames = data.map(
+          (country: Country) => country.name.common
+        );
         const sortedCountryNames = countryNames.sort();
         setCountries(sortedCountryNames);
       })
@@ -56,7 +64,7 @@ const Backup: React.FC<BackupProps> = ({ serviceName }) => {
   const handleChange = (
     event: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >,
+    >
   ) => {
     const targetName = event.target.name;
     const targetValue = event.target.value;
@@ -72,7 +80,7 @@ const Backup: React.FC<BackupProps> = ({ serviceName }) => {
     } else {
       setFormData((prev) => ({ ...prev, ssdGbTb: "GB" }));
     }
-  }, [formData.storageType]);
+  }, [formData.storageType, formData.driveType]);
 
   function submitHandler(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -85,7 +93,7 @@ const Backup: React.FC<BackupProps> = ({ serviceName }) => {
       body: JSON.stringify(formData),
     })
       .then(async (response) => await response.json())
-      .then((data) => {
+      .then(() => {
         toast.success("Sent successfully. We'll get back to you soon.");
         setLoading(false);
         setFormData({
