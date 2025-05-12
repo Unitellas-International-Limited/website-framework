@@ -27,7 +27,7 @@ export default function Document() {
         />
         <meta
           name="keywords"
-          content="enterprise edge cloud, cloud services, managed service providers, edge computing, networking, storage, Unitellas, hyper-scale cloud, Africa, cloud technology, Cloud computing services in Nigeria, Leading cloud service provider in Africa, Scalable cloud storage solutions, Advanced data analytics in Nigeria, Secure cloud integration services, Top cloud computing company in Africa"
+          content="cloud services, managed service providers, networking, Unitellas, hyper-scale cloud, cloud technology, Cloud computing services in Nigeria, Leading cloud service provider in Africa, Secure cloud integration services, Top cloud computing company in Africa"
         />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
