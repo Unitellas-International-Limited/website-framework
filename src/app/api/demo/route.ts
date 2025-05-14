@@ -55,7 +55,7 @@ export async function POST(request: Request) {
 
   try {
     await transporter.sendMail({
-      from: `"New Demo Request" <unitellasintl@gmail.com>`,
+      from: `New Demo Request <${process.env.NODEMAILER_USER_1}>`,
       replyTo: senderEmail,
       to: "sharon@unitellas.com",
       cc: "info@unitellas.com.ng",

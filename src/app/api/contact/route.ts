@@ -22,7 +22,7 @@ export async function POST(request: Request) {
 
   try {
     await transporter.sendMail({
-      from: `New Contact Form Enquiry`,
+      from: `New Contact Enquiry <${process.env.NODEMAILER_USER_1}>`,
       replyTo: senderEmail,
       to: "contact@unitellas.com.ng",
       cc: "omuwaste@gmail.com",
