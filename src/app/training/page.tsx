@@ -11,7 +11,51 @@ import PageHeader from "@/components/UI/PageHeader";
 
 export const metadata: Metadata = {
   title: "Training and Education | Unitellas International Limited",
-  description: "...",
+  description:
+    "Advance your tech career with award-winning training from Unitellas International Limited. Learn edge cloud computing, computing fundamentals and digital literacy, business IT, and more — online or in-person.",
+  keywords: [
+    "Unitellas Training",
+    "Cloud Education Nigeria",
+    "Edge Cloud Training",
+    "Digital Literacy Africa",
+    "Information Systems Courses",
+    "Business IT Training",
+    "Cybersecurity Nigeria",
+    "Affordable Tech Courses",
+  ],
+  alternates: {
+    canonical: "https://www.unitellas.com.ng/training",
+  },
+  openGraph: {
+    title: "Training and Education | Unitellas International Limited",
+    description:
+      "Explore our award-winning training programs in edge computing, IT systems, and business intelligence. Flexible online and classroom formats available.",
+    url: "https://www.unitellas.com.ng/training",
+    siteName: "Unitellas International Limited",
+    type: "website",
+    images: [
+      {
+        url: "https://www.unitellas.com.ng/images/training/image-1.png",
+        width: 1200,
+        height: 630,
+        alt: "Unitellas Training and Education",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Award-Winning Training | Unitellas",
+    description:
+      "Upgrade your skills in cloud, business IT, and digital tools with Unitellas’ flexible training programs.",
+    site: "@Unitellasil",
+    creator: "@Unitellasil",
+    images: ["https://www.unitellas.com.ng/images/training/image-1.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+  },
 };
 
 export default function Training() {

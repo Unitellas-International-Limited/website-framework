@@ -6,7 +6,48 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "About Us | Unitellas International Limited",
-  description: "...",
+  description:
+    "Learn about Unitellas International Limited — Africa’s first hyperscale edge cloud provider. Discover who we are, our mission and vision, and what makes us a leading cloud provider in Nigeria and Africa.",
+  keywords: [
+    "About Unitellas",
+    "Unitellas International Company Info",
+    "Edge Cloud Africa",
+    "Cloud Provider Nigeria",
+    "Computing and Storage Nigeria",
+  ],
+  alternates: {
+    canonical: "https://www.unitellas.com.ng/about",
+  },
+  openGraph: {
+    title: "About Us | Unitellas International Limited",
+    description:
+      "Discover Unitellas’ mission and story as Africa’s leading edge cloud provider.",
+    url: "https://www.unitellas.com.ng/about",
+    siteName: "Unitellas International Limited",
+    type: "website",
+    images: [
+      {
+        url: "https://www.unitellas.com.ng/assets/images/about/who-we-are.jpg",
+        width: 1200,
+        height: 630,
+        alt: "About Unitellas",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Us | Unitellas International Limited",
+    description:
+      "Explore our mission and vision as Africa’s first hyperscale edge cloud provider.",
+    site: "@Unitellasil",
+    creator: "@Unitellasil",
+    images: ["https://www.unitellas.com.ng/assets/images/about/who-we-are.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+  },
 };
 
 export default function About() {

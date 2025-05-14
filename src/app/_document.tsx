@@ -69,7 +69,6 @@ export default function Document() {
           content="/unitellasicon.png"
         />
         <link rel="manifest" href="/" />
-        <link rel="canonical" href="/" />
 
         {/* open graph */}
         <meta property="og:type" content="website" />
@@ -83,11 +82,20 @@ export default function Document() {
           property="og:description"
           content="Fully-managed enterprise edge cloud services - compute, networking, storage and more - designed for managed service providers and the modern enterprise."
         />
-        <meta property="og:image" content=".png" />
+        <meta
+          property="og:image"
+          content="https://www.unitellas.com.ng/unitellasicon.png"
+        />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:alt" content="Unitellas" />
-        <meta property="og:image:secure_url" content=".png" />
-        <meta property="og:url" content="/" />
+        <meta
+          property="og:image:secure_url"
+          content="https://www.unitellas.com.ng/unitellasicon.pn"
+        />
+        <meta
+          property="og:url"
+          content="https://www.unitellas.com.ng/unitellasicon.png"
+        />
 
         {/* twitter cards */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -101,8 +109,14 @@ export default function Document() {
           name="twitter:description"
           content="Fully-managed enterprise edge cloud services - compute, networking, storage and more - designed for managed service providers and the modern enterprise."
         />
-        <meta name="twitter:image" content=".png" />
+        <meta
+          name="twitter:image"
+          content="https://www.unitellas.com.ng/unitellasicon.png"
+        />
         <meta name="twitter:image:alt" content="Unitellas" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#1f2937" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       </Head>
       <body>
         <Main />
