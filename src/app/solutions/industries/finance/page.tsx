@@ -1,6 +1,56 @@
 import Layout from "@/components/UI/Layout";
 import PageHeader from "@/components/UI/PageHeader";
 import Image from "next/image";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Finance | Unitellas International Limited",
+  description:
+    "Explore how Unitellas allows financial services firms to deliver more services to more people more efficiently.",
+  keywords: [
+    "Finance Solutions Nigeria",
+    "Edge Cloud Services",
+    "Unitellas Infrastructure for Banks",
+    "Cloud Providers Nigeria",
+    "Enterprise Cloud Africa",
+  ],
+  alternates: {
+    canonical: "https://www.unitellas.com.ng/solutions/industries/finance",
+  },
+  openGraph: {
+    title: "Cloud Solutions for Finance | Unitellas",
+    description:
+      "Explore our powerful edge cloud services and discover the right solution for your organization.",
+    url: "https://www.unitellas.com.ng/solutions/industries/finance",
+    siteName: "Unitellas International Limited",
+    type: "website",
+    images: [
+      {
+        url: "https://www.unitellas.com.ng/assets/images/solutions/sovereign-cloud.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Unitellas Solutions",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title:
+      "Explore Our Cloud Solutions for Finance | Unitellas International Limited",
+    description:
+      "From storage to computing — discover cloud services tailored to your finance enterprise.",
+    site: "@Unitellasil",
+    creator: "@Unitellasil",
+    images: [
+      "https://www.unitellas.com.ng/assets/images/solutions/sovereign-cloud.jpg",
+    ],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+  },
+};
 
 export default function Finance() {
   return (

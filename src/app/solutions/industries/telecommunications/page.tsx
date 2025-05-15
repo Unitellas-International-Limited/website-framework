@@ -1,6 +1,57 @@
 import Layout from "@/components/UI/Layout";
 import PageHeader from "@/components/UI/PageHeader";
 import Image from "next/image";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Telecommunications | Unitellas International Limited",
+  description:
+    "Explore how Unitellas allows telecommunication firms to deliver more services more efficiently.",
+  keywords: [
+    "Cloud for Telecommunications Nigeria",
+    "Edge Cloud Services for CSPs",
+    "Unitellas Infrastructure for 5G",
+    "Cloud Providers Nigeria",
+    "Enterprise Cloud Africa",
+  ],
+  alternates: {
+    canonical:
+      "https://www.unitellas.com.ng/solutions/industries/telecommunications",
+  },
+  openGraph: {
+    title: "Cloud Solutions for CSPs | Unitellas",
+    description:
+      "Explore our powerful edge cloud services and discover the right solution for your organization.",
+    url: "https://www.unitellas.com.ng/solutions/industries/telecommunications",
+    siteName: "Unitellas International Limited",
+    type: "website",
+    images: [
+      {
+        url: "https://www.unitellas.com.ng/assets/images/solutions/sovereign-cloud.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Unitellas Solutions",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title:
+      "Explore Our Cloud Solutions for CSPs | Unitellas International Limited",
+    description:
+      "From storage to computing to networking — discover cloud services tailored to your finance enterprise.",
+    site: "@Unitellasil",
+    creator: "@Unitellasil",
+    images: [
+      "https://www.unitellas.com.ng/assets/images/solutions/sovereign-cloud.jpg",
+    ],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+  },
+};
 
 export default function Telecommunications() {
   return (

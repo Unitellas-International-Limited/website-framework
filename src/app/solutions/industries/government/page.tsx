@@ -1,6 +1,56 @@
 import Layout from "@/components/UI/Layout";
 import PageHeader from "@/components/UI/PageHeader";
 import Image from "next/image";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Government | Unitellas International Limited",
+  description:
+    "Explore how Unitellas allows government agencies to deliver more services more efficiently.",
+  keywords: [
+    "Cloud for Government Nigeria",
+    "Edge Cloud Services for Government Sectors",
+    "Unitellas Infrastructure for Nigerian Government",
+    "Cloud Providers Nigeria",
+    "Enterprise Cloud Africa",
+  ],
+  alternates: {
+    canonical: "https://www.unitellas.com.ng/solutions/industries/government",
+  },
+  openGraph: {
+    title: "Cloud Solutions for Government | Unitellas",
+    description:
+      "Explore our powerful edge cloud services and discover the right solution for your government or nation.",
+    url: "https://www.unitellas.com.ng/solutions/industries/government",
+    siteName: "Unitellas International Limited",
+    type: "website",
+    images: [
+      {
+        url: "https://www.unitellas.com.ng/assets/images/solutions/sovereign-cloud.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Unitellas Solutions",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title:
+      "Explore Our Cloud Solutions for Government agencies | Unitellas International Limited",
+    description:
+      "From storage to computing — discover cloud services tailored to your government.",
+    site: "@Unitellasil",
+    creator: "@Unitellasil",
+    images: [
+      "https://www.unitellas.com.ng/assets/images/solutions/sovereign-cloud.jpg",
+    ],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+  },
+};
 
 export default function Government() {
   return (
