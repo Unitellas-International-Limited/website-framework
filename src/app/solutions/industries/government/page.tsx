@@ -29,7 +29,7 @@ export default function Government() {
           <Image
             className="h-full w-full object-cover"
             src="/assets/images/solutions/industries/government/image-1.png"
-            alt="companies"
+            alt="The web of factors considered in Edge Cloud"
             width={2000}
             height={500}
           />
@@ -50,7 +50,7 @@ export default function Government() {
           <Image
             className="h-full w-full object-cover"
             src="/assets/images/solutions/industries/government/image-2.png"
-            alt="companies"
+            alt="Unitellas edge cloud aids the finance industry"
             width={2000}
             height={500}
           />
@@ -72,7 +72,7 @@ export default function Government() {
           <Image
             className="h-full w-full object-cover"
             src="/assets/images/solutions/industries/government/image-3.png"
-            alt="companies"
+            alt="Shield with padlock unlocked in the middle"
             width={2000}
             height={500}
           />

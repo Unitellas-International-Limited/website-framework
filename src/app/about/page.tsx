@@ -50,6 +50,21 @@ export const metadata: Metadata = {
   },
 };
 
+const awards = [
+  [
+    "/assets/images/about/award1.png",
+    "Cloud Infrastructure Provider of the Year 2022 from Tech Innovation Awards",
+  ],
+  [
+    "/assets/images/about/award2.png",
+    "Digital Economy Promoter 2022 award from Government Digital Promotion Awards 2022 (NITDA) ",
+  ],
+  [
+    "/assets/images/about/award3.png",
+    "Top 10 Cloud Solutions provider in Africa 2022 awarded by CIO Review",
+  ],
+];
+
 export default function About() {
   return (
     <Layout>
@@ -63,7 +78,7 @@ export default function About() {
           <Image
             className="h-full w-full object-cover"
             src="/assets/images/about/who-we-are.jpg"
-            alt="companies"
+            alt="Mr. Smith Osemeke, MD of Unitellas, recieving the South West zone - Digital Economy Promoter Award"
             width={1000}
             height={500}
           />
@@ -148,16 +163,12 @@ export default function About() {
       </Row>
       <Row className="items-center">
         <div className="flex w-full items-center justify-between gap-2 lg:w-1/2">
-          {[
-            "/assets/images/about/award1.png",
-            "/assets/images/about/award2.png",
-            "/assets/images/about/award3.png",
-          ].map((image) => (
-            <div className="w-1/3 shrink-0" key={image}>
+          {awards.map((award, index) => (
+            <div className="w-1/3 shrink-0" key={index}>
               <Image
                 className="h-full w-full object-contain"
-                src={image}
-                alt="awards"
+                src={award[0]}
+                alt={award[1]}
                 width={1000}
                 height={500}
               />
@@ -172,7 +183,8 @@ export default function About() {
             Our solutions have been recognized for innovation and leadership.
             The accolades include: Frost & Sullivan New Product Innovation
             Leadership Award; Cloud Computing Backup & Disaster Recovery; the
-            Red Herring Global 100; and Dell Founders 50 are among some.
+            Red Herring Global 100; and Dell Founders 50 are among some. We
+            don't do it for the awards, but we appreciate the recognition.
           </p>
         </div>
       </Row>

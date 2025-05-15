@@ -18,17 +18,17 @@ export default function SovereignCloud() {
   const iconClasses = "h-20 text-[#1379B4] mb-4 mx-auto block";
   const benefits = [
     {
-      icon: <FontAwesomeIcon icon={faShieldAlt} className={iconClasses} />,
+      icon: faShieldAlt,
       title: "Security and Compliance",
       text: "Our local partners provide strong security features, such as encryption, multi-factor authentication, and continuous monitoring, and ensure compliance with relevant localized data protection regulations.",
     },
     {
-      icon: <FontAwesomeIcon icon={faMapMarkedAlt} className={iconClasses} />,
+      icon: faMapMarkedAlt,
       title: "Sovereign by Design",
       text: "Deliver the performance and reliability your customers expect no matter the location. Offer low-latency edge services with Unitellas's existing fully-managed clouds or global base of 300+ MSP partners.",
     },
     {
-      icon: <FontAwesomeIcon icon={faAtom} className={iconClasses} />,
+      icon: faAtom,
       title: "Global reach. Local appeal.",
       text: "Deliver the performance and reliability your customers expect no matter the location. Offer low-latency edge services with Unitellas's existing fully-managed clouds or global base of 300+ MSP partners.",
     },
@@ -70,7 +70,11 @@ export default function SovereignCloud() {
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
           {benefits.map((benefit) => (
             <div key={encodeURI(benefit.title)}>
-              {benefit.icon}
+              <FontAwesomeIcon
+                icon={benefit.icon}
+                size="7x"
+                className="text-[#1379B4] mb-4 mx-auto w-full block"
+              />
               <h2 className="mb-4 text-center font-Mongoose text-2xl sm:mb-0 sm:text-3xl">
                 {benefit.title}
               </h2>
@@ -103,7 +107,7 @@ export default function SovereignCloud() {
           <Image
             className="h-full w-full object-cover"
             src="/assets/images/solutions/sovereign-cloud/image-2.jpg"
-            alt="companies"
+            alt="A team of people trying to lift a flag"
             width={2000}
             height={500}
           />
@@ -127,7 +131,7 @@ export default function SovereignCloud() {
           <Image
             className="h-full w-full object-cover"
             src="/assets/images/solutions/sovereign-cloud/image-3.jpg"
-            alt="companies"
+            alt="Board with tasks checked off"
             width={2000}
             height={500}
           />
@@ -150,7 +154,7 @@ export default function SovereignCloud() {
           <Image
             className="h-full w-full object-cover"
             src="/assets/images/solutions/sovereign-cloud/image-4.jpg"
-            alt="companies"
+            alt="Laptop with code opened and a magnifying glass finding `bugs`"
             width={2000}
             height={500}
           />

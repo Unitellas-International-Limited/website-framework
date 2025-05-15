@@ -103,7 +103,7 @@ export default function Training() {
           <Image
             className="h-full w-full object-cover"
             src="/assets/images/training/image-1.png"
-            alt="companies"
+            alt="Edge Cloud Computing"
             width={2000}
             height={500}
           />

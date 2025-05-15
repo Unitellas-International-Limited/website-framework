@@ -61,7 +61,7 @@ export default function Marketplace() {
   };
   function onSelect(solution: ISolution) {
     const solutionExists = selectedSolutions.find(
-      (_solution) => _solution.name === solution.name,
+      (_solution) => _solution.name === solution.name
     );
     console.log(solutionExists);
     if (solutionExists === undefined) {
@@ -71,7 +71,7 @@ export default function Marketplace() {
   }
   function onDelete(solution: ISolution) {
     const filteredSolutions = selectedSolutions.filter(
-      (_solution) => _solution.name !== solution.name,
+      (_solution) => _solution.name !== solution.name
     );
     setSelectedSolutions(filteredSolutions);
   }
@@ -142,7 +142,7 @@ export default function Marketplace() {
                 <Image
                   className="h-60 w-full rounded-xl object-cover"
                   src="/assets/images/solutions/enterprise-compute.jpg"
-                  alt="companies"
+                  alt="Data center with devices locked in shelves"
                   width={1000}
                   height={500}
                 />

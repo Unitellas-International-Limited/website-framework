@@ -29,7 +29,7 @@ export default function Telecommunications() {
           <Image
             className="h-full w-full object-cover"
             src="/assets/images/solutions/industries/telecommunications/image-1.png"
-            alt="companies"
+            alt="Rocket taking off"
             width={2000}
             height={500}
           />
@@ -51,7 +51,7 @@ export default function Telecommunications() {
           <Image
             className="h-full w-full object-cover"
             src="/assets/images/solutions/industries/telecommunications/image-2.png"
-            alt="companies"
+            alt="Mobile devices and the Cloud"
             width={2000}
             height={500}
           />
@@ -73,7 +73,7 @@ export default function Telecommunications() {
           <Image
             className="h-full w-full object-contain"
             src="/assets/images/solutions/industries/telecommunications/image-3.png"
-            alt="companies"
+            alt="Money bag with arrow going downward"
             width={2000}
             height={500}
           />
@@ -95,7 +95,7 @@ export default function Telecommunications() {
           <Image
             className="h-full w-full object-cover"
             src="/assets/images/solutions/industries/telecommunications/image-4.png"
-            alt="companies"
+            alt="Representation of the Unitellas Edge Cloud Service Dashboard"
             width={2000}
             height={500}
           />

@@ -37,7 +37,7 @@ export default function EdgeCloud() {
           <Image
             className="h-full w-full object-cover"
             src="/assets/images/solutions/edge-cloud/image-1.jpeg"
-            alt="companies"
+            alt="The globe with different edge cloud locations"
             width={2000}
             height={500}
           />
@@ -81,7 +81,7 @@ export default function EdgeCloud() {
           <Image
             className="h-full w-full object-cover"
             src="/assets/images/solutions/edge-cloud/image-3.jpeg"
-            alt="companies"
+            alt="The Future - Edge Cloud Computing"
             width={2000}
             height={500}
           />
@@ -104,7 +104,7 @@ export default function EdgeCloud() {
           <Image
             className="h-full w-full object-cover"
             src="/assets/images/solutions/edge-cloud/image-4.jpeg"
-            alt="companies"
+            alt="Image of how edge cloud is transforming digital life"
             width={2000}
             height={500}
           />
@@ -128,7 +128,7 @@ export default function EdgeCloud() {
           <Image
             className="h-full w-full object-contain"
             src="/assets/images/solutions/edge-cloud/image-5.png"
-            alt="companies"
+            alt="Industry-best NPS rating of 71"
             width={2000}
             height={500}
           />

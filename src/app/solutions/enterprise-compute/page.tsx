@@ -5,7 +5,8 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Enterprise Compute | Unitellas International Limited",
-  description: "...",
+  description:
+    "Learn how we can help develop, deploy, run and virtualize any application on zCompute. Secure, flexible and wherever you want it – Colocation, Private Data Center, or Public Cloud.",
 };
 
 export default function EnterpriseCompute() {
@@ -72,7 +73,7 @@ export default function EnterpriseCompute() {
           <Image
             className="h-full w-full object-cover"
             src="/assets/images/solutions/enterprise-compute/image-1.png"
-            alt="companies"
+            alt="Representation of the Unitellas Edge Cloud Service Dashboard"
             width={2000}
             height={500}
           />
@@ -94,7 +95,7 @@ export default function EnterpriseCompute() {
           <Image
             className="h-full w-full object-cover"
             src="/assets/images/solutions/enterprise-compute/image-2.png"
-            alt="companies"
+            alt="24/7 Management"
             width={2000}
             height={500}
           />
@@ -116,7 +117,7 @@ export default function EnterpriseCompute() {
           <Image
             className="h-full w-full object-cover"
             src="/assets/images/solutions/enterprise-compute/image-3.png"
-            alt="Unitellas Edge Cloud Locations"
+            alt="Money bag with arrow going downward"
             width={2000}
             height={500}
           />
