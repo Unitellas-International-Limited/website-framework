@@ -15,7 +15,7 @@ export default function Document() {
         />
         <link
           rel="preload"
-          href="/fonts/mongoose-regular.woff2"
+          href="/assets/fonts/mongoose-regular.woff2"
           as="font"
           type="font/woff2"
           crossOrigin="anonymous"
@@ -23,7 +23,6 @@ export default function Document() {
         <meta
           name="description"
           content="Fully-managed enterprise edge cloud services - compute, networking, storage and more - designed for managed service providers and the modern enterprise."
-          key="desc"
         />
         <meta
           name="keywords"
@@ -68,7 +67,6 @@ export default function Document() {
           name="msapplication-square310x310logo"
           content="/unitellasicon.png"
         />
-        <link rel="manifest" href="/" />
 
         {/* open graph */}
         <meta property="og:type" content="website" />
@@ -90,7 +88,7 @@ export default function Document() {
         <meta property="og:image:alt" content="Unitellas" />
         <meta
           property="og:image:secure_url"
-          content="https://www.unitellas.com.ng/unitellasicon.pn"
+          content="https://www.unitellas.com.ng/unitellasicon.png"
         />
         <meta
           property="og:url"
