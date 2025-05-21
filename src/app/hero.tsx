@@ -11,10 +11,10 @@ const Hero: React.FC = () => {
   return (
     <div className="mx-auto flex h-3/4 max-w-full flex-col items-start justify-center gap-8 overflow-hidden p-8 md:flex-row md:items-center md:justify-between md:gap-16">
       <motion.div
-        initial={{ x: "-100%" }}
-        animate={{ x: 0 }}
+        initial={{ x: "-50%", opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
         transition={{ type: "tween", duration: 1 }}
-        className="text-white"
+        className="min-h-[170px] text-white"
       >
         <h1 className="mb-4 font-Mongoose text-7xl md:text-8xl lg:text-9xl">
           Unitellas Edge Cloud
@@ -26,8 +26,8 @@ const Hero: React.FC = () => {
         </p>
       </motion.div>
       <motion.div
-        initial={{ x: "100%", scale: 0 }}
-        animate={{ x: 0, scale: 1 }}
+        initial={{ x: "50%", opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
         transition={{ type: "tween", duration: 1 }}
         className="flex w-full flex-col gap-6 md:w-auto"
       >
