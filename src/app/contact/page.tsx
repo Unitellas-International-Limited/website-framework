@@ -56,7 +56,19 @@ export default function Contact() {
         title="Contact Us"
         subtitle="We would love to hear from you. For support, reach out to info.unitellas.com.ng"
       />
-      <ContactForm />
+
+      <div className="w-full flex flex-wrap px-5 py-5 justify-center gap-14 xl:gap-5">
+        <iframe
+          className="border-0 w-full xl:w-[650px]"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.4203703315075!2d3.5629625731562733!3d6.468313393523378!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103bf74cc6b40421%3A0xd96ba79020e4b2c1!2sUnitellas%20International%20Limited!5e0!3m2!1sen!2sng!4v1748207956132!5m2!1sen!2sng"
+          height="450"
+          allowFullScreen={true}
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        ></iframe>
+
+        <ContactForm />
+      </div>
     </Layout>
   );
 }

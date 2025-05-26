@@ -23,7 +23,7 @@ export default function ContactForm() {
   const handleChange = (
     event: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >,
+    >
   ) => {
     const targetName = event.target.name;
     const targetValue = event.target.value;
@@ -60,7 +60,7 @@ export default function ContactForm() {
   return (
     <form
       onSubmit={submitHandler}
-      className="mx-auto my-20 max-w-5xl space-y-8 p-8"
+      className="mx-auto space-y-8 w-full max-w-3xl xl:max-w-xl"
     >
       <input
         className="block w-full rounded-sm border border-gray-400 p-3"

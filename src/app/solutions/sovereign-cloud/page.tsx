@@ -11,7 +11,50 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Sovereign Cloud | Unitellas International Limited",
-  description: "...",
+  description:
+    "Explore how Sovereign clouds can be customized to meet the specific needs of government agencies and other organizations that handle sensitive data",
+  keywords: [
+    "Sovereign Cloud for Nigeria",
+    "Edge Cloud Services for CSPs",
+    "Unitellas Infrastructure for Secure Data",
+    "Cloud Providers Nigeria",
+    "Enterprise Cloud Africa",
+  ],
+  alternates: {
+    canonical: "https://www.unitellas.com.ng/solutions/sovereign-cloud",
+  },
+  openGraph: {
+    title: "Sovereign Cloud | Unitellas",
+    description:
+      "Explore our powerful edge cloud services and discover the right solution for your organization.",
+    url: "https://www.unitellas.com.ng/solutions/sovereign-cloud",
+    siteName: "Unitellas International Limited",
+    type: "website",
+    images: [
+      {
+        url: "https://www.unitellas.com.ng/assets/images/solutions/sovereign-cloud.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Unitellas Solutions",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sovereign Cloud | Unitellas International Limited",
+    description:
+      "From storage to computing to networking — discover cloud services tailored to your enterprise.",
+    site: "@Unitellasil",
+    creator: "@Unitellasil",
+    images: [
+      "https://www.unitellas.com.ng/assets/images/solutions/sovereign-cloud.jpg",
+    ],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+  },
 };
 
 export default function SovereignCloud() {
