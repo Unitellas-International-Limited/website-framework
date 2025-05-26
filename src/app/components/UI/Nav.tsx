@@ -62,12 +62,11 @@ export default function Nav() {
         <Logo />
         {!sideBarDisplay && (
           <FontAwesomeIcon
-            size="2xl"
             icon={faBars}
             onClick={() => {
               setSideBarDisplay(true);
             }}
-            className="cursor-pointer text-white"
+            className="cursor-pointer text-white w-10 h-10"
           />
         )}
         <BaseModal

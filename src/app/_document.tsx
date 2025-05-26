@@ -20,6 +20,8 @@ export default function Document() {
           type="font/woff2"
           crossOrigin="anonymous"
         />
+        <link rel="preconnect" href="https://maps.googleapis.com" />
+        <link rel="dns-prefetch" href="https://maps.googleapis.com" />
         <meta
           name="description"
           content="Fully-managed enterprise edge cloud services - compute, networking, storage and more - designed for managed service providers and the modern enterprise."
