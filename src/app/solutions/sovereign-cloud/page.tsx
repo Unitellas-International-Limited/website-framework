@@ -58,7 +58,6 @@ export const metadata: Metadata = {
 };
 
 export default function SovereignCloud() {
-  const iconClasses = "h-20 text-[#1379B4] mb-4 mx-auto block";
   const benefits = [
     {
       icon: faShieldAlt,

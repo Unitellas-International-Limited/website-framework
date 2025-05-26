@@ -184,7 +184,7 @@ export default function About() {
             The accolades include: Frost & Sullivan New Product Innovation
             Leadership Award; Cloud Computing Backup & Disaster Recovery; the
             Red Herring Global 100; and Dell Founders 50 are among some. We
-            don't do it for the awards, but we appreciate the recognition.
+            don&apos;t do it for the awards, but we appreciate the recognition.
           </p>
         </div>
       </Row>
