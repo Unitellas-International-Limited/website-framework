@@ -25,7 +25,7 @@ export async function POST(request: Request) {
       from: `New Contact Enquiry <${process.env.NODEMAILER_USER_1}>`,
       replyTo: senderEmail,
       to: "contact@unitellas.com.ng",
-      cc: "omuwaste@gmail.com",
+      cc: ["sharon@unitellas.com", "treasure@unitellas.com.ng"], 
       subject: `New Message from ${senderName}: ${emailSubject}`,
       text: message,
       html: `<p>Sender Email: ${senderEmail} <br><br> ${message}</p>`,
