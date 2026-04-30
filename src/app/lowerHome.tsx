@@ -54,7 +54,7 @@ const images = [
     src: "/assets/images/home-carousel/adc-logo.jpg",
   },
   { name: "Asigra", src: "/assets/images/home-carousel/asigra-logo.png" },
-  // { name: "CWG", src: "/assets/images/home-carousel/cwg-logo.png" },
+  // { name: "CWG", src: "/assets/images/home-carousel/cwg-logo.png" }, //removed
   { name: "Inq.", src: "/assets/images/home-carousel/inq-logo.png" },
   {
     name: "Galaxy Backbone Limited",
@@ -63,7 +63,7 @@ const images = [
   // {
   //   name: "Itex Integrated Services",
   //   src: "/assets/images/home-carousel/itex-logo.png",
-  // },
+  // }, //removed
   {
     name: "National Information Technology Development Agency",
     src: "/assets/images/home-carousel/nitda-logo.png",
