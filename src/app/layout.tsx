@@ -1,5 +1,6 @@
 import "./globals.css";
 import { GoogleTagManager } from "@next/third-parties/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import ToasterComponent from "@/components/UI/Toaster";
 import type { Metadata } from "next";
 
@@ -119,6 +120,7 @@ export default function RootLayout({
         <GoogleTagManager gtmId="GTM-MRB2FRFG" />
         {children}
         <ToasterComponent />
+        <SpeedInsights />
       </body>
     </html>
   );
