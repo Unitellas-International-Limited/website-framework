@@ -3,6 +3,7 @@ import { GoogleTagManager } from "@next/third-parties/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import ToasterComponent from "@/components/UI/Toaster";
 import type { Metadata } from "next";
+import CookieBanner from "./components/CookieConsent";
 
 export const metadata: Metadata = {
   title: "Unitellas - THE FIRST HYPER SCALE EDGE CLOUD IN AFRICA",
@@ -119,6 +120,7 @@ export default function RootLayout({
       <body className={`antialiased`}>
         <GoogleTagManager gtmId="GTM-MRB2FRFG" />
         {children}
+        <CookieBanner />
         <ToasterComponent />
         <SpeedInsights />
       </body>
