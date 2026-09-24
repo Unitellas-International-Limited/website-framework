@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { BaseButtonWithColor } from "@/components/UI/Buttons";
 import toast from "react-hot-toast";
 import { sendGTMEvent } from "@next/third-parties/google";
+import { countries } from "@/data/countries";
 
 export interface ComputeDRForm {
   service: string;
@@ -31,11 +32,11 @@ interface ComputeDRProps {
   serviceName: string;
 }
 
-interface Country {
-  name: {
-    common: string;
-  };
-}
+// interface Country {
+//   name: {
+//     common: string;
+//   };
+// }
 
 const ComputeDR: React.FC<ComputeDRProps> = ({ serviceName }) => {
   const [loading, setLoading] = useState(false);
@@ -43,7 +44,7 @@ const ComputeDR: React.FC<ComputeDRProps> = ({ serviceName }) => {
   const [openCustomBandwidth, setOpenCustomBandwidth] = useState(false);
   const [customRAM, setCustomRAM] = useState("");
   const [customBandwidth, setCustomBandwidth] = useState("");
-  const [countries, setCountries] = useState<string[]>([]);
+  // const [countries, setCountries] = useState<string[]>([]);
   const [formData, setFormData] = useState<ComputeDRForm>({
     service: serviceName,
     senderName: "",
@@ -67,20 +68,20 @@ const ComputeDR: React.FC<ComputeDRProps> = ({ serviceName }) => {
   });
 
   // to get countries list
-  useEffect(() => {
-    fetch("https://restcountries.com/v3.1/all")
-      .then(async (res) => await res.json())
-      .then((data) => {
-        const countryNames = data.map(
-          (country: Country) => country.name.common,
-        );
-        const sortedCountryNames = countryNames.sort();
-        setCountries(sortedCountryNames);
-      })
-      .catch((error) => {
-        console.error("Error fetching countries:", error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch("https://restcountries.com/v3.1/all")
+  //     .then(async (res) => await res.json())
+  //     .then((data) => {
+  //       const countryNames = data.map(
+  //         (country: Country) => country.name.common,
+  //       );
+  //       const sortedCountryNames = countryNames.sort();
+  //       setCountries(sortedCountryNames);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching countries:", error);
+  //     });
+  // }, []);
 
   // handle input change for ram, bandwidth
   const handleRamChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -266,8 +267,8 @@ const ComputeDR: React.FC<ComputeDRProps> = ({ serviceName }) => {
           required
         >
           <option value="">Select a Country</option>
-          {countries.map((country, index) => (
-            <option key={index} value={country}>
+          {countries.map((country) => (
+            <option key={country} value={country}>
               {country}
             </option>
           ))}
@@ -281,7 +282,7 @@ const ComputeDR: React.FC<ComputeDRProps> = ({ serviceName }) => {
           className="block w-full rounded-sm border border-gray-400 p-3"
           name="os"
           id="os"
-          defaultValue="Windows"
+          // defaultValue="Windows"
           value={formData.os}
           required
           onChange={(e) => {
