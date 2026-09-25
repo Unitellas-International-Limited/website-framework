@@ -1,578 +1,800 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { BaseButtonWithColor } from "@/components/UI/Buttons";
+import React, { useMemo, useState } from "react";
 import toast from "react-hot-toast";
 import { sendGTMEvent } from "@next/third-parties/google";
-import { countries } from "@/data/countries";
-
-export interface ComputeDRForm {
-  service: string;
-  senderName: string; // sender name
-  senderEmail: string; // sender email
-  senderPhone: string; // sender phone number
-  senderNotes: string; // sender notes
-  orgName: string; // sender org
-  senderCountry: string; // sender country
-  os: string; // required os
-  publicIP: number; // required public IPs
-  cpuNumber: number; // required cpu number
-  ramSize: string; // required ram size in gib/tb
-  customRamSize: string; // required ram size in gib/tb
-  bandwidth: string;
-  customBandwidth: string;
-  driveType: string; // required ram size in gib/tb
-  storageType: string; // storage type e.g ssd, hdd
-  storageAmount: number; // storage amount needed
-  ssdGbTb: string; // gb or tb for ssd storage choice
-  database: string;
-}
 
 interface ComputeDRProps {
   serviceName: string;
 }
 
-// interface Country {
-//   name: {
-//     common: string;
-//   };
-// }
+interface FormData {
+  firstName: string;
+  lastName: string;
+  senderEmail: string;
+  referral: string;
+  jobFunction: string;
+}
 
-const ComputeDR: React.FC<ComputeDRProps> = ({ serviceName }) => {
-  const [loading, setLoading] = useState(false);
-  const [openCustom, setOpenCustom] = useState(false);
-  const [openCustomBandwidth, setOpenCustomBandwidth] = useState(false);
-  const [customRAM, setCustomRAM] = useState("");
-  const [customBandwidth, setCustomBandwidth] = useState("");
-  // const [countries, setCountries] = useState<string[]>([]);
-  const [formData, setFormData] = useState<ComputeDRForm>({
-    service: serviceName,
-    senderName: "",
-    senderEmail: "",
-    senderPhone: "",
-    orgName: "",
-    senderNotes: "",
-    senderCountry: "",
-    os: "Windows",
-    publicIP: 0,
-    cpuNumber: 1,
-    bandwidth: "10Mbps",
-    ramSize: "4GiB",
-    driveType: "HDD",
-    storageType: "Block",
-    storageAmount: 1,
-    ssdGbTb: "GB",
-    customRamSize: "",
-    customBandwidth: "",
-    database: "SQL",
+const WEEKDAY_NAMES = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+
+const MONTH_NAMES = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
+const TIME_SLOTS = [
+  "9:00 AM",
+  "9:15 AM",
+  "9:30 AM",
+  "9:45 AM",
+  "10:00 AM",
+  "10:15 AM",
+  "10:30 AM",
+  "10:45 AM",
+  "11:00 AM",
+  "11:15 AM",
+  "11:30 AM",
+  "11:45 AM",
+  "12:00 PM",
+  "12:15 PM",
+  "12:30 PM",
+  "12:45 PM",
+  "1:00 PM",
+  "1:15 PM",
+  "1:30 PM",
+  "1:45 PM",
+  "2:00 PM",
+  "2:15 PM",
+  "2:30 PM",
+  "2:45 PM",
+  "3:00 PM",
+  "3:15 PM",
+  "3:30 PM",
+  "3:45 PM",
+  "4:00 PM",
+  "4:15 PM",
+  "4:30 PM",
+  "4:45 PM",
+];
+
+const REFERRAL_OPTIONS = [
+  "Google",
+  "LinkedIn",
+  "Twitter / X",
+  "Facebook",
+  "YouTube",
+  "Referral",
+  "Event / Conference",
+  "Other",
+];
+
+const JOB_FUNCTION_OPTIONS = [
+  "IT / Technology",
+  "Engineering",
+  "Operations",
+  "Finance",
+  "Sales",
+  "Marketing",
+  "Executive / Management",
+  "Government",
+  "Other",
+];
+
+function getDateKey(date: Date) {
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(
+    2,
+    "0",
+  )}-${String(date.getDate()).padStart(2, "0")}`;
+}
+
+function formatSelectedDate(date: Date) {
+  return `${WEEKDAY_NAMES[date.getDay()]}, ${
+    MONTH_NAMES[date.getMonth()]
+  } ${date.getDate()}, ${date.getFullYear()}`;
+}
+
+function getLagosNow() {
+  const formatter = new Intl.DateTimeFormat("en-US", {
+    timeZone: "Africa/Lagos",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
   });
 
-  // to get countries list
-  // useEffect(() => {
-  //   fetch("https://restcountries.com/v3.1/all")
-  //     .then(async (res) => await res.json())
-  //     .then((data) => {
-  //       const countryNames = data.map(
-  //         (country: Country) => country.name.common,
-  //       );
-  //       const sortedCountryNames = countryNames.sort();
-  //       setCountries(sortedCountryNames);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching countries:", error);
-  //     });
-  // }, []);
+  const parts = formatter.formatToParts(new Date());
 
-  // handle input change for ram, bandwidth
-  const handleRamChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = event.target.value;
+  const values: Record<string, string> = {};
 
-    if (value === "Custom") {
-      setOpenCustom(true);
-      setFormData((prev) => ({ ...prev, ramSize: "Custom" }));
-    } else {
-      setOpenCustom(false);
-      setFormData((prev) => ({ ...prev, ramSize: value }));
+  parts.forEach((part) => {
+    if (part.type !== "literal") {
+      values[part.type] = part.value;
     }
+  });
+
+  return {
+    year: Number(values.year),
+    month: Number(values.month),
+    day: Number(values.day),
+    hour: Number(values.hour),
+    minute: Number(values.minute),
   };
+}
 
-  const handleCustomRamChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    const customValue = event.target.value;
-    setCustomRAM(customValue);
-    setFormData((prev) => ({ ...prev, customRamSize: customValue }));
-  };
-
-  const handleBandwidthChange = (
-    event: React.ChangeEvent<HTMLSelectElement>,
-  ) => {
-    const value = event.target.value;
-
-    if (value === "Custom") {
-      setOpenCustomBandwidth(true);
-      setFormData((prev) => ({ ...prev, bandwidth: "Custom" }));
-    } else {
-      setOpenCustomBandwidth(false);
-      setFormData((prev) => ({ ...prev, bandwidth: value }));
-    }
-  };
-
-  const handleCustomBandwidthChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    const customValue = event.target.value;
-    setCustomBandwidth(customValue);
-    setFormData((prev) => ({ ...prev, customBandwidth: customValue }));
-  };
-
-  // to set default storage unit
-  useEffect(() => {
-    if (
-      formData.storageType === "HDD" ||
-      formData.storageType === "Object Storage"
-    ) {
-      setFormData((prev) => ({ ...prev, ssdGbTb: "TB" }));
-    } else {
-      setFormData((prev) => ({ ...prev, ssdGbTb: "GB" }));
-    }
-  }, [formData.storageType]);
-
-  // handle general input change
-  const handleChange = (
-    event: React.ChangeEvent<
-      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >,
-  ) => {
-    const targetName = event.target.name;
-    const targetValue = event.target.value;
-    setFormData((values) => ({ ...values, [targetName]: targetValue }));
-  };
-
-  function submitHandler(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setLoading(true);
-    fetch("api/quote", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
-      .then(async (response) => await response.json())
-      .then(() => {
-        toast.success("Sent successfully. We'll get back to you soon.");
-        setLoading(false);
-        setFormData({
-          service: serviceName,
-          senderName: "",
-          senderEmail: "",
-          senderPhone: "",
-          orgName: "",
-          senderNotes: "",
-          senderCountry: "",
-          os: "Windows",
-          publicIP: 0,
-          cpuNumber: 1,
-          bandwidth: "10Mbps",
-          ramSize: "4GiB",
-          driveType: "HDD",
-          storageType: "Block",
-          storageAmount: 1,
-          ssdGbTb: "GB",
-          customRamSize: "",
-          customBandwidth: "",
-          database: "SQL",
-        });
-      })
-      .catch((error) => {
-        console.error(error);
-        setLoading(false);
-        toast.error("An error occurred. Try again.");
-      });
-  }
+function isToday(date: Date) {
+  const now = getLagosNow();
 
   return (
-    <form
-      onSubmit={submitHandler}
-      className="mx-auto my-20 max-w-5xl space-y-8 px-8"
-    >
-      {/* name */}
-      <input
-        className="block w-full rounded-sm border border-gray-400 p-3"
-        name="senderName"
-        id="senderName"
-        value={formData.senderName}
-        onChange={(e) => {
-          handleChange(e);
-        }}
-        type="text"
-        placeholder="Name"
-        required
-      />
+    date.getFullYear() === now.year &&
+    date.getMonth() + 1 === now.month &&
+    date.getDate() === now.day
+  );
+}
 
-      {/* email */}
-      <input
-        className="block w-full rounded-sm border border-gray-400 p-3"
-        name="senderEmail"
-        id="senderEmail"
-        value={formData.senderEmail}
-        onChange={(e) => {
-          handleChange(e);
-        }}
-        type="email"
-        placeholder="Email"
-        required
-      />
+function isPastDate(date: Date) {
+  const now = getLagosNow();
 
-      {/* phone number */}
-      <input
-        className="block w-full rounded-sm border border-gray-400 p-3"
-        name="senderPhone"
-        id="senderPhone"
-        minLength={11}
-        maxLength={11}
-        value={formData.senderPhone}
-        onChange={(e) => {
-          handleChange(e);
-        }}
-        type="tel"
-        placeholder="Phone Number"
-      />
+  const selected = new Date(
+    date.getFullYear(),
+    date.getMonth(),
+    date.getDate(),
+  );
 
-      {/* org */}
-      <input
-        className="block w-full rounded-sm border border-gray-400 p-3"
-        name="orgName"
-        id="orgName"
-        value={formData.orgName}
-        onChange={(e) => {
-          handleChange(e);
-        }}
-        type="text"
-        placeholder="Organization"
-      />
+  const today = new Date(now.year, now.month - 1, now.day);
 
-      {/* country */}
-      <div>
-        <p className="mb-2 font-Mongoose text-3xl">Country:</p>
-        <select
-          className="block w-full rounded-sm border border-gray-400 p-3"
-          name="senderCountry"
-          id="senderCountry"
-          value={formData.senderCountry}
-          onChange={(e) => {
-            handleChange(e);
-          }}
-          required
-        >
-          <option value="">Select a Country</option>
-          {countries.map((country) => (
-            <option key={country} value={country}>
-              {country}
-            </option>
-          ))}
-        </select>
-      </div>
+  return selected < today;
+}
 
-      {/* OS */}
-      <div>
-        <p className="mb-2 font-Mongoose text-3xl">Operating System:</p>
-        <select
-          className="block w-full rounded-sm border border-gray-400 p-3"
-          name="os"
-          id="os"
-          // defaultValue="Windows"
-          value={formData.os}
-          required
-          onChange={(e) => {
-            handleChange(e);
-          }}
-        >
-          <option value="Windows">Windows</option>
-          <option value="Linux">Linux</option>
-        </select>
-      </div>
+function isTimeSlotAvailable(date: Date, time: string) {
+  if (!isToday(date)) {
+    return true;
+  }
 
-      {/* vCPU */}
-      <div>
-        <p className="mb-2 font-Mongoose text-3xl">Required vCPU Size:</p>
-        <input
-          type="number"
-          min={1}
-          className="block w-full rounded-sm border border-gray-400 p-3"
-          name="cpuNumber"
-          id="cpuNumber"
-          value={formData.cpuNumber}
-          required
-          onChange={(e) => {
-            handleChange(e);
-          }}
-        />
-      </div>
+  const [timePart, modifier] = time.split(" ");
+  let hours = Number(timePart.split(":")[0]);
+  const minutes = Number(timePart.split(":")[1]);
 
-      {/* ram */}
-      <div>
-        <p className="mb-2 font-Mongoose text-3xl">Required RAM Size:</p>
-        <select
-          className="block w-full rounded-sm border border-gray-400 p-3"
-          name="ramSize"
-          id="ramSize"
-          value={formData.ramSize}
-          required
-          onChange={handleRamChange}
-        >
-          <option value="4GiB">4GiB</option>
-          <option value="8GiB">8GiB</option>
-          <option value="16GiB">16GiB</option>
-          <option value="32GiB">32GiB</option>
-          <option value="64GiB">64GiB</option>
-          <option value="96GiB">96GiB</option>
-          <option value="112iB">112GiB</option>
-          <option value="128GiB">128GiB</option>
-          <option value="160GiB">160GiB</option>
-          <option value="192GiB">192GiB</option>
-          <option value="224GiB">224GiB</option>
-          <option value="256GiB">256GiB</option>
-          <option value="288GiB">288GiB</option>
-          <option value="320GiB">320GiB</option>
-          <option value="384GiB">384GiB</option>
-          <option value="448GiB">448GiB</option>
-          <option value="672GiB">672GiB</option>
-          <option value="896GiB">896GiB</option>
-          <option value="Custom">Custom</option>
-        </select>
-      </div>
+  if (modifier === "PM" && hours !== 12) {
+    hours += 12;
+  }
 
-      {/* custom ram */}
-      {openCustom && (
-        <div>
-          <input
-            className="block w-full rounded-sm border border-gray-400 p-3"
-            name="customRAM"
-            id="customRAM"
-            placeholder="Enter your required RAM size e.g 300 GiB"
-            value={customRAM}
-            onChange={handleCustomRamChange}
-            type="text"
-            required
+  if (modifier === "AM" && hours === 12) {
+    hours = 0;
+  }
+
+  const now = getLagosNow();
+
+  const currentMinutes = now.hour * 60 + now.minute;
+  const slotMinutes = hours * 60 + minutes;
+
+  // Require at least 30 minutes notice for same-day bookings.
+  return slotMinutes >= currentMinutes + 30;
+}
+
+function getCalendarDays(month: number, year: number) {
+  const firstDay = new Date(year, month, 1);
+  const lastDay = new Date(year, month + 1, 0);
+
+  const daysInMonth = lastDay.getDate();
+  const startingDay = firstDay.getDay();
+
+  const days: (Date | null)[] = [];
+
+  for (let i = 0; i < startingDay; i++) {
+    days.push(null);
+  }
+
+  for (let day = 1; day <= daysInMonth; day++) {
+    days.push(new Date(year, month, day));
+  }
+
+  return days;
+}
+
+export default function ComputeDR({ serviceName }: ComputeDRProps) {
+  const today = useMemo(() => {
+    const now = getLagosNow();
+
+    return new Date(now.year, now.month - 1, now.day);
+  }, []);
+
+  const [step, setStep] = useState<1 | 2>(1);
+
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+
+  const [selectedTime, setSelectedTime] = useState<string>("");
+
+  const [currentMonth, setCurrentMonth] = useState(
+    new Date(today.getFullYear(), today.getMonth(), 1),
+  );
+
+  const [formData, setFormData] = useState<FormData>({
+    firstName: "",
+    lastName: "",
+    senderEmail: "",
+    referral: "",
+    jobFunction: "",
+  });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const calendarDays = useMemo(
+    () => getCalendarDays(currentMonth.getMonth(), currentMonth.getFullYear()),
+    [currentMonth],
+  );
+
+  const selectedDateFormatted = selectedDate
+    ? formatSelectedDate(selectedDate)
+    : "";
+
+  const canGoToPreviousMonth =
+    currentMonth.getFullYear() > today.getFullYear() ||
+    (currentMonth.getFullYear() === today.getFullYear() &&
+      currentMonth.getMonth() > today.getMonth());
+
+  const handlePreviousMonth = () => {
+    if (!canGoToPreviousMonth) return;
+
+    setCurrentMonth(
+      new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1, 1),
+    );
+  };
+
+  const handleNextMonth = () => {
+    setCurrentMonth(
+      new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 1),
+    );
+  };
+
+  const handleDateSelect = (date: Date) => {
+    if (isPastDate(date)) return;
+
+    if (date.getDay() === 0 || date.getDay() === 6) {
+      return;
+    }
+
+    setSelectedDate(date);
+    setSelectedTime("");
+  };
+
+  const handleInputChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ) => {
+    const { name, value } = event.target;
+
+    setFormData((previous) => ({
+      ...previous,
+      [name]: value,
+    }));
+  };
+
+  const handleContinue = () => {
+    if (!selectedDate) {
+      toast.error("Please select a date.");
+      return;
+    }
+
+    if (!selectedTime) {
+      toast.error("Please select a time.");
+      return;
+    }
+
+    setStep(2);
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  const handleBack = () => {
+    setStep(1);
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (!selectedDate || !selectedTime) {
+      toast.error("Please select an appointment time.");
+      setStep(1);
+      return;
+    }
+
+    if (
+      !formData.firstName.trim() ||
+      !formData.lastName.trim() ||
+      !formData.senderEmail.trim() ||
+      !formData.referral ||
+      !formData.jobFunction
+    ) {
+      toast.error("Please complete all required fields.");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    const payload = {
+      service: serviceName,
+      firstName: formData.firstName.trim(),
+      lastName: formData.lastName.trim(),
+      senderName: `${formData.firstName.trim()} ${formData.lastName.trim()}`,
+      senderEmail: formData.senderEmail.trim(),
+      referral: formData.referral,
+      jobFunction: formData.jobFunction,
+      appointmentDate: getDateKey(selectedDate),
+      appointmentDateFormatted: formatSelectedDate(selectedDate),
+      appointmentTime: selectedTime,
+      timezone: "Africa/Lagos (WAT)",
+      duration: "30 minutes",
+    };
+
+    try {
+      const response = await fetch("/api/demo", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result?.error || "Unable to schedule the demo.");
+      }
+
+      sendGTMEvent({
+        event: "Demo Scheduled",
+        service: serviceName,
+      });
+
+      toast.success("Your demo has been scheduled successfully.");
+
+      setFormData({
+        firstName: "",
+        lastName: "",
+        senderEmail: "",
+        referral: "",
+        jobFunction: "",
+      });
+
+      setSelectedDate(null);
+      setSelectedTime("");
+      setStep(1);
+    } catch (error) {
+      console.error(error);
+
+      toast.error(
+        "Something went wrong while scheduling your demo. Please try again.",
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <section className="w-full bg-[#F5F8FA] py-12 md:py-16">
+      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+        {/* Progress */}
+        <div className="mb-8 flex items-center justify-center gap-3">
+          <div
+            className={`flex h-9 w-9 items-center justify-center rounded-full text-sm font-semibold ${
+              step === 1 ? "bg-[#15C9E4] text-white" : "bg-[#102A43] text-white"
+            }`}
+          >
+            1
+          </div>
+
+          <div
+            className={`h-[2px] w-16 sm:w-24 ${
+              step === 2 ? "bg-[#15C9E4]" : "bg-slate-300"
+            }`}
           />
+
+          <div
+            className={`flex h-9 w-9 items-center justify-center rounded-full text-sm font-semibold ${
+              step === 2
+                ? "bg-[#15C9E4] text-white"
+                : "bg-slate-200 text-slate-500"
+            }`}
+          >
+            2
+          </div>
         </div>
-      )}
 
-      {/* bandwidth */}
-      <div>
-        <p className="mb-2 font-Mongoose text-3xl">Required Bandwidth: </p>
-        <select
-          className="block w-full rounded-sm border border-gray-400 p-3"
-          name="bandwidth"
-          id="bandwidth"
-          value={formData.bandwidth}
-          required
-          onChange={handleBandwidthChange}
-        >
-          <option value="10Mbps">10Mbps</option>
-          <option value="15Mbps">15Mbps</option>
-          <option value="100Mbps">100Mbps</option>
-          <option value="STM 1">STM 1</option>
-          <option value="1Gbps">1Gbps</option>
-          <option value="Custom">Custom</option>
-        </select>
-      </div>
+        {step === 1 ? (
+          <div className="grid overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm lg:grid-cols-[1.05fr_0.95fr]">
+            {/* Calendar */}
+            <div className="border-b border-slate-200 p-6 sm:p-8 lg:border-b-0 lg:border-r">
+              <div className="mb-7">
+                <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-[#15C9E4]">
+                  Step 1 of 2
+                </p>
 
-      {/* custom bandwidth */}
-      {openCustomBandwidth && (
-        <div>
-          <input
-            className="block w-full rounded-sm border border-gray-400 p-3"
-            name="customBandwidth"
-            id="customBandwidth"
-            placeholder="Enter your required bandwidth size e.g 300Gbps"
-            value={customBandwidth}
-            onChange={handleCustomBandwidthChange}
-            type="text"
-            required
-          />
-        </div>
-      )}
+                <h2 className="text-2xl font-bold text-[#102A43] sm:text-3xl">
+                  Choose a time
+                </h2>
 
-      {/* public IP */}
-      <div>
-        <p className="mb-2 font-Mongoose text-3xl">Required Public IPs:</p>
-        <input
-          className="block w-full rounded-sm border border-gray-400 p-3"
-          name="publicIP"
-          id="publicIP"
-          min={0}
-          value={formData.publicIP}
-          onChange={(e) => {
-            handleChange(e);
-          }}
-          type="number"
-          required
-        />
-      </div>
+                <p className="mt-2 text-sm leading-6 text-slate-600">
+                  Select a convenient date and time for your 30-minute Unitellas
+                  demo.
+                </p>
+              </div>
 
-      {/* stroage type */}
-      <div>
-        <p className="mb-2 font-Mongoose text-3xl">Required Storage Type: </p>
-        <select
-          className="block w-full rounded-sm border border-gray-400 p-3"
-          name="storageType"
-          id="storageType"
-          value={formData.storageType}
-          required
-          onChange={(e) => {
-            handleChange(e);
-          }}
-        >
-          <option value="Block">Block Storage</option>
-          <option value="File">File Storage</option>
-          <option value="Object">Object Storage</option>
-        </select>
-      </div>
+              <div className="mb-5 flex items-center justify-between">
+                <button
+                  type="button"
+                  onClick={handlePreviousMonth}
+                  disabled={!canGoToPreviousMonth}
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 text-lg text-[#102A43] transition hover:border-[#15C9E4] hover:text-[#15C9E4] disabled:cursor-not-allowed disabled:opacity-30"
+                  aria-label="Previous month"
+                >
+                  ‹
+                </button>
 
-      {/* drive type */}
-      <div>
-        <p className="mb-2 font-Mongoose text-3xl">Required Drive Type: </p>
-        {formData.storageType === "Object" && (
-          <div>
-            <select
-              className="block w-full rounded-sm border border-gray-400 p-3"
-              name="driveType"
-              id="driveype"
-              disabled
-              value={formData.driveType}
-              required
-              onChange={(e) => {
-                handleChange(e);
-              }}
-            >
-              <option value="HDD">HDD</option>
-            </select>
+                <h3 className="text-base font-semibold text-[#102A43]">
+                  {MONTH_NAMES[currentMonth.getMonth()]}{" "}
+                  {currentMonth.getFullYear()}
+                </h3>
+
+                <button
+                  type="button"
+                  onClick={handleNextMonth}
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 text-lg text-[#102A43] transition hover:border-[#15C9E4] hover:text-[#15C9E4]"
+                  aria-label="Next month"
+                >
+                  ›
+                </button>
+              </div>
+
+              <div className="mb-2 grid grid-cols-7">
+                {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(
+                  (day) => (
+                    <div
+                      key={day}
+                      className="py-2 text-center text-xs font-semibold text-slate-400"
+                    >
+                      {day}
+                    </div>
+                  ),
+                )}
+              </div>
+
+              <div className="grid grid-cols-7 gap-1">
+                {calendarDays.map((date, index) => {
+                  if (!date) {
+                    return <div key={`empty-${index}`} />;
+                  }
+
+                  const disabled =
+                    isPastDate(date) ||
+                    date.getDay() === 0 ||
+                    date.getDay() === 6;
+
+                  const selected =
+                    selectedDate &&
+                    getDateKey(selectedDate) === getDateKey(date);
+
+                  const todayDate = isToday(date);
+
+                  return (
+                    <button
+                      key={getDateKey(date)}
+                      type="button"
+                      disabled={disabled}
+                      onClick={() => handleDateSelect(date)}
+                      className={`relative aspect-square rounded-lg text-sm font-medium transition ${
+                        selected
+                          ? "bg-[#15C9E4] text-white"
+                          : disabled
+                            ? "cursor-not-allowed text-slate-300"
+                            : "text-[#102A43] hover:bg-[#EAF4FC]"
+                      }`}
+                    >
+                      {date.getDate()}
+
+                      {todayDate && !selected && (
+                        <span className="absolute bottom-1 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-[#15C9E4]" />
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+
+              <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-xs text-slate-500">
+                <div className="flex items-center gap-2">
+                  <span className="h-2.5 w-2.5 rounded-full bg-[#15C9E4]" />
+                  Selected
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <span className="h-2.5 w-2.5 rounded-full border border-slate-300" />
+                  Available
+                </div>
+              </div>
+            </div>
+
+            {/* Time slots */}
+            <div className="p-6 sm:p-8">
+              <div className="mb-7">
+                <p className="text-sm font-semibold text-[#102A43]">
+                  {selectedDate ? selectedDateFormatted : "Select a date"}
+                </p>
+
+                <p className="mt-1 text-sm text-slate-500">Available times</p>
+              </div>
+
+              {!selectedDate ? (
+                <div className="flex min-h-[360px] items-center justify-center rounded-xl border border-dashed border-slate-300 bg-[#F5F8FA] px-6 text-center">
+                  <div>
+                    <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#EAF4FC] text-xl">
+                      📅
+                    </div>
+
+                    <h3 className="font-semibold text-[#102A43]">
+                      Select a date
+                    </h3>
+
+                    <p className="mt-2 max-w-xs text-sm leading-6 text-slate-500">
+                      Choose an available weekday from the calendar to see
+                      appointment times.
+                    </p>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <div className="grid max-h-[390px] grid-cols-2 gap-3 overflow-y-auto pr-1 sm:grid-cols-3">
+                    {TIME_SLOTS.map((time) => {
+                      const available = isTimeSlotAvailable(selectedDate, time);
+
+                      const selected = selectedTime === time;
+
+                      return (
+                        <button
+                          key={time}
+                          type="button"
+                          disabled={!available}
+                          onClick={() => setSelectedTime(time)}
+                          className={`rounded-lg border px-3 py-3 text-sm font-medium transition ${
+                            selected
+                              ? "border-[#15C9E4] bg-[#15C9E4] text-white"
+                              : available
+                                ? "border-slate-200 bg-white text-[#102A43] hover:border-[#15C9E4] hover:bg-[#EAF4FC]"
+                                : "cursor-not-allowed border-slate-100 bg-slate-50 text-slate-300"
+                          }`}
+                        >
+                          {time}
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  <div className="mt-5 rounded-lg bg-[#EAF4FC] px-4 py-3 text-xs leading-5 text-[#102A43]">
+                    <strong>Timezone:</strong> Africa/Lagos (WAT)
+                    <br />
+                    <strong>Duration:</strong> 30 minutes
+                  </div>
+
+                  <div className="mt-6">
+                    <button
+                      type="button"
+                      onClick={handleContinue}
+                      className="w-full rounded-lg bg-[#15C9E4] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#102A43]"
+                    >
+                      Continue
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+        ) : (
+          <div className="mx-auto max-w-3xl rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8 lg:p-10">
+            {/* Appointment summary */}
+            <div className="mb-8 rounded-xl border border-[#BCEEF5] bg-[#EAF4FC] p-5">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-wide text-[#15C9E4]">
+                    Selected appointment
+                  </p>
+
+                  <p className="mt-1 font-semibold text-[#102A43]">
+                    {selectedDateFormatted}
+                  </p>
+
+                  <p className="mt-1 text-sm text-slate-600">
+                    {selectedTime} · 30 minutes · Africa/Lagos (WAT)
+                  </p>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={handleBack}
+                  className="text-sm font-semibold text-[#102A43] underline decoration-[#15C9E4] underline-offset-4 hover:text-[#15C9E4]"
+                >
+                  Edit
+                </button>
+              </div>
+            </div>
+
+            <div className="mb-8">
+              <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-[#15C9E4]">
+                Step 2 of 2
+              </p>
+
+              <h2 className="text-2xl font-bold text-[#102A43] sm:text-3xl">
+                Your information
+              </h2>
+
+              <p className="mt-2 text-sm leading-6 text-slate-600">
+                Tell us a little about yourself so we can prepare for the
+                conversation.
+              </p>
+            </div>
+
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid gap-5 sm:grid-cols-2">
+                <div>
+                  <label
+                    htmlFor="firstName"
+                    className="mb-2 block text-sm font-medium text-[#102A43]"
+                  >
+                    First name <span className="text-red-500">*</span>
+                  </label>
+
+                  <input
+                    id="firstName"
+                    name="firstName"
+                    type="text"
+                    value={formData.firstName}
+                    onChange={handleInputChange}
+                    required
+                    placeholder="First name"
+                    className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm text-[#102A43] outline-none transition placeholder:text-slate-400 focus:border-[#15C9E4] focus:ring-2 focus:ring-[#15C9E4]/20"
+                  />
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="lastName"
+                    className="mb-2 block text-sm font-medium text-[#102A43]"
+                  >
+                    Last name <span className="text-red-500">*</span>
+                  </label>
+
+                  <input
+                    id="lastName"
+                    name="lastName"
+                    type="text"
+                    value={formData.lastName}
+                    onChange={handleInputChange}
+                    required
+                    placeholder="Last name"
+                    className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm text-[#102A43] outline-none transition placeholder:text-slate-400 focus:border-[#15C9E4] focus:ring-2 focus:ring-[#15C9E4]/20"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label
+                  htmlFor="senderEmail"
+                  className="mb-2 block text-sm font-medium text-[#102A43]"
+                >
+                  Work email <span className="text-red-500">*</span>
+                </label>
+
+                <input
+                  id="senderEmail"
+                  name="senderEmail"
+                  type="email"
+                  value={formData.senderEmail}
+                  onChange={handleInputChange}
+                  required
+                  placeholder="you@company.com"
+                  className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm text-[#102A43] outline-none transition placeholder:text-slate-400 focus:border-[#15C9E4] focus:ring-2 focus:ring-[#15C9E4]/20"
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="referral"
+                  className="mb-2 block text-sm font-medium text-[#102A43]"
+                >
+                  How did you hear about us?{" "}
+                  <span className="text-red-500">*</span>
+                </label>
+
+                <select
+                  id="referral"
+                  name="referral"
+                  value={formData.referral}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm text-[#102A43] outline-none transition focus:border-[#15C9E4] focus:ring-2 focus:ring-[#15C9E4]/20"
+                >
+                  <option value="">Select an option</option>
+
+                  {REFERRAL_OPTIONS.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label
+                  htmlFor="jobFunction"
+                  className="mb-2 block text-sm font-medium text-[#102A43]"
+                >
+                  Job function <span className="text-red-500">*</span>
+                </label>
+
+                <select
+                  id="jobFunction"
+                  name="jobFunction"
+                  value={formData.jobFunction}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm text-[#102A43] outline-none transition focus:border-[#15C9E4] focus:ring-2 focus:ring-[#15C9E4]/20"
+                >
+                  <option value="">Select your job function</option>
+
+                  {JOB_FUNCTION_OPTIONS.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="flex flex-col-reverse gap-3 border-t border-slate-200 pt-6 sm:flex-row sm:justify-between">
+                <button
+                  type="button"
+                  onClick={handleBack}
+                  className="rounded-lg border border-slate-300 px-6 py-3 text-sm font-semibold text-[#102A43] transition hover:border-[#15C9E4] hover:bg-[#EAF4FC]"
+                >
+                  Back
+                </button>
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="min-w-[180px] rounded-lg bg-[#15C9E4] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#102A43] disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  {isSubmitting ? "Confirming..." : "Confirm Demo"}
+                </button>
+              </div>
+            </form>
           </div>
         )}
-
-        <select
-          className={`${
-            formData.storageType === "Object" ? "hidden" : ""
-          } block w-full rounded-sm border border-gray-400 p-3`}
-          name="driveType"
-          id="driveType"
-          value={formData.driveType}
-          required
-          onChange={(e) => {
-            handleChange(e);
-          }}
-        >
-          <option value="HDD">HDD</option>
-          <option value="SSD">SSD</option>
-          <option value="NVMe">NVMe</option>
-          <option value="GPU">GPU</option>
-        </select>
       </div>
-
-      {/* storage amount */}
-      <div>
-        <p className="mb-2 font-Mongoose text-3xl">Required Storage Size:</p>
-        <div className="flex items-center gap-2">
-          {formData.driveType === "HDD" || formData.storageType === "Object" ? (
-            <>
-              <input
-                type="number"
-                min="1"
-                className="block w-full rounded-sm border border-gray-400 p-3"
-                name="storageAmount"
-                id="storageAmount"
-                value={formData.storageAmount}
-                required
-                onChange={(e) => {
-                  handleChange(e);
-                }}
-              />
-              <p className="font-Mongoose text-3xl">TB</p>
-            </>
-          ) : (
-            <>
-              <input
-                type="number"
-                min={`${formData.driveType === "SSD" ? 100 : 1}`}
-                className="block w-full rounded-sm border border-gray-400 p-3"
-                name="storageAmount"
-                id="storageAmount"
-                value={formData.storageAmount}
-                required
-                onChange={(e) => {
-                  handleChange(e);
-                }}
-              />
-
-              <select
-                className="block font-Mongoose text-3xl"
-                name="ssdGbTb"
-                id="ssdGbTb"
-                value={formData.ssdGbTb}
-                required
-                onChange={(e) => {
-                  handleChange(e);
-                }}
-              >
-                <option value="GB">GB</option>
-                <option value="TB">TB</option>
-              </select>
-            </>
-          )}
-        </div>
-      </div>
-
-      {/* database */}
-      <div>
-        <p className="mb-2 font-Mongoose text-3xl">Required Database: </p>
-        <select
-          className="block w-full rounded-sm border border-gray-400 p-3"
-          name="database"
-          id="database"
-          value={formData.database}
-          required
-          onChange={(e) => {
-            handleChange(e);
-          }}
-        >
-          <option value="MySQL">MySQL</option>
-          <option value="PostreSQL">PostgreSQL</option>
-          <option value="Oracle">Oracle</option>
-          <option value="MongoDB">MongoDB</option>
-          <option value="Microsoft SQL Server">Microsoft SQL Server</option>
-        </select>
-      </div>
-
-      {/* notes */}
-      <div>
-        <p className="mb-2 font-Mongoose text-3xl">Other Notes: </p>
-        <textarea
-          className="block w-full resize-none rounded-sm border border-gray-400 p-3"
-          name="senderNotes"
-          id="senderNotes"
-          value={formData.senderNotes}
-          onChange={(e) => {
-            handleChange(e);
-          }}
-        ></textarea>
-      </div>
-
-      <BaseButtonWithColor
-        loading={loading}
-        onClick={() => {
-          sendGTMEvent({
-            event: "buttonClicked",
-            value: "Compute/DR Form Submitted",
-          });
-        }}
-        text="Submit"
-        size="full"
-      />
-    </form>
+    </section>
   );
-};
-
-export default ComputeDR;
+}

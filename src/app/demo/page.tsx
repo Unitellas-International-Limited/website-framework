@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Schedule a Demo | Unitellas International Limited",
   description:
     "Experience our edge cloud platform in action. Request a free live demo from Unitellas.",
+
   keywords: [
     "Cloud Demo",
     "Request Cloud Platform Demo",
@@ -14,9 +15,11 @@ export const metadata: Metadata = {
     "Edge Compute Nigeria",
     "Tech Demo Nigeria",
   ],
+
   alternates: {
     canonical: "https://www.unitellas.com.ng/demo",
   },
+
   openGraph: {
     title: "Schedule a Demo | Unitellas International Limited",
     description:
@@ -33,6 +36,7 @@ export const metadata: Metadata = {
       },
     ],
   },
+
   twitter: {
     card: "summary_large_image",
     title: "Try Unitellas Today",
@@ -44,6 +48,7 @@ export const metadata: Metadata = {
       "https://www.unitellas.com.ng/assets/images/solutions/edge-cloud/image-1.jpeg",
     ],
   },
+
   robots: {
     index: true,
     follow: true,
@@ -55,6 +60,7 @@ export default function Demo() {
   return (
     <Layout>
       <PageHeader title="Schedule a Demo" />
+
       <ComputeDR serviceName="Demo" />
     </Layout>
   );

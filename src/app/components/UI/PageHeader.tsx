@@ -11,12 +11,10 @@ export default function PageHeader({ title, subtitle }: Props) {
       className={classNames(
         "relative flex h-80 flex-col items-center justify-center overflow-hidden bg-black p-4",
         {
-          "before:absolute before:bottom-[-40vw] before:left-[25vw] before:block before:h-[80vw] before:w-[80vw] before:-rotate-45 before:transform before:bg-white/5":
-            true,
+          "before:absolute before:bottom-[-40vw] before:left-[25vw] before:block before:h-[80vw] before:w-[80vw] before:-rotate-45 before:transform before:bg-white/5": true,
         },
         {
-          "after:absolute after:-bottom-1/3 after:block after:h-4/6 after:w-4/6 after:-rotate-45 after:transform after:rounded-full after:bg-white/5":
-            true,
+          "after:absolute after:-bottom-1/3 after:block after:h-4/6 after:w-4/6 after:-rotate-45 after:transform after:rounded-full after:bg-white/5": true,
         },
       )}
     >
