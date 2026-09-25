@@ -399,7 +399,7 @@ export default function ComputeDR({ serviceName }: ComputeDRProps) {
   };
 
   return (
-    <section className="w-full bg-[#F5F8FA] py-12 md:py-16">
+    <section className="w-full bg-[#F5F8FA] py-8 sm:py-12 md:py-16">
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* Progress */}
         <div className="mb-8 flex items-center justify-center gap-3">
@@ -429,9 +429,10 @@ export default function ComputeDR({ serviceName }: ComputeDRProps) {
         </div>
 
         {step === 1 ? (
-          <div className="grid overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm lg:grid-cols-[1.05fr_0.95fr]">
+          // <div className="grid overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm lg:grid-cols-[1.05fr_0.95fr]">
+          <div className="grid overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_8px_30px_rgba(16,42,67,0.06)] lg:grid-cols-[1fr_0.9fr]">
             {/* Calendar */}
-            <div className="border-b border-slate-200 p-6 sm:p-8 lg:border-b-0 lg:border-r">
+            <div className="border-b border-slate-200 p-4 sm:p-8 lg:border-b-0 lg:border-r">
               <div className="mb-7">
                 <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-[#15C9E4]">
                   Step 1 of 2
@@ -447,7 +448,8 @@ export default function ComputeDR({ serviceName }: ComputeDRProps) {
                 </p>
               </div>
 
-              <div className="mb-5 flex items-center justify-between">
+              {/* <div className="mb-5 flex items-center justify-between"> */}
+              <div className="mb-6 flex items-center justify-between border-b border-slate-100 pb-5">
                 <button
                   type="button"
                   onClick={handlePreviousMonth}
@@ -486,7 +488,7 @@ export default function ComputeDR({ serviceName }: ComputeDRProps) {
                 )}
               </div>
 
-              <div className="grid grid-cols-7 gap-1">
+              <div className="grid grid-cols-7 gap-0.5 sm:gap-1">
                 {calendarDays.map((date, index) => {
                   if (!date) {
                     return <div key={`empty-${index}`} />;
@@ -509,9 +511,10 @@ export default function ComputeDR({ serviceName }: ComputeDRProps) {
                       type="button"
                       disabled={disabled}
                       onClick={() => handleDateSelect(date)}
-                      className={`relative aspect-square rounded-lg text-sm font-medium transition ${
+                      // className={`relative aspect-square rounded-lg text-sm font-medium transition ${
+                      className={`relative aspect-square min-h-[42px] rounded-xl text-sm font-medium transition ${
                         selected
-                          ? "bg-[#15C9E4] text-white"
+                          ? "bg-[#15C9E4] text-white shadow-sm"
                           : disabled
                             ? "cursor-not-allowed text-slate-300"
                             : "text-[#102A43] hover:bg-[#EAF4FC]"
@@ -541,7 +544,7 @@ export default function ComputeDR({ serviceName }: ComputeDRProps) {
             </div>
 
             {/* Time slots */}
-            <div className="p-6 sm:p-8">
+            <div className="p-4 sm:p-8">
               <div className="mb-7">
                 <p className="text-sm font-semibold text-[#102A43]">
                   {selectedDate ? selectedDateFormatted : "Select a date"}
@@ -569,7 +572,7 @@ export default function ComputeDR({ serviceName }: ComputeDRProps) {
                 </div>
               ) : (
                 <>
-                  <div className="grid max-h-[390px] grid-cols-2 gap-3 overflow-y-auto pr-1 sm:grid-cols-3">
+                  <div className="grid max-h-[420px] grid-cols-2 gap-2.5 overflow-y-auto pr-1 sm:gap-3 xl:grid-cols-3">
                     {TIME_SLOTS.map((time) => {
                       const available = isTimeSlotAvailable(selectedDate, time);
 
@@ -581,9 +584,9 @@ export default function ComputeDR({ serviceName }: ComputeDRProps) {
                           type="button"
                           disabled={!available}
                           onClick={() => setSelectedTime(time)}
-                          className={`rounded-lg border px-3 py-3 text-sm font-medium transition ${
+                          className={`min-h-[48px] rounded-xl border px-3 py-3 text-sm font-medium transition ${
                             selected
-                              ? "border-[#15C9E4] bg-[#15C9E4] text-white"
+                              ? "border-[#15C9E4] bg-[#15C9E4] text-white shadow-sm"
                               : available
                                 ? "border-slate-200 bg-white text-[#102A43] hover:border-[#15C9E4] hover:bg-[#EAF4FC]"
                                 : "cursor-not-allowed border-slate-100 bg-slate-50 text-slate-300"
@@ -595,7 +598,7 @@ export default function ComputeDR({ serviceName }: ComputeDRProps) {
                     })}
                   </div>
 
-                  <div className="mt-5 rounded-lg bg-[#EAF4FC] px-4 py-3 text-xs leading-5 text-[#102A43]">
+                  <div className="mt-5 rounded-xl border border-[#D5F3F8] bg-[#EAF4FC] px-4 py-4 text-sm leading-6 text-[#102A43]">
                     <strong>Timezone:</strong> Africa/Lagos (WAT)
                     <br />
                     <strong>Duration:</strong> 30 minutes
@@ -605,7 +608,7 @@ export default function ComputeDR({ serviceName }: ComputeDRProps) {
                     <button
                       type="button"
                       onClick={handleContinue}
-                      className="w-full rounded-lg bg-[#15C9E4] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#102A43]"
+                      className="w-full rounded-xl bg-[#15C9E4] px-6 py-3.5 text-sm font-semibold text-white shadow-sm transition duration-200 hover:bg-[#102A43] hover:shadow-md"
                     >
                       Continue
                     </button>
@@ -615,9 +618,9 @@ export default function ComputeDR({ serviceName }: ComputeDRProps) {
             </div>
           </div>
         ) : (
-          <div className="mx-auto max-w-3xl rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8 lg:p-10">
+          <div className="mx-auto max-w-3xl rounded-2xl border border-slate-200 bg-white p-6 shadow-[0_8px_30px_rgba(16,42,67,0.06)] sm:p-8 lg:p-10">
             {/* Appointment summary */}
-            <div className="mb-8 rounded-xl border border-[#BCEEF5] bg-[#EAF4FC] p-5">
+            <div className="mb-8 rounded-xl border border-[#BCEEF5] bg-[#EAF4FC] p-5 sm:p-6">
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-wide text-[#15C9E4]">
@@ -636,7 +639,7 @@ export default function ComputeDR({ serviceName }: ComputeDRProps) {
                 <button
                   type="button"
                   onClick={handleBack}
-                  className="text-sm font-semibold text-[#102A43] underline decoration-[#15C9E4] underline-offset-4 hover:text-[#15C9E4]"
+                  className="inline-flex min-h-[40px] items-center text-sm font-semibold text-[#102A43] underline decoration-[#15C9E4] underline-offset-4 hover:text-[#15C9E4]"
                 >
                   Edit
                 </button>
@@ -778,7 +781,7 @@ export default function ComputeDR({ serviceName }: ComputeDRProps) {
                 <button
                   type="button"
                   onClick={handleBack}
-                  className="rounded-lg border border-slate-300 px-6 py-3 text-sm font-semibold text-[#102A43] transition hover:border-[#15C9E4] hover:bg-[#EAF4FC]"
+                  className="w-full rounded-xl border border-slate-300 px-6 py-3.5 text-sm font-semibold text-[#102A43] transition hover:border-[#15C9E4] hover:bg-[#EAF4FC] sm:w-auto"
                 >
                   Back
                 </button>
@@ -786,7 +789,7 @@ export default function ComputeDR({ serviceName }: ComputeDRProps) {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="min-w-[180px] rounded-lg bg-[#15C9E4] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#102A43] disabled:cursor-not-allowed disabled:opacity-60"
+                  className="min-w-[180px] rounded-xl bg-[#15C9E4] px-6 py-3.5 text-sm font-semibold text-white shadow-sm transition duration-200 hover:bg-[#102A43] hover:shadow-md disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {isSubmitting ? "Confirming..." : "Confirm Demo"}
                 </button>
