@@ -58,7 +58,7 @@ export async function POST(request: Request) {
       from: `New Demo Request <${process.env.NODEMAILER_USER_1}>`,
       replyTo: senderEmail,
       to: "developer@unitellas.com",
-      cc: ["info@unitellas.com.ng", "treasure@unitellas.com.ng",],
+      cc: ["info@unitellas.com.ng", "treasure@unitellas.com.ng"],
       subject: `Demo Request from ${senderName}`,
       text: `Sender Email: ${senderEmail} Sender Phone Number: ${senderPhone} Organization: ${orgName} Country: ${senderCountry} Demo Specifications Operating System: ${os} CPU Size: ${cpuNumber} Ram Size: ${ramSize} Custom Ram Size: ${customRamSize} Bandwidth: ${bandwidth} Custom Bandwidth: ${customBandwidth}  Drive Type: ${driveType} Storage Type: ${storageType} Storage Size: ${storageAmount} ${ssdGbTb} Database: ${database}  Number of IPs needed: ${publicIP} Notes: ${senderNotes}`,
       html: `      

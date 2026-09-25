@@ -4,7 +4,6 @@ import toast from "react-hot-toast";
 import { sendGTMEvent } from "@next/third-parties/google";
 import { countries } from "@/data/countries";
 
-
 export interface AIForm {
   service: string;
   senderName: string; // sender name
@@ -243,10 +242,10 @@ const AI: React.FC<AIProps> = ({ serviceName }) => {
           required
         >
           <option value="">Select a Country</option>
-                    {countries.map((country) => (
-                      <option key={country} value={country}>
-                        {country}
-                      </option>
+          {countries.map((country) => (
+            <option key={country} value={country}>
+              {country}
+            </option>
           ))}
         </select>
       </div>

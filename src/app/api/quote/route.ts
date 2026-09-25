@@ -66,7 +66,7 @@ export async function POST(request: Request) {
       from: `New Quote Request <${process.env.NODEMAILER_USER_1}>`,
       replyTo: senderEmail,
       to: "developer@unitellas.com",
-      cc: ["info@unitellas.com.ng", "treasure@unitellas.com.ng",],
+      cc: ["info@unitellas.com.ng", "treasure@unitellas.com.ng"],
       subject: `Quote Request from ${senderName}`,
       text: `Sender Email: ${senderEmail} Sender Phone Number: ${senderPhone} Organization: ${orgName} Sender Country: ${senderCountry}  Quote Specifications Service: ${service} Operating System: ${os} CPU Size: ${cpuNumber} Ram Size: ${ramSize} Custom Ram Size: ${customRamSize} Bandwidth: ${bandwidth} <br/> Custom Bandwidth: ${customBandwidth}  Storage Type: ${storageType} Storage Size: ${storageAmount} ${ssdGbTb} NVME Size: ${nvmeSize} Custom NVME Size: ${customNvmeSize} GPU Size: ${gpuSize}  Number of IPs needed: ${publicIP} Extra Details: ${senderNotes}`,
       html: `

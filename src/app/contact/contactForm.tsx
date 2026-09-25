@@ -58,43 +58,43 @@ export default function ContactForm() {
   // }
 
   function submitHandler(e: React.FormEvent<HTMLFormElement>) {
-  e.preventDefault();
-  setLoading(true);
+    e.preventDefault();
+    setLoading(true);
 
-  fetch("/api/contact", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(formData),
-  })
-    .then(async (response) => {
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || "Failed to send message");
-      }
-
-      return data;
+    fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
     })
-    .then(() => {
-      toast.success("Sent successfully");
+      .then(async (response) => {
+        const data = await response.json();
 
-      setFormData({
-        senderName: "",
-        senderEmail: "",
-        emailSubject: "",
-        message: "",
+        if (!response.ok) {
+          throw new Error(data.error || "Failed to send message");
+        }
+
+        return data;
+      })
+      .then(() => {
+        toast.success("Sent successfully");
+
+        setFormData({
+          senderName: "",
+          senderEmail: "",
+          emailSubject: "",
+          message: "",
+        });
+      })
+      .catch((error) => {
+        console.error("Contact form error:", error);
+        toast.error("An error occurred. Please try again.");
+      })
+      .finally(() => {
+        setLoading(false);
       });
-    })
-    .catch((error) => {
-      console.error("Contact form error:", error);
-      toast.error("An error occurred. Please try again.");
-    })
-    .finally(() => {
-      setLoading(false);
-    });
-}
+  }
 
   return (
     <form

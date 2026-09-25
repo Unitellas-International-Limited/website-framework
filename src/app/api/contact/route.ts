@@ -22,22 +22,22 @@ export async function POST(request: Request) {
 
   try {
     const info = await transporter.sendMail({
-  from: `New Contact Enquiry <${process.env.NODEMAILER_USER_1}>`,
-  replyTo: senderEmail,
-  to: "developer@unitellas.com",
-  cc: ["contact@unitellas.com.ng", "treasure@unitellas.com.ng"],
-  subject: `New Message from ${senderName}: ${emailSubject}`,
-  text: message,
-  html: `<p>Sender Email: ${senderEmail} <br><br> ${message}</p>`,
-});
+      from: `New Contact Enquiry <${process.env.NODEMAILER_USER_1}>`,
+      replyTo: senderEmail,
+      to: "developer@unitellas.com",
+      cc: ["contact@unitellas.com.ng", "treasure@unitellas.com.ng"],
+      subject: `New Message from ${senderName}: ${emailSubject}`,
+      text: message,
+      html: `<p>Sender Email: ${senderEmail} <br><br> ${message}</p>`,
+    });
 
-console.log("CONTACT EMAIL RESULT:", {
-  messageId: info.messageId,
-  accepted: info.accepted,
-  rejected: info.rejected,
-  response: info.response,
-  envelope: info.envelope,
-});
+    console.log("CONTACT EMAIL RESULT:", {
+      messageId: info.messageId,
+      accepted: info.accepted,
+      rejected: info.rejected,
+      response: info.response,
+      envelope: info.envelope,
+    });
 
     return NextResponse.json({ status: "OK" }, { status: 200 });
   } catch (error) {

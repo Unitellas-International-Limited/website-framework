@@ -193,10 +193,10 @@ const Backup: React.FC<BackupProps> = ({ serviceName }) => {
           required
         >
           <option value="">Select a Country</option>
-                    {countries.map((country) => (
-                      <option key={country} value={country}>
-                        {country}
-                      </option>
+          {countries.map((country) => (
+            <option key={country} value={country}>
+              {country}
+            </option>
           ))}
         </select>
       </div>
