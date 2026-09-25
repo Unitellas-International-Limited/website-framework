@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { BaseButtonWithColor } from "@/components/UI/Buttons";
 import toast from "react-hot-toast";
 import { sendGTMEvent } from "@next/third-parties/google";
+import { countries } from "@/data/countries";
+
+
 export interface AIForm {
   service: string;
   senderName: string; // sender name
@@ -24,11 +27,11 @@ interface AIProps {
   serviceName: string;
 }
 
-interface Country {
-  name: {
-    common: string;
-  };
-}
+// interface Country {
+//   name: {
+//     common: string;
+//   };
+// }
 
 const AI: React.FC<AIProps> = ({ serviceName }) => {
   const [loading, setLoading] = useState(false);
@@ -36,7 +39,7 @@ const AI: React.FC<AIProps> = ({ serviceName }) => {
   const [openCustomNVMe, setOpenCustomNVMe] = useState(false);
   const [customRAM, setCustomRAM] = useState("");
   const [customNVMe, setCustomNVMe] = useState("");
-  const [countries, setCountries] = useState<string[]>([]);
+  // const [countries, setCountries] = useState<string[]>([]);
   const [formData, setFormData] = useState<AIForm>({
     service: serviceName,
     senderName: "",
@@ -56,20 +59,20 @@ const AI: React.FC<AIProps> = ({ serviceName }) => {
   });
 
   // for countries list
-  useEffect(() => {
-    fetch("https://restcountries.com/v3.1/all")
-      .then(async (res) => await res.json())
-      .then((data) => {
-        const countryNames = data.map(
-          (country: Country) => country.name.common,
-        );
-        const sortedCountryNames = countryNames.sort();
-        setCountries(sortedCountryNames);
-      })
-      .catch((error) => {
-        console.error("Error fetching countries:", error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch("https://restcountries.com/v3.1/all")
+  //     .then(async (res) => await res.json())
+  //     .then((data) => {
+  //       const countryNames = data.map(
+  //         (country: Country) => country.name.common,
+  //       );
+  //       const sortedCountryNames = countryNames.sort();
+  //       setCountries(sortedCountryNames);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching countries:", error);
+  //     });
+  // }, []);
 
   // general input change handler
   const handleChange = (
@@ -129,7 +132,7 @@ const AI: React.FC<AIProps> = ({ serviceName }) => {
   function submitHandler(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
-    fetch("api/quote", {
+    fetch("/api/quote", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -240,10 +243,10 @@ const AI: React.FC<AIProps> = ({ serviceName }) => {
           required
         >
           <option value="">Select a Country</option>
-          {countries.map((country, index) => (
-            <option key={index} value={country}>
-              {country}
-            </option>
+                    {countries.map((country) => (
+                      <option key={country} value={country}>
+                        {country}
+                      </option>
           ))}
         </select>
       </div>

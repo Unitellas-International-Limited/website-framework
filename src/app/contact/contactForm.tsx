@@ -29,33 +29,72 @@ export default function ContactForm() {
     const targetValue = event.target.value;
     setFormData((values) => ({ ...values, [targetName]: targetValue }));
   };
+  // function submitHandler(e: React.FormEvent<HTMLFormElement>) {
+  //   e.preventDefault();
+  //   setLoading(true);
+  //   fetch("api/contact", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(formData),
+  //   })
+  //     .then(async (response) => await response.json())
+  //     .then(() => {
+  //       toast.success("Sent successfully");
+  //       setLoading(false);
+  //       setFormData({
+  //         senderName: "",
+  //         senderEmail: "",
+  //         emailSubject: "",
+  //         message: "",
+  //       });
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //       setLoading(false);
+  //       toast.error("An error occurred");
+  //     });
+  // }
+
   function submitHandler(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setLoading(true);
-    fetch("api/contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
+  e.preventDefault();
+  setLoading(true);
+
+  fetch("/api/contact", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  })
+    .then(async (response) => {
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to send message");
+      }
+
+      return data;
     })
-      .then(async (response) => await response.json())
-      .then(() => {
-        toast.success("Sent successfully");
-        setLoading(false);
-        setFormData({
-          senderName: "",
-          senderEmail: "",
-          emailSubject: "",
-          message: "",
-        });
-      })
-      .catch((error) => {
-        console.error(error);
-        setLoading(false);
-        toast.error("An error occurred");
+    .then(() => {
+      toast.success("Sent successfully");
+
+      setFormData({
+        senderName: "",
+        senderEmail: "",
+        emailSubject: "",
+        message: "",
       });
-  }
+    })
+    .catch((error) => {
+      console.error("Contact form error:", error);
+      toast.error("An error occurred. Please try again.");
+    })
+    .finally(() => {
+      setLoading(false);
+    });
+}
 
   return (
     <form

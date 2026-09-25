@@ -152,7 +152,7 @@ const ComputeDR: React.FC<ComputeDRProps> = ({ serviceName }) => {
   function submitHandler(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
-    fetch("api/demo", {
+    fetch("api/quote", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
