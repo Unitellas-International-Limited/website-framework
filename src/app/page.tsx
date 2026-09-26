@@ -1,30 +1,30 @@
 import { Metadata } from "next";
+
 import LowerHome from "./lowerHome";
 import Hero from "./hero";
 import Nav from "./components/UI/Nav";
 import Footer from "./components/UI/Footer";
 
 export const metadata: Metadata = {
-  title: "Unitellas International Limited | Edge Cloud Services",
+  title: "Unitellas International Limited | Edge Cloud Infrastructure",
   description:
-    "Discover Africa’s first hyper-scale edge cloud platform. Fully managed edge cloud services - compute, storage, and networking services for enterprises and service providers.",
+    "Unitellas provides managed cloud infrastructure across compute, networking, storage, protection and more for modern enterprises and service providers.",
   keywords: [
     "Unitellas",
     "Edge Cloud Nigeria",
-    "Cloud Computing Africa",
+    "Cloud Infrastructure Africa",
     "Enterprise Cloud Services",
     "Unitellas International Limited",
-    "Hyper-Scale Cloud Nigeria",
     "Cloud Services Nigeria",
-    "Data Center Africa",
+    "Edge Cloud Africa",
   ],
   alternates: {
     canonical: "https://www.unitellas.com.ng/",
   },
   openGraph: {
-    title: "Unitellas International Limited | Edge Cloud Services",
+    title: "Unitellas International Limited | Edge Cloud Infrastructure",
     description:
-      "Unitellas delivers scalable, secure, and affordable cloud infrastructure tailored for Africa’s digital transformation.",
+      "Managed cloud infrastructure across compute, networking, storage, protection and more.",
     url: "https://www.unitellas.com.ng/",
     siteName: "Unitellas International Limited",
     type: "website",
@@ -33,15 +33,15 @@ export const metadata: Metadata = {
         url: "https://www.unitellas.com.ng/unitellasicon.png",
         width: 1200,
         height: 630,
-        alt: "Unitellas Edge Cloud",
+        alt: "Unitellas International Limited",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Unitellas Edge Cloud Services",
+    title: "Unitellas | Edge Cloud Infrastructure",
     description:
-      "The future of cloud in Africa — scalable and affordable edge computing from Unitellas.",
+      "Managed cloud infrastructure for modern enterprises and service providers.",
     site: "@Unitellasil",
     creator: "@Unitellasil",
     images: ["https://www.unitellas.com.ng/unitellasicon.png"],
@@ -55,11 +55,15 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main className="h-screen w-full bg-home-hero bg-cover bg-center ">
+    <>
       <Nav />
-      <Hero />
-      <LowerHome />
+
+      <main>
+        <Hero />
+        <LowerHome />
+      </main>
+
       <Footer />
-    </main>
+    </>
   );
 }
