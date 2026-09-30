@@ -3,7 +3,6 @@ import {
   faShieldHalved,
   faLocationDot,
   faGlobeAfrica,
-  faScaleBalanced,
   faSliders,
   faCheck,
   faArrowRight,

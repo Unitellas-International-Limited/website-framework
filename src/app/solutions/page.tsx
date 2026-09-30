@@ -475,12 +475,12 @@ export default function Solutions() {
                 <span className="unitellas-eyebrow">Talk to Unitellas</span>
 
                 <h2 className="mt-5 font-Mongoose text-5xl leading-none text-white sm:text-6xl">
-                  Let's design the right infrastructure for your workload.
+                  Let&apos;s design the right infrastructure for your workload.
                 </h2>
 
                 <p className="mt-5 text-base leading-7 text-slate-300">
-                  Tell us what you're building, where you need to deploy and
-                  what your infrastructure needs to support.
+                  Tell us what you&apos;re building, where you need to deploy
+                  and what your infrastructure needs to support.
                 </p>
               </div>
 

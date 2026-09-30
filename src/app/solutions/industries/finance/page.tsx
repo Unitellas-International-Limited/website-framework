@@ -5,7 +5,6 @@ import {
   faShieldHalved,
   faGaugeHigh,
   faDatabase,
-  faLayerGroup,
   faCheck,
   faArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
