@@ -73,7 +73,7 @@ export async function POST(request: Request) {
       from: `Unitellas Website <${mailUser}>`,
       replyTo: senderEmail,
       to: "developer@unitellas.com",
-      cc: ["contact@unitellas.com.ng", "treasure@unitellas.com.ng"],
+      cc: ["contact@unitellas.com.ng", "treasure@unitellas.com.ng", "victor@unitellas.com"],
       subject: `New Contact Enquiry: ${emailSubject}`,
       text: [
         `Name: ${senderName}`,
