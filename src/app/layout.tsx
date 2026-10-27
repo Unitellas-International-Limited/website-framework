@@ -6,6 +6,7 @@ import type { Metadata } from "next";
 
 import ToasterComponent from "@/components/UI/Toaster";
 import CookieBanner from "./components/CookieConsent";
+import AIChatWidget from "./components/AIChatWidget";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.unitellas.com.ng"),
@@ -143,6 +144,8 @@ export default function RootLayout({
         <ToasterComponent />
 
         <SpeedInsights />
+
+        <AIChatWidget />
       </body>
     </html>
   );
